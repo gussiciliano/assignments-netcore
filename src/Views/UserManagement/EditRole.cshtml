@@ -1,0 +1,14 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@model AssignmentsNetcore.Models.Views.UserManagementViewModel
+@inject IViewLocalizer Localizer
+
+<h3>@Localizer["EditRole"]</h3>
+@using (Html.BeginForm("EditRole", "UserManagement", FormMethod.Post))
+{  
+	@Html.HiddenFor(model => model.RoleId)
+    <partial name="_EditRoleForm" model="Model"/>
+    <div class='form-group'>
+        <input type='submit' value='@Localizer["SaveChanges"]'/>
+    </div>
+}
