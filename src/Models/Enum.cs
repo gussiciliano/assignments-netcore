@@ -23,6 +23,7 @@ namespace AssignmentsNetcore.Models
         TL = 6,
         Developer = 7,
     }
+    
 
     public enum Country
     {
