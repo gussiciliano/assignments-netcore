@@ -5,3 +5,4 @@ namespace AssignmentsNetcore.Models.Database
         public string Name { get; set; }
     }
 }
+
