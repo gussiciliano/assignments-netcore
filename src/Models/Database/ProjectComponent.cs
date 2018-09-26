@@ -11,6 +11,6 @@ namespace AssignmentsNetcore.Models.Database
         public DateTime EndDate { get; set; }
         public Project Project { get; set; }
         public ProjectStatus Status { get; set; }
-        public Tech Tech { get; set; }
+        public virtual Tech Tech { get; set; }
     }
 }

@@ -8,6 +8,6 @@ namespace AssignmentsNetcore.Models.Database
         public String ColumnName { get; set; }
         public String PreviousValue { get; set; }
         public String NewValue { get; set; }
-        public User User { get; set; } 
+        public virtual User User { get; set; } 
     }
 }
