@@ -24,7 +24,6 @@ namespace AssignmentsNetcore.Models
         Developer = 7,
     }
 
-
     public enum Country
     {
         Argentina = 1,
@@ -32,7 +31,6 @@ namespace AssignmentsNetcore.Models
         Mexico = 3,
         USA = 4,
     }
-    
 
     public enum Workload
     {
