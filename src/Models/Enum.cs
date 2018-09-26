@@ -33,6 +33,7 @@ namespace AssignmentsNetcore.Models
         USA = 4,
     }
     
+
     public enum Workload
     {
         // TODO Add all workloads
