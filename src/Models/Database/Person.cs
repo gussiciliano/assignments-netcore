@@ -11,7 +11,7 @@ namespace AssignmentsNetcore.Models.Database
         public Workload Workload { get; set; }
         public Office Office { get; set; }
 
-        public List<JobRole> Roles { get; set; }
+        public ICollection<JobRole> JobRoles { get; set; }
         public bool Active { get; set; }
     }
 }

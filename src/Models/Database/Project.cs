@@ -10,7 +10,7 @@ namespace AssignmentsNetcore.Models.Database
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public List<ProjectComponent> Components { get; set; }
+        public ICollection<ProjectComponent> Components { get; set; }
         public ProjectStatus Status { get; set; }
         public Tech Tech { get; set; }
     }
