@@ -5,7 +5,7 @@ namespace AssignmentsNetcore.Models.Database
 
     public class AssignmentRole : BaseEntity
     {
-        public Assignment Assignment { get; set; }
+        public virtual Assignment Assignment { get; set; }
         public virtual JobRole JobRole { get; set; }
     }
 }
