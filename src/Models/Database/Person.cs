@@ -9,9 +9,8 @@ namespace AssignmentsNetcore.Models.Database
         public string Mail { get; set; }
         public DateTime EntryDate { get; set; }
         public Workload Workload { get; set; }
-        public Office Office { get; set; }
-
-        public ICollection<JobRole> JobRoles { get; set; }
+        public virtual Office Office { get; set; }
+        public virtual ICollection<JobRole> JobRoles { get; set; }
         public bool Active { get; set; }
     }
 }
