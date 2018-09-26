@@ -23,7 +23,7 @@ namespace AssignmentsNetcore.Models
         TL = 6,
         Developer = 7,
     }
-    
+
 
     public enum Country
     {
@@ -32,6 +32,7 @@ namespace AssignmentsNetcore.Models
         Mexico = 3,
         USA = 4,
     }
+    
     public enum Workload
     {
         // TODO Add all workloads
