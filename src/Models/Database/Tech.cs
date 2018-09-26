@@ -1,5 +1,3 @@
-using System;
-
 namespace AssignmentsNetcore.Models.Database
 {
     public class Tech : BaseEntity
