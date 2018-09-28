@@ -23,4 +23,12 @@ namespace AssignmentsNetcore.Models
         TL = 6,
         Developer = 7,
     }
+
+    public enum Country
+    {
+        Argentina = 1,
+        Colombia = 2,
+        Mexico = 3,
+        USA = 4,
+    }
 }
