@@ -2,10 +2,10 @@ using System;
 
 namespace AssignmentsNetcore.Models.Database
 {
-    public class Role : BaseEntity
+    public class JobRole : BaseEntity
     {
-        public string Name { get; set;}
-        public bool Active { get; set;}
-        public Tech Tech { get; set;}
+        public string Name { get; set; }
+        public bool Active { get; set; }
+        public virtual Tech Tech { get; set; }
     }
 }
