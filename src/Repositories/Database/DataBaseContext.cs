@@ -13,6 +13,8 @@ namespace AssignmentsNetcore.Repositories.Database
     public class DataBaseContext : IdentityDbContext<User>
     {
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options) { }
+
+        public DbSet<Tech> Tech { get; set; }
         public override int SaveChanges()
         {
             AddTimestamps();
