@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace AssignmentsNetcore.Models.Database
 {
-
     public class Assignment : BaseEntity
     {
         public DateTime StartDate { get; set; }

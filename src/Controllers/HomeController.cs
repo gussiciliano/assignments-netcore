@@ -1,11 +1,11 @@
 using System;
+using AssignmentsNetcore.Models.Database;
+using AssignmentsNetcore.Repositories;
+using AssignmentsNetcore.Repositories.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using AssignmentsNetcore.Models.Database;
-using AssignmentsNetcore.Repositories;
-using AssignmentsNetcore.Repositories.Database;
 
 namespace AssignmentsNetcore.Controllers
 {
@@ -33,20 +33,6 @@ namespace AssignmentsNetcore.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
-        }
-
-        [HttpGet("About")]
-        public IActionResult About()
-        {
-            ViewData["Message"] = Localizer["DescriptionPage"];
-            return View();
-        }
-
-        [HttpGet("Contact")]
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = Localizer["ContactPage"];
             return View();
         }
 

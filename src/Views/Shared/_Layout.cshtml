@@ -1,6 +1,10 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
+@using Microsoft.AspNetCore.Identity
+@using AssignmentsNetcore.Models.Database
 @inject IViewLocalizer Localizer
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <!DOCTYPE html>
 <html>
@@ -36,9 +40,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">@Localizer["Contact"]</a></li>
-                    @await Html.PartialAsync("_UserManagementPartial")
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("ADMIN"))
+                    { 
+                        @await Html.PartialAsync("_UserManagementPartial")
+                    }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

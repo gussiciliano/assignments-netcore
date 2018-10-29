@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AssignmentsNetcore.Models.Database;
+using AssignmentsNetcore.Models.Views;
+using AssignmentsNetcore.Repositories;
+using AssignmentsNetcore.Repositories.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.EntityFrameworkCore;
-using AssignmentsNetcore.Models.Database;
-using AssignmentsNetcore.Models.Views;
-using AssignmentsNetcore.Repositories;
-using AssignmentsNetcore.Repositories.Database;
 
 namespace AssignmentsNetcore.Controllers
 {
     [Route("[controller]")]
-    [Authorize]
+    [Authorize(Roles = "ADMIN")]
     public class UserManagementController : Controller
     {
         private readonly IHtmlLocalizer<UserManagementController> _localizer;
