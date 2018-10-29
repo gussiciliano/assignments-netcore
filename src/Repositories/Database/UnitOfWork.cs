@@ -8,8 +8,9 @@ namespace AssignmentsNetcore.Repositories.Database
         public UnitOfWork(DataBaseContext context)
         {
             this._context = context;
+            TechsRepository = new TechsRepository(_context);
         }
-
+        public ITechsRepository TechsRepository { get; private set; }
         public int Complete()
         {
             return this._context.SaveChanges();

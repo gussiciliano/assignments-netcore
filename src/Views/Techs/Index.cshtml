@@ -1,0 +1,27 @@
+@model AssignmentsNetcore.Models.Views.TechViewModel
+
+@{
+}
+
+<h2>Techs ABM</h2>
+
+<p>
+    <a asp-action="Create"> Create </a>
+</p>
+<form asp-controller="Techs" asp-action="Index" method="GET">
+</form>
+<table class="table">
+    <tbody>
+@foreach (var item in Model.Name) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
