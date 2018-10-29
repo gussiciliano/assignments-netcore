@@ -11,7 +11,20 @@ namespace AssignmentsNetcore.Repositories.Database
     {
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options) { }
 
+        public DbSet<Assignment> Assignment { get; set; }
+        public DbSet<AssignmentRole> AssignmentRole { get; set; }
+        public DbSet<Changes> Changes { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<Commercial> Commercial { get; set; }
+        public DbSet<Feedback> Feedback { get; set; }
+        public DbSet<HHII> HHII { get; set; }
+        public DbSet<JobRole> JobRole { get; set; }
+        public DbSet<Office> Office { get; set; }
+        public DbSet<Person> Person { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<ProjectComponent> ProjectComponent { get; set; }
         public DbSet<Tech> Tech { get; set; }
+        public DbSet<Training> Training { get; set; }
         public override int SaveChanges()
         {
             AddTimestamps();

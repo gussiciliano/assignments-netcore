@@ -75,11 +75,11 @@ namespace AssignmentsNetcore.Controllers
             if (ModelState.IsValid)
             {
                 var result = await SignInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, loginViewModel.RememberMe, false);
-                if (result.Succeeded) return RedirectToAction("Users", "UserManagement");
+                if (result.Succeeded) return RedirectToAction("Index", "Home");
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             }
             loginViewModel.LoginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            return RedirectToAction("Index", "Home");
+            return View(loginViewModel);
         }
 
         [AllowAnonymous]
