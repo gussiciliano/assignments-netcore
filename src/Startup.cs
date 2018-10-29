@@ -1,7 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Text;
+using AssignmentsNetcore.Models.Database;
+using AssignmentsNetcore.Repositories;
+using AssignmentsNetcore.Repositories.Database;
+using AssignmentsNetcore.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,11 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using AssignmentsNetcore.Models.Database;
-using AssignmentsNetcore.Repositories;
-using AssignmentsNetcore.Repositories.Database;
-using AssignmentsNetcore.Repositories.Interfaces;
-// using Rollbar;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace AssignmentsNetcore
@@ -38,16 +40,14 @@ namespace AssignmentsNetcore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            // Rollbar service start
-            // ConfigureRollbarSingleton();
-            // Rollbar service end
             services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
             CultureInfo.CurrentUICulture = new CultureInfo(Configuration["DefaultCulture"]);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddViewLocalization();
-            services.AddSwaggerGen(c =>
+            services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore).SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddViewLocalization();
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "AssignmentsNetcore API", Version = "v1" });
+                options.SwaggerDoc("v1", new Info { Title = "AssignmentsNetcore API", Version = "v1" });
+                options.AddSecurityDefinition("Bearer", new ApiKeyScheme { In = "header", Description = "Please enter JWT with Bearer into field", Name = "Authorization", Type = "apiKey" });
+                options.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> { { "Bearer", Enumerable.Empty<string>() } });
             });
             if (CurrentEnvironment.IsEnvironment("Testing"))
             {
@@ -61,64 +61,49 @@ namespace AssignmentsNetcore
             {
                 var connectionString = Configuration["ConnectionString"];
                 // if not, set the postgres database
-                services.AddDbContext<DataBaseContext>(options => options.UseNpgsql(connectionString));
+                services.AddDbContext<DataBaseContext>(options => options.UseLazyLoadingProxies().UseNpgsql(connectionString));
             }
             // Begin for Identity
             services.AddIdentity<User, IdentityRole>()
                     .AddEntityFrameworkStores<DataBaseContext>()
                     .AddDefaultTokenProviders();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/Account/AccessDenied";
-            });
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            // ----------------------------------------------------------------------------------------
-            // JWT auth
-            // To use this con the controllers, add the [Authorize] tag on the methods that require auth
-            // services.AddAuthentication(options =>
-            // {
-            //     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            // }).AddJwtBearer(options =>
-            // {
-            //     options.Authority = Configuration["Authentication:Auth0:Authority"];
-            //     options.Audience = Configuration["Authentication:Auth0:Audience"];
-            // });
-            // End JWT Auth
-            // ----------------------------------------------------------------------------------------
-            // Facebook Auth
-            // services.AddAuthentication().AddFacebook(facebookOptions => {
-            //                                 facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-            //                                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-            //                             });
-            // End Facebook Auth
-            // ----------------------------------------------------------------------------------------
-            // Google Auth
-            // services.AddAuthentication().AddGoogle(googleOptions =>
-            // {
-            //     googleOptions.ClientId = Configuration["Authentication:GoogleAuth:ClientId"];
-            //     googleOptions.ClientSecret = Configuration["Authentication:GoogleAuth:ClientSecret"];
-            // });
-            // End Google Auth
-            // ----------------------------------------------------------------------------------------
-            // Final for Identity
+            services.AddAuthentication()
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Login";
+                    options.AccessDeniedPath = "/Account/AccessDenied";
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.Audience = Configuration["Jwt:Issuer"];
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ClockSkew = TimeSpan.FromMinutes(0),
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidAudience = Configuration["Jwt:Issuer"],
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Jwt:Key"])),
+                    };
+                });
             services.AddScoped<DataBaseContext>();
-            // Uncomment this if you want use Hangfire
-            // services.AddHangfire(options => GlobalConfiguration.Configuration.UsePostgreSqlStorage(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, UserManager<User> userManager, RoleManager<IdentityRole> identityRoleManager)
         {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<DataBaseContext>();
+                context.Database.Migrate();
+            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -140,72 +125,33 @@ namespace AssignmentsNetcore
                     context.Database.EnsureCreated();
                 }
             }
+            if (env.IsDevelopment() || env.IsProduction())
+            {
+                var adminUserExists = userManager.FindByNameAsync(Configuration["AdminCredentials:Username"]).Result != null;
+                if (!adminUserExists)
+                {
+                    if (!identityRoleManager.CreateAsync(new IdentityRole("ADMIN")).Result.Succeeded) throw new ArgumentException("Role");
+                    var adminUser = new User
+                    {
+                        UserName = Configuration["AdminCredentials:Username"],
+                        Email = Configuration["AdminCredentials:Email"],
+                        EmailConfirmed = true,
+                    };
+                    if (!userManager.CreateAsync(adminUser, Configuration["AdminCredentials:Password"]).Result.Succeeded) throw new ArgumentException("User");
+                    if (!userManager.AddToRoleAsync(adminUser, "ADMIN").Result.Succeeded) throw new ArgumentException("UserRole");
+                }
+            }
             loggerFactory.AddFile("Logs/AssignmentsNetcoreLogs-{Date}.txt", LogLevel.Error);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseCookiePolicy();
-            // Rollbar middelware start
-            // app.UseRollbarMiddleware();
-            // Rollbar middelware end
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "AssignmentsNetcore API V1");
             });
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetService<DataBaseContext>();
-                context.Database.Migrate();
-            }
-            // Uncomment this to use Mailer
-            // Mailer.SetAccountConfiguration(Configuration);
-            // Uncomment this if you want use Hangfire
-            // app.UseHangfireDashboard();
-            // app.UseHangfireServer(new BackgroundJobServerOptions(), null, new PostgreSqlStorage(Configuration["ConnectionString"]));
         }
-
-        // Rollbar methods start
-        // private void ConfigureRollbarSingleton()
-        // {
-        //     string rollbarAccessToken = Configuration["Rollbar:AccessToken"];
-        //     string rollbarEnvironment = Configuration["Rollbar:Environment"];
-        //     RollbarLocator.RollbarInstance
-        //         // minimally required Rollbar configuration:
-        //         .Configure(new RollbarConfig(rollbarAccessToken) { Environment = rollbarEnvironment })
-        //         // optional step if you would like to monitor Rollbar internal events within your application:
-        //         .InternalEvent += OnRollbarInternalEvent;
-        // }
-
-        // private static void OnRollbarInternalEvent(object sender, RollbarEventArgs e)
-        // {
-        //     Console.WriteLine(e.TraceAsString());
-        //     RollbarApiErrorEventArgs apiErrorEvent = e as RollbarApiErrorEventArgs;
-        //     if (apiErrorEvent != null)
-        //     {
-        //         //TODO: handle/report Rollbar API communication error event...
-        //         return;
-        //     }
-        //     CommunicationEventArgs commEvent = e as CommunicationEventArgs;
-        //     if (commEvent != null)
-        //     {
-        //         //TODO: handle/report Rollbar API communication event...
-        //         return;
-        //     }
-        //     CommunicationErrorEventArgs commErrorEvent = e as CommunicationErrorEventArgs;
-        //     if (commErrorEvent != null)
-        //     {
-        //         //TODO: handle/report basic communication error while attempting to reach Rollbar API service...
-        //         return;
-        //     }
-        //     InternalErrorEventArgs internalErrorEvent = e as InternalErrorEventArgs;
-        //     if (internalErrorEvent != null)
-        //     {
-        //         //TODO: handle/report basic internal error while using the Rollbar Notifier...
-        //         return;
-        //     }
-        // }
-        // Rollbar methods end
     }
 }

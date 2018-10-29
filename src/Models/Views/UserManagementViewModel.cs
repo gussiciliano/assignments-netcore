@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using AssignmentsNetcore.Models.Database;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using AssignmentsNetcore.Models.Database;
 
 namespace AssignmentsNetcore.Models.Views
 {

@@ -2,6 +2,9 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AssignmentsNetcore.Models.Database;
+using AssignmentsNetcore.Models.Views;
+using AssignmentsNetcore.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,9 +12,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using AssignmentsNetcore.Models.Database;
-using AssignmentsNetcore.Models.Views;
-using AssignmentsNetcore.Repositories;
 
 namespace AssignmentsNetcore.Controllers
 {
@@ -51,12 +51,11 @@ namespace AssignmentsNetcore.Controllers
                 var result = await UserManager.CreateAsync(user, userViewModel.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, true);
-                    return RedirectToAction("Users", "UserManagement");
+                    return RedirectToAction("Index", "Home");
                 }
                 else foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
             }
-            return View(userViewModel);
+            return RedirectToAction("Index", "Home");
         }
 
         [AllowAnonymous]
@@ -80,7 +79,7 @@ namespace AssignmentsNetcore.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             }
             loginViewModel.LoginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            return View(loginViewModel);
+            return RedirectToAction("Index", "Home");
         }
 
         [AllowAnonymous]

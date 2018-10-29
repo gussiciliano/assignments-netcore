@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
 using AssignmentsNetcore.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AssignmentsNetcore.Repositories
 {

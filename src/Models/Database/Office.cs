@@ -1,6 +1,5 @@
 namespace AssignmentsNetcore.Models.Database
 {
-
     public class Office : BaseEntity
     {
         public Country Country { get; set; }

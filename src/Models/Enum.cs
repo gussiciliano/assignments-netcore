@@ -4,7 +4,6 @@ namespace AssignmentsNetcore.Models
 {
     public enum ProjectStatus
     {
-        // TODO: Complete
         ProductThinking = 1,
         Developing = 2,
         Production = 3,
@@ -12,9 +11,8 @@ namespace AssignmentsNetcore.Models
         Closed = 5,
     }
 
-    public enum RoleType
+    public enum JobRoleType
     {
-        // TODO: Complete with more role types
         TM = 1,
         PL = 2,
         ScrumMaster = 3,
