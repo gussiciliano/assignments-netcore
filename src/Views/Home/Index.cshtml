@@ -10,15 +10,71 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-    @*<div class="row">
+    <div class="row">
         <div class="col-md-3">
-            <h2>Authors</h2>
+            <h2>Assignments</h2>
             <ul>
-                <li><a asp-area="" asp-controller="Author" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="Author" asp-action="Create">Create</a></li>
+                <li><a asp-area="" asp-controller="Assignment" asp-action="Index">List</a></li>
+                <li><a asp-area="" asp-controller="Assignment" asp-action="Create">Create</a></li>
             </ul>
         </div>
-    </div>*@
+        <div class="col-md-3">
+            <h2>Client</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="Client" asp-action="Index">List</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="Create">Create</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Commercial</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="Commercial" asp-action="Index">List</a></li>
+                <li><a asp-area="" asp-controller="Commercial" asp-action="Create">Create</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>JobRole</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="JobRole" asp-action="Index">List</a></li>
+                <li><a asp-area="" asp-controller="JobRole" asp-action="Create">Create</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Office</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="Office" asp-action="Index">List</a></li>
+                <li><a asp-area="" asp-controller="Office" asp-action="Create">Create</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Person</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="Person" asp-action="Index">List</a></li>
+                <li><a asp-area="" asp-controller="Person" asp-action="Create">Create</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>ProjectComponent</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="ProjectComponent" asp-action="Index">List</a></li>
+                <li><a asp-area="" asp-controller="ProjectComponent" asp-action="Create">Create</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Tech</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="Tech" asp-action="Index">List</a></li>
+                <li><a asp-area="" asp-controller="Tech" asp-action="Create">Create</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Training</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="Training" asp-action="Index">List</a></li>
+                <li><a asp-area="" asp-controller="Training" asp-action="Create">Create</a></li>
+            </ul>
+        </div>
+    </div>
 }
 else
 {

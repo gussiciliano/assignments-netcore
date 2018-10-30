@@ -12,7 +12,7 @@ namespace AssignmentsNetcore.Controllers
         {
         }
 
-        protected override IRepository<ProjectComponent> WorkingRepository => throw new NotImplementedException();
+        protected override IRepository<ProjectComponent> WorkingRepository { get { return UnitOfWork.ProjectComponentRepository; } }
 
         protected override ProjectComponent CreateNewEntity(ProjectComponentViewModel workingViewModel)
         {

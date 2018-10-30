@@ -12,7 +12,7 @@ namespace AssignmentsNetcore.Controllers
         {
         }
 
-        protected override IRepository<Client> WorkingRepository => throw new NotImplementedException();
+        protected override IRepository<Client> WorkingRepository { get { return UnitOfWork.ClientRepository; } }
 
         protected override Client CreateNewEntity(ClientViewModel workingViewModel)
         {

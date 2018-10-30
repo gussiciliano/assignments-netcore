@@ -8,7 +8,27 @@ namespace AssignmentsNetcore.Repositories.Database
         public UnitOfWork(DataBaseContext context)
         {
             this._context = context;
+            this.AssignmentRepository = new AssignmentRepository(_context);
+            this.ClientRepository = new ClientRepository(_context);
+            this.CommercialRepository = new CommercialRepository(_context);
+            this.JobRoleRepository = new JobRoleRepository(_context);
+            this.OfficeRepository = new OfficeRepository(_context);
+            this.PersonRepository = new PersonRepository(_context);
+            this.ProjectComponentRepository = new ProjectComponentRepository(_context);
+            this.TechRepository = new TechRepository(_context);
+            this.TrainingRepository = new TrainingRepository(_context);
         }
+
+        public IAssignmentRepository AssignmentRepository { get; private set; }
+        public IClientRepository ClientRepository { get; private set; }
+        public ICommercialRepository CommercialRepository { get; private set; }
+        public IJobRoleRepository JobRoleRepository { get; private set; }
+        public IOfficeRepository OfficeRepository { get; private set; }
+        public IPersonRepository PersonRepository { get; private set; }
+        public IProjectComponentRepository ProjectComponentRepository { get; private set; }
+        public ITechRepository TechRepository { get; private set; }
+        public ITrainingRepository TrainingRepository { get; private set; }
+
         public int Complete()
         {
             return this._context.SaveChanges();

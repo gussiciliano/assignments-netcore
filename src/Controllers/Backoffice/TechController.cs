@@ -12,7 +12,7 @@ namespace AssignmentsNetcore.Controllers
         {
         }
 
-        protected override IRepository<Tech> WorkingRepository => throw new NotImplementedException();
+        protected override IRepository<Tech> WorkingRepository { get { return UnitOfWork.TechRepository; } }
 
         protected override Tech CreateNewEntity(TechViewModel workingViewModel)
         {

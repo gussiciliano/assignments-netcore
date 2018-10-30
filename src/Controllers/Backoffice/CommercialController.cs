@@ -12,7 +12,7 @@ namespace AssignmentsNetcore.Controllers
         {
         }
 
-        protected override IRepository<Commercial> WorkingRepository => throw new NotImplementedException();
+        protected override IRepository<Commercial> WorkingRepository { get { return UnitOfWork.CommercialRepository; } }
 
         protected override Commercial CreateNewEntity(CommercialViewModel workingViewModel)
         {

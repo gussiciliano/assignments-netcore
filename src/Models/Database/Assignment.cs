@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using AssignmentsNetcore.Models.Views;
 
 namespace AssignmentsNetcore.Models.Database
 {
