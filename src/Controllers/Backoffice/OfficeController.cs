@@ -16,17 +16,34 @@ namespace AssignmentsNetcore.Controllers
 
         protected override Office CreateNewEntity(OfficeViewModel workingViewModel)
         {
-            throw new NotImplementedException();
+            Office office = new Office();
+            office.Country = workingViewModel.Country;
+            office.Name = workingViewModel.Name;
+            office.Active = workingViewModel.Active;
+            office.Address = workingViewModel.Address;
+            return office;
         }
 
         protected override OfficeViewModel CreateNewViewModel(Office entity)
         {
-            throw new NotImplementedException();
+            OfficeViewModel officeViewModelOffice = new OfficeViewModel();
+            officeViewModelOffice.Id = entity.Id;
+            officeViewModelOffice.Country = entity.Country;
+            officeViewModelOffice.Name = entity.Name;
+            officeViewModelOffice.Active = entity.Active;
+            officeViewModelOffice.Address = entity.Address;
+            officeViewModelOffice.CreatedAt = entity.CreatedAt;
+            officeViewModelOffice.UpdatedAt = entity.UpdatedAt;
+            return officeViewModelOffice;
         }
 
         protected override Office EditEntityByViewModel(Office entity, OfficeViewModel workingViewModel)
         {
-            throw new NotImplementedException();
+            entity.Country = workingViewModel.Country;
+            entity.Name = workingViewModel.Name;
+            entity.Active = workingViewModel.Active;
+            entity.Address = workingViewModel.Address;
+            return entity;
         }
     }
 }

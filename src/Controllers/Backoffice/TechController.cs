@@ -16,17 +16,25 @@ namespace AssignmentsNetcore.Controllers
 
         protected override Tech CreateNewEntity(TechViewModel workingViewModel)
         {
-            throw new NotImplementedException();
+            Tech tech = new Tech();
+            tech.Name = workingViewModel.Name;
+            return tech;
         }
 
         protected override TechViewModel CreateNewViewModel(Tech entity)
         {
-            throw new NotImplementedException();
+            TechViewModel techViewModel = new TechViewModel();
+            techViewModel.Id = entity.Id;
+            techViewModel.Name = entity.Name;
+            techViewModel.CreatedAt = entity.CreatedAt;
+            techViewModel.UpdatedAt = entity.UpdatedAt;
+            return techViewModel;
         }
 
         protected override Tech EditEntityByViewModel(Tech entity, TechViewModel workingViewModel)
         {
-            throw new NotImplementedException();
+            entity.Name = workingViewModel.Name;
+            return entity;
         }
     }
 }

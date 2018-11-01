@@ -1,8 +1,11 @@
 using System;
+using System.Linq;
 using AssignmentsNetcore.Controllers.Backoffice;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssignmentsNetcore.Controllers
 {
@@ -13,20 +16,50 @@ namespace AssignmentsNetcore.Controllers
         }
 
         protected override IRepository<JobRole> WorkingRepository { get { return UnitOfWork.JobRoleRepository; } }
-
+        public override IActionResult Create()
+        {
+            var jobRoleViewModel = new JobRoleViewModel();
+            jobRoleViewModel.Techs = UnitOfWork.TechRepository.GetAll().Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
+            return View(jobRoleViewModel);
+        }
+        public override IActionResult Edit(int? id)
+        {
+            if (id == null) return NotFound();
+            var workingEntity = WorkingRepository.Get(id.Value);
+            if (workingEntity == null) return NotFound();
+            var jobRoleViewModel = CreateNewViewModel(workingEntity);
+            jobRoleViewModel.Techs = UnitOfWork.TechRepository.GetAll().Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
+            return View(jobRoleViewModel);
+        }
         protected override JobRole CreateNewEntity(JobRoleViewModel workingViewModel)
         {
-            throw new NotImplementedException();
+            JobRole jobRole = new JobRole();
+            jobRole.Name = workingViewModel.Name;
+            jobRole.Active = workingViewModel.Active;
+            jobRole.JobRoleType = workingViewModel.JobRoleType;
+            jobRole.TechId = workingViewModel.TechId;
+            return jobRole;
         }
-
         protected override JobRoleViewModel CreateNewViewModel(JobRole entity)
         {
-            throw new NotImplementedException();
+            JobRoleViewModel jobRoleViewModel = new JobRoleViewModel();
+            jobRoleViewModel.Id = entity.Id;
+            jobRoleViewModel.Name = entity.Name;
+            jobRoleViewModel.Active = entity.Active;
+            jobRoleViewModel.JobRoleType = entity.JobRoleType;
+            jobRoleViewModel.TechId = entity.TechId;
+            jobRoleViewModel.CreatedAt = entity.CreatedAt;
+            jobRoleViewModel.UpdatedAt = entity.UpdatedAt;
+            return jobRoleViewModel;
         }
 
         protected override JobRole EditEntityByViewModel(JobRole entity, JobRoleViewModel workingViewModel)
         {
-            throw new NotImplementedException();
+            entity.Name = workingViewModel.Name;
+            entity.Active = workingViewModel.Active;
+            entity.JobRoleType = workingViewModel.JobRoleType;
+            entity.TechId = workingViewModel.TechId;
+            return entity;
         }
     }
 }

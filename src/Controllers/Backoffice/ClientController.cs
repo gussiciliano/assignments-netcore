@@ -16,17 +16,25 @@ namespace AssignmentsNetcore.Controllers
 
         protected override Client CreateNewEntity(ClientViewModel workingViewModel)
         {
-            throw new NotImplementedException();
+            Client client = new Client();
+            client.Name = workingViewModel.Name;
+            return client;
         }
 
         protected override ClientViewModel CreateNewViewModel(Client entity)
         {
-            throw new NotImplementedException();
+            ClientViewModel clientViewModel = new ClientViewModel();
+            clientViewModel.Id = entity.Id;
+            clientViewModel.Name = entity.Name;
+            clientViewModel.CreatedAt = entity.CreatedAt;
+            clientViewModel.UpdatedAt = entity.UpdatedAt;
+            return clientViewModel;
         }
 
         protected override Client EditEntityByViewModel(Client entity, ClientViewModel workingViewModel)
         {
-            throw new NotImplementedException();
+            entity.Name = workingViewModel.Name;
+            return entity;
         }
     }
 }

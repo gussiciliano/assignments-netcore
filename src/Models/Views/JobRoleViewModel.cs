@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssignmentsNetcore.Models.Views
 {
@@ -8,6 +10,8 @@ namespace AssignmentsNetcore.Models.Views
         public string Name { get; set; }
         public bool Active { get; set; }
         public JobRoleType JobRoleType { get; set; }
-        // public virtual Tech Tech { get; set; }
+        public int TechId { get; set; }
+        public Tech Tech { get; set; }
+        public ICollection<SelectListItem> Techs { get; set; }
     }
 }

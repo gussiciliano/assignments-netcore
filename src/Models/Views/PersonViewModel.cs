@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssignmentsNetcore.Models.Views
 {
@@ -10,7 +12,9 @@ namespace AssignmentsNetcore.Models.Views
         public DateTime EntryDate { get; set; }
         public int Workload { get; set; }
         public bool Active { get; set; }
-        // public virtual Office Office { get; set; }
-        // public virtual ICollection<JobRole> JobRoles { get; set; }
+        public int OfficeId { get; set; }
+        public Office Office { get; set; }
+        public ICollection<SelectListItem> Offices { get; set; }
+        public ICollection<JobRole> JobRoles { get; set; }
     }
 }
