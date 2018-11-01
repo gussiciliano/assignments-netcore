@@ -13,13 +13,11 @@ namespace AssignmentsNetcore.Models
 
     public enum JobRoleType
     {
-        TM = 1,
-        PL = 2,
-        ScrumMaster = 3,
-        PA = 4,
+        Developer = 1,
+        ProjectArchitech = 4,
         LeadDeveloper = 5,
-        TL = 6,
-        Developer = 7,
+        TechnicalLead = 6,
+        TechnicalRefent = 7,
     }
 
     public enum Country

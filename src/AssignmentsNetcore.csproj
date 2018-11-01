@@ -15,4 +15,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.1"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.4"/>
   </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.1.0-preview1-final"/>
+  </ItemGroup>
 </Project>
