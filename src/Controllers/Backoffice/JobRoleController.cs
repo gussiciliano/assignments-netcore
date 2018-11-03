@@ -16,6 +16,13 @@ namespace AssignmentsNetcore.Controllers
         }
 
         protected override IRepository<JobRole> WorkingRepository { get { return UnitOfWork.JobRoleRepository; } }
+
+        public override IActionResult Index()
+        {
+            var jobRoles = UnitOfWork.JobRoleRepository.GetAllWithTechs();
+            return View(jobRoles.Select(r => CreateNewViewModel(r)).ToList());
+        }
+
         public override IActionResult Create()
         {
             var jobRoleViewModel = new JobRoleViewModel();
@@ -48,6 +55,7 @@ namespace AssignmentsNetcore.Controllers
             jobRoleViewModel.Active = entity.Active;
             jobRoleViewModel.JobRoleType = entity.JobRoleType;
             jobRoleViewModel.TechId = entity.TechId;
+            jobRoleViewModel.TechName = entity.Tech.Name;
             jobRoleViewModel.CreatedAt = entity.CreatedAt;
             jobRoleViewModel.UpdatedAt = entity.UpdatedAt;
             return jobRoleViewModel;

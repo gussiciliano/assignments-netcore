@@ -11,7 +11,7 @@ namespace AssignmentsNetcore.Models.Views
         public bool Active { get; set; }
         public JobRoleType JobRoleType { get; set; }
         public int TechId { get; set; }
-        public Tech Tech { get; set; }
+        public string TechName { get; set; }
         public ICollection<SelectListItem> Techs { get; set; }
     }
 }

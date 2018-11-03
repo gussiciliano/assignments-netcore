@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using AssignmentsNetcore.Repositories.Database;
 using AssignmentsNetcore.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,9 +10,11 @@ namespace AssignmentsNetcore.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbContext _context;
+        private readonly DataBaseContext _context;
 
-        public Repository(DbContext context) => _context = context;
+        public Repository(DataBaseContext context) => _context = context;
+
+        public DataBaseContext Context { get; }
 
         public void Add(T entity) => _context.Set<T>().Add(entity);
 

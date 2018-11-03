@@ -1,6 +1,10 @@
+using System.Collections.Generic;
 using AssignmentsNetcore.Models.Database;
 
 namespace AssignmentsNetcore.Repositories.Interfaces
 {
-  public interface IJobRoleRepository : IRepository<JobRole> { }
+  public interface IJobRoleRepository : IRepository<JobRole>
+  {
+    IEnumerable<JobRole> GetAllWithTechs();
+  }
 }

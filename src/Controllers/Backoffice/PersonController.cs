@@ -39,7 +39,7 @@ namespace AssignmentsNetcore.Controllers
             person.Workload = workingViewModel.Workload;
             person.Active = workingViewModel.Active;
             person.OfficeId = workingViewModel.OfficeId;
-            //TODO: send this from the view
+            // TODO: send this from the view
             person.JobRoles = workingViewModel.JobRoles;
             return person;
         }
@@ -52,7 +52,7 @@ namespace AssignmentsNetcore.Controllers
             personViewModel.Workload = entity.Workload;
             personViewModel.Active = entity.Active;
             personViewModel.OfficeId = entity.OfficeId;
-            //TODO: send this from the view
+            // TODO: send this from the view
             personViewModel.JobRoles = entity.JobRoles;
             personViewModel.CreatedAt = entity.CreatedAt;
             personViewModel.UpdatedAt = entity.UpdatedAt;
@@ -65,7 +65,7 @@ namespace AssignmentsNetcore.Controllers
             entity.Workload = workingViewModel.Workload;
             entity.Active = workingViewModel.Active;
             entity.OfficeId = workingViewModel.OfficeId;
-            //TODO: send this from the view
+            // TODO: send this from the view
             entity.JobRoles = workingViewModel.JobRoles;
             return entity;
         }
