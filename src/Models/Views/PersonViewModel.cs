@@ -15,6 +15,6 @@ namespace AssignmentsNetcore.Models.Views
         public int OfficeId { get; set; }
         public Office Office { get; set; }
         public ICollection<SelectListItem> Offices { get; set; }
-        public ICollection<JobRole> JobRoles { get; set; }
+        public ICollection<PersonJobRole> PersonJobRoles { get; set; }
     }
 }

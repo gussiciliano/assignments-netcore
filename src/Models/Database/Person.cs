@@ -11,6 +11,6 @@ namespace AssignmentsNetcore.Models.Database
         public bool Active { get; set; }
         public int OfficeId { get; set; }
         public virtual Office Office { get; set; }
-        public virtual ICollection<JobRole> JobRoles { get; set; }
+        public virtual ICollection<PersonJobRole> PersonJobRoles { get; set; }
     }
 }

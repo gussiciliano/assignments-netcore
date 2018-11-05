@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AssignmentsNetcore.Models.Database;
 
 namespace AssignmentsNetcore.Repositories.Interfaces

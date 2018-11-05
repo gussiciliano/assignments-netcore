@@ -7,5 +7,6 @@ namespace AssignmentsNetcore.Models.Views
     {
         public bool Individual { get; set; }
         public bool Remote { get; set; }
+        public TrainingStatus TrainingStatus { get; set; }
     }
 }

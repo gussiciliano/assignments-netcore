@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace AssignmentsNetcore.Models.Database
 {
     public class JobRole : BaseEntity
@@ -7,5 +9,6 @@ namespace AssignmentsNetcore.Models.Database
         public JobRoleType JobRoleType { get; set; }
         public int TechId { get; set; }
         public virtual Tech Tech { get; set; }
+        public virtual ICollection<PersonJobRole> PersonJobRoles { get; set; }
     }
 }

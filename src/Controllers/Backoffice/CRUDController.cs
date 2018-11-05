@@ -23,7 +23,7 @@ namespace AssignmentsNetcore.Controllers.Backoffice
         protected IUnitOfWork UnitOfWork { get { return this._unitOfWork; } }
 
         [HttpGet("")]
-        public IActionResult Index() => View(WorkingRepository.GetAll().Select(r => CreateNewViewModel(r)).ToList());
+        public virtual IActionResult Index() => View(WorkingRepository.GetAll().Select(r => CreateNewViewModel(r)).ToList());
 
         [HttpGet("Details")]
         public IActionResult Details(int? id)

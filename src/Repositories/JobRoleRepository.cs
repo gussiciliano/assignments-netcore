@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+using System.Linq;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Repositories.Database;
 using AssignmentsNetcore.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AssignmentsNetcore.Repositories
 {

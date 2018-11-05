@@ -1,6 +1,6 @@
 namespace AssignmentsNetcore.Models.Database
 {
-    public class Changes : BaseEntity
+    public class Change : BaseEntity
     {
         public string TableName { get; set; }
         public string ColumnName { get; set; }

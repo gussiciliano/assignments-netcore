@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssignmentsNetcore.Models.Views
 {
@@ -9,7 +11,9 @@ namespace AssignmentsNetcore.Models.Views
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public ProjectStatus Status { get; set; }
+        public int ClientId { get; set; }
+        public string ClientName { get; set; }
+        public ICollection<SelectListItem> Clients { get; set; }
         // public virtual Client Client { get; set; }
         // public virtual ICollection<ProjectComponent> ProjectComponents { get; set; }
     }

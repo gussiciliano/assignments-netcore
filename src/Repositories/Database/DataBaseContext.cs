@@ -11,20 +11,21 @@ namespace AssignmentsNetcore.Repositories.Database
     {
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options) { }
 
-        public DbSet<Assignment> Assignment { get; set; }
-        public DbSet<AssignmentRole> AssignmentRole { get; set; }
-        public DbSet<Changes> Changes { get; set; }
-        public DbSet<Client> Client { get; set; }
-        public DbSet<Commercial> Commercial { get; set; }
-        public DbSet<Feedback> Feedback { get; set; }
-        public DbSet<HHII> HHII { get; set; }
-        public DbSet<JobRole> JobRole { get; set; }
-        public DbSet<Office> Office { get; set; }
-        public DbSet<Person> Person { get; set; }
-        public DbSet<Project> Project { get; set; }
-        public DbSet<ProjectComponent> ProjectComponent { get; set; }
-        public DbSet<Tech> Tech { get; set; }
-        public DbSet<Training> Training { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<AssignmentRole> AssignmentRoles { get; set; }
+        public DbSet<Change> Changes { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Commercial> Commercials { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<HHII> HHIIs { get; set; }
+        public DbSet<JobRole> JobRoles { get; set; }
+        public DbSet<Office> Offices { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<PersonJobRole> PersonJobRoles { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectComponent> ProjectComponents { get; set; }
+        public DbSet<Tech> Techs { get; set; }
+        public DbSet<Training> Trainings { get; set; }
         public override int SaveChanges()
         {
             AddTimestamps();
