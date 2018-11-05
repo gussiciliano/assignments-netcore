@@ -19,7 +19,7 @@ namespace AssignmentsNetcore.Controllers
 
         public override IActionResult Index()
         {
-            var jobRoles = UnitOfWork.JobRoleRepository.GetAllWithTechs();
+            var jobRoles = UnitOfWork.JobRoleRepository.GetAll();
             return View(jobRoles.Select(r => CreateNewViewModel(r)).ToList());
         }
 

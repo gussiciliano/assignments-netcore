@@ -11,6 +11,21 @@ namespace AssignmentsNetcore.Models
         Closed = 5,
     }
 
+    public enum TrainingStatus
+    {
+        OnGoing = 1,
+        Finished = 2,
+        Closed = 3,
+    }
+
+    public enum ToolStatus
+    {
+        OnGoing = 1,
+        Finished = 2,
+        Maintenance = 3,
+        Closed = 4,
+    }
+
     public enum JobRoleType
     {
         Lead = 1,

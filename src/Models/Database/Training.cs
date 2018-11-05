@@ -4,5 +4,6 @@ namespace AssignmentsNetcore.Models.Database
     {
         public bool Individual { get; set; }
         public bool Remote { get; set; }
+        public TrainingStatus TrainingStatus { get; set; }
     }
 }

@@ -14,7 +14,10 @@ namespace AssignmentsNetcore.Repositories
 
         public Repository(DataBaseContext context) => _context = context;
 
-        public DataBaseContext Context { get; }
+        public DataBaseContext Context
+        {
+            get { return this._context; }
+        }
 
         public void Add(T entity) => _context.Set<T>().Add(entity);
 

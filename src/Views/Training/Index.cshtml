@@ -28,7 +28,10 @@
                 @Html.DisplayNameFor(model => model.EndDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.TrainingStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
@@ -58,7 +61,10 @@
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @Html.DisplayFor(modelItem => item.TrainingStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.ClientName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedAt)

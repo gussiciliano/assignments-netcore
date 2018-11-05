@@ -10,7 +10,5 @@ namespace AssignmentsNetcore.Repositories
     public class JobRoleRepository : Repository<JobRole>, IJobRoleRepository
     {
         public JobRoleRepository(DataBaseContext context) : base(context) { }
-
-        public IEnumerable<JobRole> GetAllWithTechs() => Context.JobRole.Include(j => j.Tech).ToList();
     }
 }

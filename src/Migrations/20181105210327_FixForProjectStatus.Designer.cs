@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AssignmentsNetcore.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20181029185538_AddModels")]
-    partial class AddModels
+    [Migration("20181105210327_FixForProjectStatus")]
+    partial class FixForProjectStatus
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,7 +46,7 @@ namespace AssignmentsNetcore.Migrations
 
                     b.HasIndex("ProjectComponentId");
 
-                    b.ToTable("Assignment");
+                    b.ToTable("Assignments");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.AssignmentRole", b =>
@@ -68,10 +68,10 @@ namespace AssignmentsNetcore.Migrations
 
                     b.HasIndex("JobRoleId");
 
-                    b.ToTable("AssignmentRole");
+                    b.ToTable("AssignmentRoles");
                 });
 
-            modelBuilder.Entity("AssignmentsNetcore.Models.Database.Changes", b =>
+            modelBuilder.Entity("AssignmentsNetcore.Models.Database.Change", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -110,7 +110,7 @@ namespace AssignmentsNetcore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Client");
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Feedback", b =>
@@ -136,7 +136,7 @@ namespace AssignmentsNetcore.Migrations
 
                     b.HasIndex("ReviewerId");
 
-                    b.ToTable("Feedback");
+                    b.ToTable("Feedbacks");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.JobRole", b =>
@@ -152,19 +152,15 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("PersonId");
-
-                    b.Property<int?>("TechId");
+                    b.Property<int>("TechId");
 
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonId");
-
                     b.HasIndex("TechId");
 
-                    b.ToTable("JobRole");
+                    b.ToTable("JobRoles");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Office", b =>
@@ -186,7 +182,7 @@ namespace AssignmentsNetcore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Office");
+                    b.ToTable("Offices");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Person", b =>
@@ -202,7 +198,7 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<string>("Mail");
 
-                    b.Property<int?>("OfficeId");
+                    b.Property<int>("OfficeId");
 
                     b.Property<DateTime>("UpdatedAt");
 
@@ -212,7 +208,31 @@ namespace AssignmentsNetcore.Migrations
 
                     b.HasIndex("OfficeId");
 
-                    b.ToTable("Person");
+                    b.ToTable("Persons");
+                });
+
+            modelBuilder.Entity("AssignmentsNetcore.Models.Database.PersonJobRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Active");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<int?>("JobRoleId");
+
+                    b.Property<int?>("PersonId");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobRoleId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("PersonJobRoles");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Project", b =>
@@ -220,7 +240,7 @@ namespace AssignmentsNetcore.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ClientId");
+                    b.Property<int>("ClientId");
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -233,15 +253,13 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<DateTime>("StartDate");
 
-                    b.Property<int>("Status");
-
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Project");
+                    b.ToTable("Projects");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Project");
                 });
@@ -271,7 +289,7 @@ namespace AssignmentsNetcore.Migrations
 
                     b.HasIndex("TechId");
 
-                    b.ToTable("ProjectComponent");
+                    b.ToTable("ProjectComponents");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Tech", b =>
@@ -287,7 +305,7 @@ namespace AssignmentsNetcore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tech");
+                    b.ToTable("Techs");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.User", b =>
@@ -459,6 +477,8 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<bool>("IsTeamAugmentation");
 
+                    b.Property<int>("ProjectStatus");
+
                     b.ToTable("Commercial");
 
                     b.HasDiscriminator().HasValue("Commercial");
@@ -468,6 +488,7 @@ namespace AssignmentsNetcore.Migrations
                 {
                     b.HasBaseType("AssignmentsNetcore.Models.Database.Project");
 
+                    b.Property<int>("ToolStatus");
 
                     b.ToTable("HHII");
 
@@ -481,6 +502,8 @@ namespace AssignmentsNetcore.Migrations
                     b.Property<bool>("Individual");
 
                     b.Property<bool>("Remote");
+
+                    b.Property<int>("TrainingStatus");
 
                     b.ToTable("Training");
 
@@ -509,7 +532,7 @@ namespace AssignmentsNetcore.Migrations
                         .HasForeignKey("JobRoleId");
                 });
 
-            modelBuilder.Entity("AssignmentsNetcore.Models.Database.Changes", b =>
+            modelBuilder.Entity("AssignmentsNetcore.Models.Database.Change", b =>
                 {
                     b.HasOne("AssignmentsNetcore.Models.Database.User", "User")
                         .WithMany()
@@ -529,27 +552,37 @@ namespace AssignmentsNetcore.Migrations
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.JobRole", b =>
                 {
-                    b.HasOne("AssignmentsNetcore.Models.Database.Person")
-                        .WithMany("JobRoles")
-                        .HasForeignKey("PersonId");
-
                     b.HasOne("AssignmentsNetcore.Models.Database.Tech", "Tech")
                         .WithMany()
-                        .HasForeignKey("TechId");
+                        .HasForeignKey("TechId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Person", b =>
                 {
                     b.HasOne("AssignmentsNetcore.Models.Database.Office", "Office")
                         .WithMany()
-                        .HasForeignKey("OfficeId");
+                        .HasForeignKey("OfficeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AssignmentsNetcore.Models.Database.PersonJobRole", b =>
+                {
+                    b.HasOne("AssignmentsNetcore.Models.Database.JobRole", "JobRole")
+                        .WithMany("PersonJobRoles")
+                        .HasForeignKey("JobRoleId");
+
+                    b.HasOne("AssignmentsNetcore.Models.Database.Person", "Person")
+                        .WithMany("PersonJobRoles")
+                        .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Project", b =>
                 {
                     b.HasOne("AssignmentsNetcore.Models.Database.Client", "Client")
                         .WithMany()
-                        .HasForeignKey("ClientId");
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.ProjectComponent", b =>

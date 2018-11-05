@@ -40,7 +40,7 @@ namespace AssignmentsNetcore.Controllers
             person.Active = workingViewModel.Active;
             person.OfficeId = workingViewModel.OfficeId;
             // TODO: send this from the view
-            person.JobRoles = workingViewModel.JobRoles;
+            // person.JobRoles = workingViewModel.JobRoles;
             return person;
         }
         protected override PersonViewModel CreateNewViewModel(Person entity)
@@ -53,7 +53,7 @@ namespace AssignmentsNetcore.Controllers
             personViewModel.Active = entity.Active;
             personViewModel.OfficeId = entity.OfficeId;
             // TODO: send this from the view
-            personViewModel.JobRoles = entity.JobRoles;
+            // personViewModel.JobRoles = entity.JobRoles;
             personViewModel.CreatedAt = entity.CreatedAt;
             personViewModel.UpdatedAt = entity.UpdatedAt;
             return personViewModel;
@@ -66,7 +66,7 @@ namespace AssignmentsNetcore.Controllers
             entity.Active = workingViewModel.Active;
             entity.OfficeId = workingViewModel.OfficeId;
             // TODO: send this from the view
-            entity.JobRoles = workingViewModel.JobRoles;
+            // entity.JobRoles = workingViewModel.JobRoles;
             return entity;
         }
     }
