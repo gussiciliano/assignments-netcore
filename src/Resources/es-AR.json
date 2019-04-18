@@ -23,6 +23,7 @@
     "Register": "Registro",
     "Login": "Iniciar sesión",
     "Logout": "Cerrar sesión",
+    "PleaseSignIn": "Conviértase en un administrador ágil.",
     "Profile": "Perfil",
     "ChangePassword": "Cambiar contraseña",
     "AccessDenied": "Acceso denegado",
@@ -30,5 +31,6 @@
     "RoleDeleted": "El rol se eliminó correctamente.",
     "RoleNotDeleted": "El rol no pudo ser eliminado.",
     "RoleUpdated": "El rol se actualizó correctamente.",
-    "RoleNotUpdated": "El rol no pudo ser actualizado."
+    "RoleNotUpdated": "El rol no pudo ser actualizado.",
+    "Welcome": "¡Bienvenido a la herramienta de asignaciones!",
 }

@@ -23,6 +23,7 @@
     "Register": "Register",
     "Login": "Log in",
     "Logout": "Log out",
+    "PleaseSignIn": "Become an agile manager.",
     "Profile": "Profile",
     "ChangePassword": "Change password",
     "AccessDenied": "Access denied",
@@ -30,5 +31,6 @@
     "RoleDeleted": "The role was successfully deleted.",
     "RoleNotDeleted": "The role could not be deleted.",
     "RoleUpdated": "The role was successfully updated.",
-    "RoleNotUpdated": "The role could not be updated."
+    "RoleNotUpdated": "The role could not be updated.",
+    "Welcome": "Welcome to the assignments tool!",
 }

@@ -1,0 +1,13 @@
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar-shadow {
+    -webkit-box-shadow: 0px -2px 44px 12px $navbar-shadow;
+    -moz-box-shadow: 0px -2px 44px 12px $navbar-shadow;
+    box-shadow: 0px -2px 44px 12px $navbar-shadow;
+}
+
+  

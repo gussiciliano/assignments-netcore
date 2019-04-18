@@ -26,7 +26,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse background-color-white">
+    <nav class="navbar sticky navbar-shadow background-color-white">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,14 +48,13 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content background-color-blue">
+    <div class="container body-content body-center background-color-blue display-flex-center flex-direction-column">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - AssignmentsNetcore</p>
-        </footer>
     </div>
-
+    <footer class="display-flex-center flex-direction-column">
+        <img src="png/LogoWolox-Original.png" alt="Wolox" width="300" />
+        <p>&copy; 2019 - AssignmentsNetcore</p>
+    </footer>
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

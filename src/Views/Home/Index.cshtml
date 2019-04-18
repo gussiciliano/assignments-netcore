@@ -5,6 +5,7 @@
 @inject IViewLocalizer Localizer
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
+
 @{
     ViewData["Title"] = Localizer["HomePage"];
 }
@@ -82,10 +83,7 @@
 }
 else
 {
-    <div class="row">
-        <div class="col-md-3">
-            <h2>Please, log in</h2>
-        </div>
-    </div>
+    <h2>@Localizer["Welcome"]</h2>
+    <h2>@Localizer["PleaseSignIn"]</h2>
 }
 </div>

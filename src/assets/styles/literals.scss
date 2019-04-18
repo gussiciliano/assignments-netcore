@@ -14,3 +14,17 @@
 .background-color-blue {
     background-color: $wolox-blue;
 }
+
+.display-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-direction-row {
+    flex-direction: row;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
