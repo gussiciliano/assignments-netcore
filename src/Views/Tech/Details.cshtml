@@ -5,9 +5,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
+
+<div class="component">
+    <h2>Details</h2>
     <h4>Tech</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -30,8 +31,8 @@
             @Html.DisplayFor(model => model.UpdatedAt)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>
