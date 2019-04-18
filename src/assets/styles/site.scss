@@ -11,4 +11,19 @@
 @import "navbar";
 
 
+html,
+body {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
 
+}
+
+a {
+    color: $wolox-blue-dark;
+    &:hover {
+        color: $wolox-blue-darker;
+    }
+}

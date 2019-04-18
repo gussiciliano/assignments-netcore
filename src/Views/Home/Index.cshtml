@@ -11,79 +11,78 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class="row">
-        <div class="col-md-3">
+    <div class="display-flex-center flex-wrap">
+        <div class="home-option">
             <h2>Tech</h2>
-            <ul>
-                <li><a asp-area="" asp-controller="Tech" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="Tech" asp-action="Create">Create</a></li>
-            </ul>
+            <i class="fas fa-microchip home-option-icon"></i>
+            <p class="home-option-description">The techonolgies used in each project</p>
+            <div class="width-100-percent display-flex-around flex-direction-row">
+                <a asp-area="" asp-controller="Tech" asp-action="Index">List</a>
+                <a asp-area="" asp-controller="Tech" asp-action="Create">Create</a>
+            </div>
         </div>
-        <div class="col-md-3">
+        <div class="home-option">
             <h2>Office</h2>
-            <ul>
-                <li><a asp-area="" asp-controller="Office" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="Office" asp-action="Create">Create</a></li>
-            </ul>
+            <i class="fas fa-building  home-option-icon"></i>
+            <div  class="width-100-percent display-flex-around flex-direction-row">
+                <a asp-area="" asp-controller="Office" asp-action="Index">List</a>
+                <a asp-area="" asp-controller="Office" asp-action="Create">Create</a>
+            </div>
         </div>
-        <div class="col-md-3">
+        <div class="home-option">
             <h2>JobRole</h2>
-            <ul>
-                <li><a asp-area="" asp-controller="JobRole" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="JobRole" asp-action="Create">Create</a></li>
-            </ul>
+            <div>
+                <a asp-area="" asp-controller="JobRole" asp-action="Index">List</a>
+                <a asp-area="" asp-controller="JobRole" asp-action="Create">Create</a>
+            </div>
         </div>
-        <div class="col-md-3">
+        <div class="home-option">
             <h2>Person</h2>
-            <ul>
-                <li><a asp-area="" asp-controller="Person" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="Person" asp-action="Create">Create</a></li>
-            </ul>
+            <div>
+                <a asp-area="" asp-controller="Person" asp-action="Index">List</a>
+                <a asp-area="" asp-controller="Person" asp-action="Create">Create</a>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
+        <div class="home-option">
             <h2>Client</h2>
-            <ul>
-                <li><a asp-area="" asp-controller="Client" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="Client" asp-action="Create">Create</a></li>
-            </ul>
+            <div>
+                <a asp-area="" asp-controller="Client" asp-action="Index">List</a>
+                <a asp-area="" asp-controller="Client" asp-action="Create">Create</a>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
+        <div class="home-option">
             <h2>Commercial</h2>
-            <ul>
-                <li><a asp-area="" asp-controller="Commercial" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="Commercial" asp-action="Create">Create</a></li>
-            </ul>
+            <div>
+                <a asp-area="" asp-controller="Commercial" asp-action="Index">List</a>
+                <a asp-area="" asp-controller="Commercial" asp-action="Create">Create</a>
+            </div>
         </div>
-        <div class="col-md-3">
+        <div class="home-option">
             <h2>Training</h2>
-            <ul>
-                <li><a asp-area="" asp-controller="Training" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="Training" asp-action="Create">Create</a></li>
-            </ul>
+            <div>
+                <a asp-area="" asp-controller="Training" asp-action="Index">List</a>
+                <a asp-area="" asp-controller="Training" asp-action="Create">Create</a>
+            </div>
         </div>
-        <div class="col-md-3">
+        <div class="home-option">
             <h2>ProjectComponent</h2>
-            <ul>
-                <li><a asp-area="" asp-controller="ProjectComponent" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="ProjectComponent" asp-action="Create">Create</a></li>
-            </ul>
+            <div>
+                <a asp-area="" asp-controller="ProjectComponent" asp-action="Index">List</a>
+                <a asp-area="" asp-controller="ProjectComponent" asp-action="Create">Create</a>
+            </div>
         </div>
-        <div class="col-md-3">
+        <div class="home-option">
             <h2>Assignments</h2>
-            <ul>
-                <li><a asp-area="" asp-controller="Assignment" asp-action="Index">List</a></li>
-                <li><a asp-area="" asp-controller="Assignment" asp-action="Create">Create</a></li>
-            </ul>
+            <div>
+                <a asp-area="" asp-controller="Assignment" asp-action="Index">List</a>
+                <a asp-area="" asp-controller="Assignment" asp-action="Create">Create</a>
+            </div>
         </div>
     </div>
 }
 else
 {
-    <h2>@Localizer["Welcome"]</h2>
-    <h2>@Localizer["PleaseSignIn"]</h2>
+    <h1 class="white">@Localizer["Welcome"]</h1>
+    <h1 class="white">@Localizer["PleaseSignIn"]</h1>
 }
 </div>

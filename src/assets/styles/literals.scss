@@ -21,10 +21,54 @@
     align-items: center;
 }
 
+.display-flex-around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
 .flex-direction-row {
     flex-direction: row;
 }
 
 .flex-direction-column {
     flex-direction: column;
+}
+
+.height-100-percent {
+    height: 100%;
+}
+
+.lightgrey {
+    color: $grey-light;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+.padding-4 {
+    padding: 4px;
+}
+
+.vertical-align-middle {
+    vertical-align: middle;
+}
+
+.white {
+    color: $white;
+}
+
+.width-100-percent {
+    width: 100%;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+
+.z-index-3 {
+    z-index: 3;
 }
