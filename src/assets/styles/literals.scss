@@ -21,6 +21,12 @@
     align-items: center;
 }
 
+.display-flex-start-center {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
 .display-flex-around {
     display: flex;
     justify-content: space-around;

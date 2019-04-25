@@ -40,7 +40,7 @@
         <div class="navbar-flex">
             <ul class="nav navbar-nav">
                 <li>
-                    <a class="padding-3" asp-area="" asp-controller="Home" asp-action="Index">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">
                         <h2 class="logo">A<i class="fab fa-buffer icon-margin"></i></h2>
                     </a>
                 </li>
@@ -52,7 +52,7 @@
             @await Html.PartialAsync("_LoginPartial")
         </div>
     </nav>
-    <div class="container body-content body-center background-color-blue display-flex-center flex-direction-column">
+    <div class="body-center background-color-blue display-flex-center flex-direction-column">
         @RenderBody()
     </div>
     <footer class="display-flex-center flex-direction-column footer">
