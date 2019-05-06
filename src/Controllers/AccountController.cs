@@ -59,7 +59,7 @@ namespace AssignmentsNetcore.Controllers
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
-                }
+                }User.Identity.
                 else foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
             }
             return RedirectToAction("Index", "Home");
