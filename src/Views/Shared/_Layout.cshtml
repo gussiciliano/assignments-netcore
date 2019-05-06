@@ -28,27 +28,15 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar sticky navbar-shadow background-color-white margin-0 z-index-3">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-flex">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Index">
-                        <h2 class="logo">A<i class="fab fa-buffer icon-margin"></i></h2>
-                    </a>
-                </li>
-                @if (SignInManager.IsSignedIn(User) && User.IsInRole("ADMIN"))
-                { 
-                    @await Html.PartialAsync("_UserManagementPartial")
-                }
-            </ul>
+    <nav class="sticky navbar-shadow background-color-white margin-0 z-index-3">
+        <div class="navbar-flex nav-pills">
+            <a class="active" asp-area="" asp-controller="Home" asp-action="Index">
+                <h2 class="logo">A<i class="fab fa-buffer icon-margin"></i></h2>
+            </a>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("ADMIN"))
+            { 
+                @await Html.PartialAsync("_UserManagementPartial")
+            }
             @await Html.PartialAsync("_LoginPartial")
         </div>
     </nav>
