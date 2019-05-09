@@ -59,7 +59,7 @@ namespace AssignmentsNetcore.Controllers
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
-                }User.Identity.
+                }
                 else foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
             }
             return RedirectToAction("Index", "Home");
@@ -83,7 +83,7 @@ namespace AssignmentsNetcore.Controllers
             {
                 var result = await SignInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, loginViewModel.RememberMe, false);
                 if (result.Succeeded) return RedirectToAction("Index", "Home");
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError("User", Localizer["InvalidUserOrPassword"].Value);
             }
             loginViewModel.LoginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             return View(loginViewModel);

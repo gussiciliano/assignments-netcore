@@ -1,12 +1,16 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@inject IViewLocalizer Localizer
+
 @model IEnumerable<AssignmentsNetcore.Models.Views.TechViewModel>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<div class="component">
+<div class="component-index">
     <p>
-        <a asp-action="Create">Create New</a>
+        <a class="option-link" asp-action="Create">@Localizer["Create"]</a>
     </p>
     <table class="table">
         <thead>
@@ -36,9 +40,9 @@
                     @Html.DisplayFor(modelItem => item.UpdatedAt)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="option-link margin-10-10" asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a>
+                    <a class="option-link margin-10-10" asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a>
+                    <a class="option-link margin-10-10" asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
                 </td>
             </tr>
     }

@@ -1,19 +1,27 @@
+.background-color-blue {
+    background-color: $wolox-blue;
+}
+
 .background-color-white {
     background-color: $white;
 }
 
-.font-color-black {
+.color-black {
     color: $black;
 }
 
-.font-color-white {
+.color-white {
     color: $white;
 }
 
-
-.background-color-blue {
-    background-color: $wolox-blue;
+.color-wolox-blue {
+    color: $wolox-blue;
 }
+
+.color-wolox-green {
+    color: $wolox-green;
+}
+
 
 .display-flex-center {
     display: flex;
@@ -33,6 +41,9 @@
     align-items: center;
 }
 
+.display-inline-block {
+    display: inline-block;
+}
 
 .flex-direction-row {
     flex-direction: row;
@@ -54,16 +65,28 @@
     margin: 0;
 }
 
+.margin-10-10 {
+    margin: 10px 10px;
+}
+
+.margin-20-5 {
+    margin: 20px 5px;
+}
+
+.margin-left-auto {
+    margin-left: auto;
+}
+
 .padding-4 {
     padding: 4px;
 }
 
-.vertical-align-middle {
-    vertical-align: middle;
+.text-decoration-none {
+    text-decoration: none;
 }
 
-.white {
-    color: $white;
+.vertical-align-middle {
+    vertical-align: middle;
 }
 
 .width-100-percent {

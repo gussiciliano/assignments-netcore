@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@inject IViewLocalizer Localizer
 @model AssignmentsNetcore.Models.Views.OfficeViewModel
 @using AssignmentsNetcore.Models
 
@@ -5,45 +8,39 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
-
-<h4>Office</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <select asp-for="Country" class="form-control" asp-items="Html.GetEnumSelectList<Country>()"></select>
-                <span asp-validation-for="Country" class="text-danger"></span>
+<div class="component">
+    <h2>@Localizer["Create"]</h2>
+    <h4>@Localizer["OptionTitleOffice"]</h4>
+    <hr />
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Country" class="control-label"></label>
+            <select asp-for="Country" class="form-control" asp-items="Html.GetEnumSelectList<Country>()"></select>
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
             </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </form>
+     <a class="option-link" asp-action="Index">@Localizer["BackToList"]</a>
 </div>
 
 @section Scripts {

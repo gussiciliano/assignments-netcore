@@ -18,12 +18,12 @@ body {
   margin: 0;
   padding: 0;
   flex-direction: column;
-
 }
 
-a {
+a.option-link {
     font-weight: bolder;
     color: $wolox-blue-dark;
+    text-decoration: none;
     &:hover {
         color: $wolox-blue-darker;
     }

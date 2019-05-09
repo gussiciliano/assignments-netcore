@@ -7,7 +7,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <a class="active" asp-area="" asp-controller="UserManagement" asp-action="Users">@Localizer["Users"]</a>
-    <a class="active" asp-area="" asp-controller="UserManagement" asp-action="Roles">@Localizer["Roles"]</a>
-    <a class="active" asp-area="" asp-controller="UserManagement" asp-action="RoleManager">@Localizer["RoleManager"]</a>
+    <a class="navbar-option-margin option-link" asp-area="" asp-controller="UserManagement" asp-action="Users">@Localizer["Users"]</a>
+    <a class="navbar-option-margin option-link" asp-area="" asp-controller="UserManagement" asp-action="Roles">@Localizer["Roles"]</a>
+    <a class="navbar-option-margin option-link" asp-area="" asp-controller="UserManagement" asp-action="RoleManager">@Localizer["RoleManager"]</a>
 }
