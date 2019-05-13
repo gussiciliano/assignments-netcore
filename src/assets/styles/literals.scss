@@ -57,6 +57,10 @@
     height: 100%;
 }
 
+.left--65 {
+    left: -65px;
+} 
+
 .lightgrey {
     color: $grey-light;
 }
@@ -101,6 +105,9 @@
     flex-wrap: wrap;
 }
 
+.width-450 {
+    width: 450px;
+}
 
 .z-index-3 {
     z-index: 3;

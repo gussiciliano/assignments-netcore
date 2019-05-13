@@ -9,26 +9,28 @@
     var deleteRoleLabel = @Localizer["DeleteRole"].Value;
 }
 
-<h3>@Localizer["Roles"]</h3>
-@Html.ActionLink(newRoleLabel, "CreateRole", "UserManagement")
-<span>@ViewData["Message"]</span>
-<table>
-    <thead>
-        <tr>
-            <th>@Localizer["Name"]</th>
-            <th>@Localizer["Actions"]</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var role in Model.Roles)
-        {
+<div class="component">
+    <h3>@Localizer["Roles"]</h3>
+    @Html.ActionLink(newRoleLabel, "CreateRole", "UserManagement",  new { @class = "option-link" })
+    <span>@ViewData["Message"]</span>
+    <table>
+        <thead>
             <tr>
-                <td>@Html.DisplayFor(model => role.Name)</td>
-                <td>
-                    @Html.ActionLink(editRoleLabel, "EditRole", "UserManagement", new { roleId = role.Id }) | 
-                    @Html.ActionLink(deleteRoleLabel, "DeleteRole", "UserManagement", new { roleId = role.Id })
-                </td>
+                <th>@Localizer["Name"]</th>
+                <th>@Localizer["Actions"]</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var role in Model.Roles)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => role.Name)</td>
+                    <td>
+                        @Html.ActionLink(editRoleLabel, "EditRole", "UserManagement", new { roleId = role.Id }, new { @class = "option-link" }) | 
+                        @Html.ActionLink(deleteRoleLabel, "DeleteRole", "UserManagement", new { roleId = role.Id }, new { @class = "option-link" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>    
+</div>

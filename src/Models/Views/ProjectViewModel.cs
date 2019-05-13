@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,7 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class ProjectViewModel : BaseEntityViewModel
     {
+        [Required]
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

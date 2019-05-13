@@ -42,7 +42,7 @@
         </div>
         -->
         <div class="home-option">
-            <h2>Person</h2>
+            <h2>@Localizer["OptionTitlePerson"]</h2>
             <i class="fas fa-user-circle home-option-icon"></i>
             <p class="home-option-description">@Localizer["OptionDescriptionPerson"]</p>
             <div class="width-100-percent display-flex-around flex-direction-row">
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="home-option">
-            <h2>Client</h2>
+            <h2>@Localizer["OptionTitleClient"]</h2>
             <i class="fas fa-comments-dollar home-option-icon"></i>
             <p class="home-option-description">@Localizer["OptionDescriptionClient"]</p>
             <div class="width-100-percent display-flex-around flex-direction-row">
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="home-option">
-            <h2>Commercial</h2>
+            <h2>@Localizer["OptionTitleCommercial"]</h2>
             <i class="fas fa-cash-register home-option-icon"></i>
             <p class="home-option-description">@Localizer["OptionDescriptionCommercial"]</p>
             <div class="width-100-percent display-flex-around flex-direction-row">
@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="home-option">
-            <h2>Training</h2>
+            <h2>@Localizer["OptionTitleTraining"]</h2>
             <i class="fas fa-chalkboard-teacher home-option-icon"></i>
             <p class="home-option-description">@Localizer["OptionDescriptionTraining"]</p>
             <div class="width-100-percent display-flex-around flex-direction-row">
@@ -78,7 +78,7 @@
             </div>
         </div>
         <div class="home-option">
-            <h2>ProjectComponent</h2>
+            <h2>@Localizer["OptionTitleProjectComponent"]</h2>
             <i class="fas fa-cogs home-option-icon"></i>
             <p class="home-option-description">@Localizer["OptionDescriptionProjectComponent"]</p>
             <div class="width-100-percent display-flex-around flex-direction-row">
@@ -86,6 +86,7 @@
                 <a class="option-link" asp-area="" asp-controller="ProjectComponent" asp-action="Create">@Localizer["Create"]</a>
             </div>
         </div>
+        <!-- TODO: not implemented 
         <div class="home-option">
             <h2>Assignments</h2>
             <i class="fas fa-address-book home-option-icon"></i>
@@ -95,11 +96,15 @@
                 <a class="option-link" asp-area="" asp-controller="Assignment" asp-action="Create">@Localizer["Create"]</a>
             </div>
         </div>
+        -->
     </div>
 }
 else
 {
-    <h1 class="color-white">@Localizer["Welcome"]</h1>
-    <h1 class="color-white">@Localizer["PleaseSignIn"]</h1>
+    <div class="talkbubble">
+        <h1 class="logo-letter-left">@Localizer["Welcome"]</h1><h1 class="logo-letter">W</h1><h1 class="logo-letter color-wolox-green">-</h1><h1 class="logo-letter">ASS</h1><h1 class="logo-letter color-wolox-blue">I</h1><h1 class="logo-letter">GN!</h1>
+        <h3>@Localizer["PleaseSignIn"]</h3>
+    </div>
+    
 }
 </div>
