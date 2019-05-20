@@ -6,6 +6,7 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class LoginViewModel
     {
+        [Required]
         public string UserName { get; set; }
 
         public string Email { get; set; }

@@ -3,6 +3,7 @@
 @model AssignmentsNetcore.Models.Views.RoleManagerViewModel
 @inject IViewLocalizer Localizer
 
+
 @if(Model.Roles.Count > 0)
 {
 	@using (Html.BeginForm("AddRolesToUser", "UserManagement", FormMethod.Post))

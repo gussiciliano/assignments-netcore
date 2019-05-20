@@ -1,0 +1,114 @@
+.background-color-blue {
+    background-color: $wolox-blue;
+}
+
+.background-color-white {
+    background-color: $white;
+}
+
+.color-black {
+    color: $black;
+}
+
+.color-white {
+    color: $white;
+}
+
+.color-wolox-blue {
+    color: $wolox-blue;
+}
+
+.color-wolox-green {
+    color: $wolox-green;
+}
+
+
+.display-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-flex-start-center {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.display-flex-around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.flex-direction-row {
+    flex-direction: row;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.height-100-percent {
+    height: 100%;
+}
+
+.left--65 {
+    left: -65px;
+} 
+
+.lightgrey {
+    color: $grey-light;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+.margin-10-10 {
+    margin: 10px 10px;
+}
+
+.margin-20-5 {
+    margin: 20px 5px;
+}
+
+.margin-left-auto {
+    margin-left: auto;
+}
+
+.margin-right-15 {
+    margin-right: 15px;
+}
+
+.padding-4 {
+    padding: 4px;
+}
+
+.text-decoration-none {
+    text-decoration: none;
+}
+
+.vertical-align-middle {
+    vertical-align: middle;
+}
+
+.width-100-percent {
+    width: 100%;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.width-450 {
+    width: 450px;
+}
+
+.z-index-3 {
+    z-index: 3;
+}

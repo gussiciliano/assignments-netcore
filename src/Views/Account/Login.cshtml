@@ -1,31 +1,42 @@
 @using Microsoft.AspNetCore.Identity;
-@using AssignmentsNetcore.Models.Views
-@using AssignmentsNetcore.Models.Database
+@using AssignmentsNetcore.Models.Views;
+@using AssignmentsNetcore.Models.Database;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
 @model LoginViewModel
-@inject SignInManager<User> SignInManager
+@inject SignInManager<User> SignInManager;
+@inject IViewLocalizer Localizer
 
+<div class="component">
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
-    <div asp-validation-summary="All"></div>
+    <h3 class="component-title">@Localizer["Login"]</h3>
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class='form-group'>
-        @Html.LabelFor(model => model.UserName)
+        @Html.Label(Localizer["UserName"].Value)
+        <br>
         @Html.EditorFor(model => model.UserName)
+        <br>
         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger"})
     </div>
     <div class='form-group'>
-        @Html.LabelFor(model => model.Password)
+        @Html.Label(Localizer["Password"].Value)
+        <br>
         @Html.EditorFor(model => model.Password)
+        <br>
         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
     </div>
     <div class='form-group'>
-        @Html.LabelFor(model => model.RememberMe)
+        @Html.Label(Localizer["RememberMe"].Value)
         @Html.EditorFor(model => model.RememberMe)
+        <br>
         @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger"})
     </div>
     <div>
         <input type="submit" value="Login"/>
     </div>
 }
+</div>
 @{
     @using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post))
     {
@@ -35,3 +46,4 @@
         }
     }
 }
+

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AssignmentsNetcore.Api.V1.Controllers;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -21,11 +23,16 @@ namespace AssignmentsNetcore.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly IHtmlLocalizer<AccountController> _localizer;
+
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IHtmlLocalizer<AccountController> localizer)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
+            this._localizer = localizer;
         }
+
+        public IHtmlLocalizer<AccountController> Localizer { get => this._localizer; }
 
         public SignInManager<User> SignInManager
         {
@@ -76,7 +83,7 @@ namespace AssignmentsNetcore.Controllers
             {
                 var result = await SignInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, loginViewModel.RememberMe, false);
                 if (result.Succeeded) return RedirectToAction("Index", "Home");
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError("User", Localizer["InvalidUserOrPassword"].Value);
             }
             loginViewModel.LoginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             return View(loginViewModel);

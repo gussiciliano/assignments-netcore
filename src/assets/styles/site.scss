@@ -1,2 +1,30 @@
 @import "example-site";
 @import "example-site.min";
+@import "colors";
+@import "fonts";
+@import "literals";
+
+/* SECTIONS */
+
+@import "body-center";
+@import "footer";
+@import "navbar";
+
+
+html,
+body {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+}
+
+a.option-link {
+    font-weight: bolder;
+    color: $wolox-blue-dark;
+    text-decoration: none;
+    &:hover {
+        color: $wolox-blue-darker;
+    }
+}

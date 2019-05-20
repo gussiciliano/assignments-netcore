@@ -1,0 +1,42 @@
+.logo {
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.logo-letter {
+    display: inline-block;
+    margin: 0;
+}
+
+.logo-letter-left {
+    display: inline-block;
+    margin: 0 15px 0 0;
+}
+
+.icon-margin {
+    margin-left: 5px;
+}
+
+.navbar-flex {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 64px;
+    justify-content: start;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar-shadow {
+    -webkit-box-shadow: 0px -2px 44px 12px $navbar-shadow;
+    -moz-box-shadow: 0px -2px 44px 12px $navbar-shadow;
+    box-shadow: 0px -2px 44px 12px $navbar-shadow;
+}
+
+.navbar-option-margin {
+    margin: 5px 15px 5px 25px;
+}

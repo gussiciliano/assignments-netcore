@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@inject IViewLocalizer Localizer
 @model AssignmentsNetcore.Models.Views.TrainingViewModel
 @using AssignmentsNetcore.Models.Views
 
@@ -5,63 +8,59 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Training</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Individual)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Individual)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Remote)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Remote)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TrainingStatus)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TrainingStatus)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="component">
+    <h2>@Localizer["Details"]</h2>
+    <h4>@Localizer["OptionTitleTraining"]</h4>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Individual)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Individual)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Remote)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Remote)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.StartDate)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.EndDate)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.TrainingStatus)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.TrainingStatus)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.CreatedAt)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.CreatedAt)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.UpdatedAt)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.UpdatedAt)
+    </div>
+    <div class="margin-20-5">
+        <a class="option-link margin-10-10" asp-action="Edit" asp-route-id="@Model.Id">@Localizer["Edit"]</a>
+        <a class="option-link margin-10-10" asp-action="Index">@Localizer["BackToList"]</a>
+    </div>
 </div>

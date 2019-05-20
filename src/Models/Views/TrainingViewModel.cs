@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
 
@@ -7,6 +8,7 @@ namespace AssignmentsNetcore.Models.Views
     {
         public bool Individual { get; set; }
         public bool Remote { get; set; }
+        [Required]
         public TrainingStatus TrainingStatus { get; set; }
     }
 }

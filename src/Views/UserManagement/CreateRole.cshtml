@@ -3,11 +3,13 @@
 @model AssignmentsNetcore.Models.Views.UserManagementViewModel
 @inject IViewLocalizer Localizer
 
-<h3>@Localizer["CreateRole"]</h3>
-@using (Html.BeginForm("CreateRole", "UserManagement", FormMethod.Post))
-{  
-    <partial name="_EditRoleForm" model="Model"/>
-    <div class='form-group'>
-        <input type='submit' value='@Localizer["CreateRole"]'/>
-    </div>
-}
+<div class="component">
+    <h3>@Localizer["CreateRole"]</h3>
+    @using (Html.BeginForm("CreateRole", "UserManagement", FormMethod.Post))
+    {  
+        <partial name="_EditRoleForm" model="Model"/>
+        <div class='form-group'>
+            <input type='submit' value='@Localizer["CreateRole"]'/>
+        </div>
+    }
+</div>

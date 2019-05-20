@@ -14,6 +14,8 @@
     <title>@ViewData["Title"] - AssignmentsNetcore</title>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
     <script src="~/js/site.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -26,36 +28,25 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("ADMIN"))
-                    { 
-                        @await Html.PartialAsync("_UserManagementPartial")
-                    }
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
-            </div>
+    <nav class="sticky navbar-shadow background-color-white margin-0 z-index-3">
+        <div class="navbar-flex nav-pills">
+            <a class="logo" asp-area="" asp-controller="Home" asp-action="Index">
+                <h2 class="logo-letter color-black">W</h2><h2 class="logo-letter color-wolox-green">-</h2><h2 class="logo-letter color-black">ASS</h2><h2 class="logo-letter color-wolox-blue">I</h2><h2 class="logo-letter color-black">GN</h2>
+            </a>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("ADMIN"))
+            { 
+                @await Html.PartialAsync("_UserManagementPartial")
+            }
+            @await Html.PartialAsync("_LoginPartial")
         </div>
     </nav>
-    <div class="container body-content">
+    <div class="body-center background-color-blue display-flex-center flex-direction-column">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2017 - AssignmentsNetcore</p>
-        </footer>
     </div>
-
+    <footer class="display-flex-center flex-direction-column footer">
+        <img src="~/png/LogoWolox-Original.png" alt="Wolox" width="300" />
+        <p>&copy; 2019 - AssignmentsNetcore</p>
+    </footer>
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
