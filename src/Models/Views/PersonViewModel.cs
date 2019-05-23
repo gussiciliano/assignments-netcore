@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -15,6 +14,6 @@ namespace AssignmentsNetcore.Models.Views
         public int OfficeId { get; set; }
         public Office Office { get; set; }
         public ICollection<SelectListItem> Offices { get; set; }
-        public ICollection<PersonJobRole> PersonJobRoles { get; set; }
+        public ICollection<AssignmentViewModel> Assigments { get; set; }
     }
 }

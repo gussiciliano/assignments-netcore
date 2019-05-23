@@ -12,16 +12,15 @@ namespace AssignmentsNetcore.Repositories.Database
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options) { }
 
         public DbSet<Assignment> Assignments { get; set; }
-        public DbSet<AssignmentRole> AssignmentRoles { get; set; }
         public DbSet<Change> Changes { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Commercial> Commercials { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<HHII> HHIIs { get; set; }
-        public DbSet<JobRole> JobRoles { get; set; }
         public DbSet<Office> Offices { get; set; }
         public DbSet<Person> Persons { get; set; }
-        public DbSet<PersonJobRole> PersonJobRoles { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<Country> Countries { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectComponent> ProjectComponents { get; set; }
         public DbSet<Tech> Techs { get; set; }
