@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AssignmentsNetcore.Models.Database
 {
@@ -9,8 +10,9 @@ namespace AssignmentsNetcore.Models.Database
         public DateTime EntryDate { get; set; }
         public int Workload { get; set; }
         public bool Active { get; set; }
+        [Required]
         public int OfficeId { get; set; }
         public virtual Office Office { get; set; }
-        public virtual ICollection<PersonJobRole> PersonJobRoles { get; set; }
+        public virtual ICollection<Assignment> Assignments { get; set; }
     }
 }

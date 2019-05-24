@@ -16,7 +16,5 @@ namespace AssignmentsNetcore.Models.Views
         public int ClientId { get; set; }
         public string ClientName { get; set; }
         public ICollection<SelectListItem> Clients { get; set; }
-        // public virtual Client Client { get; set; }
-        // public virtual ICollection<ProjectComponent> ProjectComponents { get; set; }
     }
 }

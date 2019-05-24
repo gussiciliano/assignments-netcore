@@ -34,12 +34,4 @@ namespace AssignmentsNetcore.Models
         Backend = 4,
         Frontend = 5,
     }
-
-    public enum Country
-    {
-        Argentina = 1,
-        Colombia = 2,
-        Mexico = 3,
-        USA = 4,
-    }
 }
