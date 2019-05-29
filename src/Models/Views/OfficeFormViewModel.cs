@@ -8,6 +8,11 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class OfficeFormViewModel : OfficeViewModel
     {
+        public OfficeFormViewModel(IEnumerable<Country> countries) : base()
+        {
+            this.Countries = countries.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
+        }
+
         public OfficeFormViewModel(Office office, IEnumerable<Country> countries) : base()
         {
             this.Name = office.Name;
@@ -16,6 +21,7 @@ namespace AssignmentsNetcore.Models.Views
             this.Country = new CountryViewModel(office.Country);
             this.Countries = countries.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
         }
+
         [Required]
         public IEnumerable<SelectListItem> Countries { get; set; }
     }

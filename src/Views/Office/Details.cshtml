@@ -12,12 +12,6 @@
     <h2>@Localizer["Details"]</h2>
     <h4>@Localizer["OptionTitleOffice"]</h4>
     <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Country)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Country)
-    </div>
-    <div class="sub-label">
         @Html.DisplayNameFor(model => model.Name)
     </div>
     <div>
@@ -28,6 +22,12 @@
     </div>
     <div>
         @Html.DisplayFor(model => model.Active)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Country)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Country.Name)
     </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.Address)

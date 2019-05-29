@@ -12,7 +12,7 @@
     <h2>@Localizer["Create"]</h2>
     <h4>@Localizer["OptionTitleOffice"]</h4>
     <hr />
-    <form asp-action="Create">
+    <form asp-action="Create" class="component-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Name" class="control-label"></label>
@@ -27,13 +27,13 @@
             </div>
         </div>
         <div class="form-group">
-                <label class="control-label"></label>
-                <br>
-                <select asp-for="Country.Id" 
-                        asp-items="@Model.Countries"
-                        class="box-dimension-200px-300px">
-                </select>
-            </div>
+            <label class="control-label">@Localizer["Country"]</label>
+            <br>
+            <select asp-for="Country.Id" 
+                    asp-items="@Model.Countries"
+                    class="box-dimension-200px-300px">
+            </select>
+        </div>
         <div class="form-group">
             <label asp-for="Address" class="control-label"></label>
             <input asp-for="Address" class="form-control" />

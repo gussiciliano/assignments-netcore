@@ -4,7 +4,7 @@
 @inject IViewLocalizer Localizer
 
 <div class="component">
-    @using (Html.BeginForm("EditUser", "Account", FormMethod.Post))
+    @using (Html.BeginForm("EditUser", "Account", FormMethod.Post, new { @class="component-form" }))
     {
         <h3 class="component-title">@Localizer["Profile"]</h3>
         <h4 class="component-title">@Localizer["ChangePassword"]</h4>
