@@ -1,0 +1,38 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@inject IViewLocalizer Localizer
+@model AssignmentsNetcore.Models.Views.CountryViewModel
+@using AssignmentsNetcore.Models.Views
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="component">
+    <h2>@Localizer["Details"]</h2>
+    <h4>@Localizer["OptionTitleCountry"]</h4>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.CreatedAt)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.CreatedAt)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.UpdatedAt)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.UpdatedAt)
+    </div>
+    <div class="margin-20-5">
+        <a class="option-link margin-10-10" asp-action="Edit" asp-route-id="@Model.Id">@Localizer["Edit"]</a>
+        <a class="option-link margin-10-10" asp-action="Index">@Localizer["BackToList"]</a>
+    </div>
+</div>

@@ -31,6 +31,15 @@
             </div>
         </div>
         <div class="home-option">
+            <h2>@Localizer["OptionTitleCountry"]</h2>
+            <i class="fas fa-globe-americas home-option-icon"></i>
+            <p class="home-option-description">@Localizer["OptionDescriptionCountry"]</p>
+            <div class="width-100-percent display-flex-around flex-direction-row">
+                <a class="option-link" asp-area="" asp-controller="Country" asp-action="Index">@Localizer["List"]</a>
+                <a class="option-link" asp-area="" asp-controller="Country" asp-action="Create">@Localizer["Create"]</a>
+            </div>
+        </div>
+        <div class="home-option">
             <h2>@Localizer["OptionTitlePerson"]</h2>
             <i class="fas fa-user-circle home-option-icon"></i>
             <p class="home-option-description">@Localizer["OptionDescriptionPerson"]</p>
