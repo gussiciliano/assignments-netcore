@@ -3,6 +3,7 @@ using AssignmentsNetcore.Controllers.Backoffice;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AssignmentsNetcore.Controllers
 {
@@ -14,10 +15,20 @@ namespace AssignmentsNetcore.Controllers
 
         protected override IRepository<Office> WorkingRepository { get { return UnitOfWork.OfficeRepository; } }
 
+        public override IActionResult Create() => View(new OfficeFormViewModel(UnitOfWork.CountryRepository.GetAll()));
+
+        public override IActionResult Edit(int? id)
+        {
+            if (id == null) return NotFound();
+            var workingEntity = WorkingRepository.Get(id.Value);
+            if (workingEntity == null) return NotFound();
+            return View(new OfficeFormViewModel(workingEntity, UnitOfWork.CountryRepository.GetAll()));
+        }
+        
         protected override Office CreateNewEntity(OfficeViewModel workingViewModel)
         {
             Office office = new Office();
-            office.Country = workingViewModel.Country;
+            office.CountryId = workingViewModel.Country.Id;
             office.Name = workingViewModel.Name;
             office.Active = workingViewModel.Active;
             office.Address = workingViewModel.Address;
@@ -28,7 +39,7 @@ namespace AssignmentsNetcore.Controllers
         {
             OfficeViewModel officeViewModelOffice = new OfficeViewModel();
             officeViewModelOffice.Id = entity.Id;
-            officeViewModelOffice.Country = entity.Country;
+            officeViewModelOffice.Country = new CountryViewModel(entity.Country);
             officeViewModelOffice.Name = entity.Name;
             officeViewModelOffice.Active = entity.Active;
             officeViewModelOffice.Address = entity.Address;
@@ -39,7 +50,7 @@ namespace AssignmentsNetcore.Controllers
 
         protected override Office EditEntityByViewModel(Office entity, OfficeViewModel workingViewModel)
         {
-            entity.Country = workingViewModel.Country;
+            entity.CountryId = workingViewModel.Country.Id;
             entity.Name = workingViewModel.Name;
             entity.Active = workingViewModel.Active;
             entity.Address = workingViewModel.Address;

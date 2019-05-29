@@ -1,7 +1,8 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@model IEnumerable<AssignmentsNetcore.Models.Views.OfficeViewModel>
+
+@model IEnumerable<AssignmentsNetcore.Models.Views.CountryViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -18,15 +19,6 @@
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Active)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Country)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.CreatedAt)
                 </th>
                 <th>
@@ -40,15 +32,6 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Active)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)

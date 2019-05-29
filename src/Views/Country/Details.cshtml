@@ -1,39 +1,23 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.OfficeViewModel
+@model AssignmentsNetcore.Models.Views.CountryViewModel
 @using AssignmentsNetcore.Models.Views
 
 @{
     ViewData["Title"] = "Details";
 }
 
+
+
 <div class="component">
     <h2>@Localizer["Details"]</h2>
-    <h4>@Localizer["OptionTitleOffice"]</h4>
+    <h4>@Localizer["OptionTitleCountry"]</h4>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.Name)
     </div>
     <div>
         @Html.DisplayFor(model => model.Name)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Active)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Active)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Country)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Country.Name)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Address)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Address)
     </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.CreatedAt)
@@ -52,4 +36,3 @@
         <a class="option-link margin-10-10" asp-action="Index">@Localizer["BackToList"]</a>
     </div>
 </div>
-

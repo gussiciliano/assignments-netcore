@@ -7,7 +7,7 @@ namespace AssignmentsNetcore.Models.Views
     public class OfficeViewModel : BaseEntityViewModel
     {
         [Required]
-        public Country Country { get; set; }
+        public CountryViewModel Country { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

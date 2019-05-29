@@ -35,11 +35,18 @@
     box-shadow: 0px 8px 39px -5px $component-shadow;
 }
 
+.component-form {
+    align-items: baseline;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 60%;
+}
+
 .talkbubble {
     width: 830px;
-    height: 150px;
     background: $white;
-    padding: 30px;
+    padding: 32px;
     position: relative;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;

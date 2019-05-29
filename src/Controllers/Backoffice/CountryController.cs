@@ -10,9 +10,7 @@ namespace AssignmentsNetcore.Controllers
 {
     public class CountryController : CRUDController<Country, CountryViewModel>
     {
-        public CountryController(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-        }
+        public CountryController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         protected override IRepository<Country> WorkingRepository { get { return UnitOfWork.CountryRepository; } }
 

@@ -1,7 +1,7 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.OfficeFormViewModel
+@model AssignmentsNetcore.Models.Views.CountryViewModel
 @using AssignmentsNetcore.Models
 
 @{
@@ -11,34 +11,13 @@
 
 <div class="component">
     <h2>@Localizer["Edit"]</h2>
-    <h4>@Localizer["OptionTitleOffice"]</h4>
-    <hr />
+    <h4>@Localizer["OptionTitleCountry"]</h4>
     <form asp-action="Edit" class="component-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Name" class="control-label"></label>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <div class="checkbox">
-                <label>
-                    <input asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label">@Localizer["Country"]</label>
-            <br>
-            <select asp-for="Country.Id" 
-                    asp-items="@Model.Countries"
-                    class="box-dimension-200px-300px">
-            </select>
-        </div>
-        <div class="form-group">
-            <label asp-for="Address" class="control-label"></label>
-            <input asp-for="Address" class="form-control" />
-            <span asp-validation-for="Address" class="text-danger"></span>
         </div>
         <input type="hidden" asp-for="Id" />
         <div class="form-group">
@@ -47,10 +26,8 @@
     </form>
     <div>
         <a class="option-link" asp-action="Index">@Localizer["BackToList"]</a>
-    </div>
+    </div>    
 </div>
-
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
