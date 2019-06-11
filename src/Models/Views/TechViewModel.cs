@@ -6,6 +6,11 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class TechViewModel : BaseEntityViewModel
     {
+        public TechViewModel(Tech tech) : base()
+        {
+            this.Name = tech.Name;
+        }
+
         [Required]
         public string Name { get; set; }
     }

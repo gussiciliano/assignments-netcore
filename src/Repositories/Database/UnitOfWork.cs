@@ -26,6 +26,7 @@ namespace AssignmentsNetcore.Repositories.Database
         public IOfficeRepository OfficeRepository { get; private set; }
         public IPersonRepository PersonRepository { get; private set; }
         public IPositionRepository PositionRepository { get; private set; }
+        public IProjectRepository ProjectRepository { get; private set; }
         public IProjectComponentRepository ProjectComponentRepository { get; private set; }
         public ITechRepository TechRepository { get; private set; }
         public ITrainingRepository TrainingRepository { get; private set; }
