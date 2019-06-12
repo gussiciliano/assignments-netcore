@@ -55,8 +55,8 @@ namespace AssignmentsNetcore.Controllers
             trainingVM.StartDate = entity.StartDate;
             trainingVM.EndDate = entity.EndDate;
             trainingVM.TrainingStatus = entity.TrainingStatus;
-           // trainingVM.ClientId = entity.ClientId;
-            //trainingVM.ClientName = entity.Client.Name;
+            trainingVM.ClientId = entity.ClientId;
+            trainingVM.ClientName = entity.Client.Name;
             trainingVM.Individual = entity.Individual;
             trainingVM.Remote = entity.Remote;
             trainingVM.Id = entity.Id;
@@ -71,7 +71,7 @@ namespace AssignmentsNetcore.Controllers
             entity.StartDate = workingViewModel.StartDate;
             entity.EndDate = workingViewModel.EndDate;
             entity.TrainingStatus = workingViewModel.TrainingStatus;
-            //entity.ClientId = workingViewModel.ClientId;
+            entity.ClientId = workingViewModel.ClientId;
             entity.Individual = workingViewModel.Individual;
             entity.Remote = workingViewModel.Remote;
             return entity;
