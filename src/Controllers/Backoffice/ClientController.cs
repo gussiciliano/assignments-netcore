@@ -21,15 +21,7 @@ namespace AssignmentsNetcore.Controllers
             return client;
         }
 
-        protected override ClientViewModel CreateNewViewModel(Client entity)
-        {
-            ClientViewModel clientViewModel = new ClientViewModel();
-            clientViewModel.Id = entity.Id;
-            clientViewModel.Name = entity.Name;
-            clientViewModel.CreatedAt = entity.CreatedAt;
-            clientViewModel.UpdatedAt = entity.UpdatedAt;
-            return clientViewModel;
-        }
+        protected override ClientViewModel CreateNewViewModel(Client entity) => new ClientViewModel(entity);
 
         protected override Client EditEntityByViewModel(Client entity, ClientViewModel workingViewModel)
         {

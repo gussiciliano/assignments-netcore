@@ -9,21 +9,20 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class ProjectViewModel : BaseEntityViewModel
     {
+        public ProjectViewModel() : base() {}
 
-        public ProjectViewModel(Project project) : base()
+        public ProjectViewModel(Project project) : base(project)
         {
             this.Name = project.Name;
             this.StartDate = project.StartDate;
             this.EndDate = project.EndDate;
-            this.ClientId = project.ClientId;
-            this.ClientName = project.Client.Name;
+            this.Client = new ClientViewModel(project.Client);
         }
 
         [Required]
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int ClientId { get; set; }
-        public string ClientName { get; set; }
+        public ClientViewModel Client { get; set; }
     }
 }

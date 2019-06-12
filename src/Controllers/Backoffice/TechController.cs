@@ -21,15 +21,7 @@ namespace AssignmentsNetcore.Controllers
             return tech;
         }
 
-        protected override TechViewModel CreateNewViewModel(Tech entity)
-        {
-            TechViewModel techViewModel = new TechViewModel();
-            techViewModel.Id = entity.Id;
-            techViewModel.Name = entity.Name;
-            techViewModel.CreatedAt = entity.CreatedAt;
-            techViewModel.UpdatedAt = entity.UpdatedAt;
-            return techViewModel;
-        }
+        protected override TechViewModel CreateNewViewModel(Tech entity) => new TechViewModel(entity);
 
         protected override Tech EditEntityByViewModel(Tech entity, TechViewModel workingViewModel)
         {

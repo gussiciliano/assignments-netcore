@@ -14,7 +14,7 @@ namespace AssignmentsNetcore.Models.Views
             this.Projects = projects.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
         }
 
-        public ProjectComponentFormViewModel(ProjectComponent projectComponent, IEnumerable<Tech> techs, IEnumerable<Project> projects) : base()
+        public ProjectComponentFormViewModel(ProjectComponent projectComponent, IEnumerable<Tech> techs, IEnumerable<Project> projects) : base(projectComponent)
         {
             this.Project = new ProjectViewModel(projectComponent.Project);
             this.Techs = techs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));

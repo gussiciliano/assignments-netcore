@@ -15,6 +15,7 @@ namespace AssignmentsNetcore.Models.Database
             this.ProjectId = projectComponentViewModel.Project.Id;
             this.TechId = projectComponentViewModel.Tech.Id;
         }
+        public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public ProjectStatus Status { get; set; }

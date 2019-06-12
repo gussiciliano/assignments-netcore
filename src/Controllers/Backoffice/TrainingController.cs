@@ -20,7 +20,7 @@ namespace AssignmentsNetcore.Controllers
         public override IActionResult Create()
         {
             var trainingViewModel = new TrainingViewModel();
-            trainingViewModel.Clients = UnitOfWork.ClientRepository.GetAll().Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
+            //trainingViewModel.Clients = UnitOfWork.ClientRepository.GetAll().Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
             return View(trainingViewModel);
         }
         public override IActionResult Edit(int? id)
@@ -29,7 +29,7 @@ namespace AssignmentsNetcore.Controllers
             var workingEntity = WorkingRepository.Get(id.Value);
             if (workingEntity == null) return NotFound();
             var trainingViewModel = CreateNewViewModel(workingEntity);
-            trainingViewModel.Clients = UnitOfWork.ClientRepository.GetAll().Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
+            // trainingViewModel.Clients = UnitOfWork.ClientRepository.GetAll().Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
             return View(trainingViewModel);
         }
 
@@ -40,7 +40,7 @@ namespace AssignmentsNetcore.Controllers
             training.StartDate = workingViewModel.StartDate;
             training.EndDate = workingViewModel.EndDate;
             training.TrainingStatus = workingViewModel.TrainingStatus;
-            training.ClientId = workingViewModel.ClientId;
+            training.ClientId = workingViewModel.Client.Id;
             training.Individual = workingViewModel.Individual;
             training.Remote = workingViewModel.Remote;
             training.CreatedAt = workingViewModel.CreatedAt;
@@ -55,8 +55,8 @@ namespace AssignmentsNetcore.Controllers
             trainingVM.StartDate = entity.StartDate;
             trainingVM.EndDate = entity.EndDate;
             trainingVM.TrainingStatus = entity.TrainingStatus;
-            trainingVM.ClientId = entity.ClientId;
-            trainingVM.ClientName = entity.Client.Name;
+           // trainingVM.ClientId = entity.ClientId;
+            //trainingVM.ClientName = entity.Client.Name;
             trainingVM.Individual = entity.Individual;
             trainingVM.Remote = entity.Remote;
             trainingVM.Id = entity.Id;
@@ -71,7 +71,7 @@ namespace AssignmentsNetcore.Controllers
             entity.StartDate = workingViewModel.StartDate;
             entity.EndDate = workingViewModel.EndDate;
             entity.TrainingStatus = workingViewModel.TrainingStatus;
-            entity.ClientId = workingViewModel.ClientId;
+            //entity.ClientId = workingViewModel.ClientId;
             entity.Individual = workingViewModel.Individual;
             entity.Remote = workingViewModel.Remote;
             return entity;
