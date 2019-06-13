@@ -13,6 +13,7 @@ namespace AssignmentsNetcore.Repositories.Database
             this.CommercialRepository = new CommercialRepository(_context);
             this.OfficeRepository = new OfficeRepository(_context);
             this.PersonRepository = new PersonRepository(_context);
+            this.ProjectRepository = new ProjectRepository(_context);
             this.ProjectComponentRepository = new ProjectComponentRepository(_context);
             this.TechRepository = new TechRepository(_context);
             this.TrainingRepository = new TrainingRepository(_context);

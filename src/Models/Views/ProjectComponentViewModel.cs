@@ -1,12 +1,11 @@
 using System;
-using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
 
 namespace AssignmentsNetcore.Models.Views
 {
     public class ProjectComponentViewModel : BaseEntityViewModel
     {
-        public ProjectComponentViewModel() : base() {}
+        public ProjectComponentViewModel() : base() { }
 
         public ProjectComponentViewModel(ProjectComponent projectComponent) : base(projectComponent)
         {

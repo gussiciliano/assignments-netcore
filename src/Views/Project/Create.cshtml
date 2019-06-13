@@ -1,6 +1,6 @@
 @using Microsoft.AspNetCore.Mvc.Localization;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.ProjectComponentFormViewModel;
+@model AssignmentsNetcore.Models.Views.ProjectFormViewModel;
 
 @{
     ViewData["Title"] = "Create";
@@ -19,18 +19,10 @@
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label class="control-label">@Localizer["OptionTitleTech"]</label>
+            <label class="control-label">@Localizer["Project"]</label>
             <br>
-            <select asp-for="Tech.Id" 
-                    asp-items="@Model.Techs"
-                    class="box-dimension-200px-300px">
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="control-label">@Localizer["OptionTitleProject"]</label>
-            <br>
-            <select asp-for="Project.Id" 
-                    asp-items="@Model.Projects"
+            <select asp-for="Client.Id" 
+                    asp-items="@Model.Clients"
                     class="box-dimension-200px-300px">
             </select>
         </div>
@@ -45,9 +37,12 @@
             <span asp-validation-for="EndDate" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Status" class="control-label"></label>
-            <select asp-for="Status" class="form-control"></select>
-            <span asp-validation-for="Status" class="text-danger"></span>
+            <label class="control-label">@Localizer["Project"]</label>
+            <br>
+            <select asp-for="ProjectStatus" 
+                    asp-items="@Model.ProjectStatuses"
+                    class="box-dimension-200px-300px">
+            </select>
         </div>
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-default" />

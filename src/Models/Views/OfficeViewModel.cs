@@ -1,12 +1,11 @@
 using System.ComponentModel.DataAnnotations;
-using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
 
 namespace AssignmentsNetcore.Models.Views
 {
     public class OfficeViewModel : BaseEntityViewModel
     {
-        public OfficeViewModel() : base () {}
+        public OfficeViewModel() : base() { }
 
         public OfficeViewModel(Office office) : base(office)
         {

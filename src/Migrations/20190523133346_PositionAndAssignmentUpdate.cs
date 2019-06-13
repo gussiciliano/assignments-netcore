@@ -54,7 +54,7 @@ namespace AssignmentsNetcore.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -69,7 +69,7 @@ namespace AssignmentsNetcore.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -171,7 +171,7 @@ namespace AssignmentsNetcore.Migrations
                     JobRoleType = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     TechId = table.Column<int>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -193,7 +193,7 @@ namespace AssignmentsNetcore.Migrations
                     AssignmentId = table.Column<int>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     JobRoleId = table.Column<int>(nullable: true),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -222,7 +222,7 @@ namespace AssignmentsNetcore.Migrations
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     JobRoleId = table.Column<int>(nullable: true),
                     PersonId = table.Column<int>(nullable: true),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
                 },
                 constraints: table =>
                 {

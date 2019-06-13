@@ -1,13 +1,18 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using AssignmentsNetcore.Models.Database;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AssignmentsNetcore.Models.Views
 {
     public class ProjectComponentFormViewModel : ProjectComponentViewModel
     {
+        public ProjectComponentFormViewModel()
+        {
+            this.Projects = new List<SelectListItem>();
+            this.Statuses = new List<SelectListItem>();
+        }
         public ProjectComponentFormViewModel(IEnumerable<Tech> techs, IEnumerable<Project> projects) : base()
         {
             this.Techs = techs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));

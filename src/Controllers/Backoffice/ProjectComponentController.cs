@@ -1,4 +1,3 @@
-using System;
 using AssignmentsNetcore.Controllers.Backoffice;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
@@ -9,9 +8,9 @@ namespace AssignmentsNetcore.Controllers
 {
     public class ProjectComponentController : CRUDController<ProjectComponent, ProjectComponentViewModel>
     {
-        public ProjectComponentController(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-        }
+        public ProjectComponentController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+        protected override IRepository<ProjectComponent> WorkingRepository { get { return UnitOfWork.ProjectComponentRepository; } }
 
         public override IActionResult Create() => View(new ProjectComponentFormViewModel(UnitOfWork.TechRepository.GetAll(), UnitOfWork.ProjectRepository.GetAll()));
 
@@ -23,17 +22,12 @@ namespace AssignmentsNetcore.Controllers
             return View(new ProjectComponentFormViewModel(workingEntity, UnitOfWork.TechRepository.GetAll(), UnitOfWork.ProjectRepository.GetAll()));
         }
 
-        protected override IRepository<ProjectComponent> WorkingRepository { get { return UnitOfWork.ProjectComponentRepository; } }
-
         protected override ProjectComponent CreateNewEntity(ProjectComponentViewModel workingViewModel) =>
             new ProjectComponent(workingViewModel);
 
         protected override ProjectComponentViewModel CreateNewViewModel(ProjectComponent entity) =>
             new ProjectComponentViewModel(entity);
 
-        protected override ProjectComponent EditEntityByViewModel(ProjectComponent entity, ProjectComponentViewModel workingViewModel)
-        {
-            throw new NotImplementedException();
-        }
+        protected override ProjectComponent EditEntityByViewModel(ProjectComponent entity, ProjectComponentViewModel workingViewModel) => entity.Update(workingViewModel);
     }
 }
