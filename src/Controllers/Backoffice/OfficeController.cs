@@ -8,9 +8,7 @@ namespace AssignmentsNetcore.Controllers
 {
     public class OfficeController : CRUDController<Office, OfficeViewModel>
     {
-        public OfficeController(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-        }
+        public OfficeController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         protected override IRepository<Office> WorkingRepository { get { return UnitOfWork.OfficeRepository; } }
 
