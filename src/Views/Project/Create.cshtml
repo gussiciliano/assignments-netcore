@@ -9,7 +9,7 @@
 
 <div class="component">
     <h2>@Localizer["Create"]</h2>
-    <h4>@Localizer["OptionTitleProjectComponent"]</h4>
+    <h4>@Localizer["OptionTitleProject"]</h4>
     <hr />
     <form asp-action="Create" class="component-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -19,7 +19,7 @@
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label class="control-label">@Localizer["Project"]</label>
+            <label class="control-label">@Localizer["OptionTitleClient"]</label>
             <br>
             <select asp-for="Client.Id" 
                     asp-items="@Model.Clients"
@@ -37,7 +37,7 @@
             <span asp-validation-for="EndDate" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label class="control-label">@Localizer["Project"]</label>
+            <label class="control-label">@Localizer["ProjectStatus"]</label>
             <br>
             <select asp-for="ProjectStatus" 
                     asp-items="@Model.ProjectStatuses"

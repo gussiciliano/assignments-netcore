@@ -6,6 +6,8 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class ClientViewModel : BaseEntityViewModel
     {
+        public ClientViewModel() : base() { }
+
         public ClientViewModel(Client client) : base(client)
         {
             this.Name = client.Name;

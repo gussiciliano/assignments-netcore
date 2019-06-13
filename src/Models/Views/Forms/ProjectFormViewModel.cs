@@ -9,6 +9,11 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class ProjectFormViewModel : ProjectViewModel
     {
+        public ProjectFormViewModel() : base()
+        {
+            this.ProjectStatuses = Enum.GetNames(typeof(ProjectStatus)).Select(e => new SelectListItem() { Text = e, Value = e });
+        }
+
         public ProjectFormViewModel(IEnumerable<Client> clients, IEnumerable<ProjectComponent> projectComponents) : base()
         {
             this.Clients = clients.Select(c => new SelectListItem(c.Name, c.Id.ToString()));

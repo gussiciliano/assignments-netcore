@@ -1,7 +1,7 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.ProjectComponentViewModel
+@model AssignmentsNetcore.Models.Views.ProjectViewModel
 @using AssignmentsNetcore.Models.Views
 
 @{
@@ -11,7 +11,13 @@
 <div class="component">
     <h2>@Localizer["Delete"]</h2>
     <h3>@Localizer["ConfirmDelete"]</h3>
-    <h4>@Localizer["OptionTitleProjectComponent"]</h4>
+    <h4>@Localizer["OptionTitleProject"]</h4>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Name)
+    </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.StartDate)
     </div>
@@ -25,10 +31,10 @@
         @Html.DisplayFor(model => model.EndDate)
     </div>
     <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Status)
+        @Html.DisplayNameFor(model => model.ProjectStatus)
     </div>
     <div>
-        @Html.DisplayFor(model => model.Status)
+        @Html.DisplayFor(model => model.ProjectStatus)
     </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.CreatedAt)
