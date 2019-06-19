@@ -9,35 +9,27 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class ProjectFormViewModel : ProjectViewModel
     {
-        public ProjectFormViewModel() : base()
-        {
-            this.ProjectStatuses = Enum.GetNames(typeof(ProjectStatus)).Select(e => new SelectListItem() { Text = e, Value = e });
-        }
+        public ProjectFormViewModel() : base() { }
 
         public ProjectFormViewModel(IEnumerable<Client> clients, IEnumerable<ProjectComponent> projectComponents) : base()
         {
             this.Clients = clients.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
-            this.ProjectStatuses = Enum.GetNames(typeof(ProjectStatus)).Select(e => new SelectListItem() { Text = e, Value = e });
+            this.ProjectComponents = projectComponents.Select(pc => new SelectListItem(pc.Name, pc.Id.ToString()));
         }
 
         public ProjectFormViewModel(IEnumerable<Client> clients) : base()
         {
             this.Clients = clients.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
-            this.ProjectStatuses = Enum.GetNames(typeof(ProjectStatus)).Select(e => new SelectListItem() { Text = e, Value = e });
         }
 
         public ProjectFormViewModel(Project project, IEnumerable<Client> clients, IEnumerable<ProjectComponent> projectComponents) : base(project)
         {
             this.Clients = clients.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
             this.ProjectComponents = projectComponents.Select(pc => new SelectListItem(pc.Name, pc.Id.ToString()));
-            this.ProjectStatuses = Enum.GetNames(typeof(ProjectStatus)).Select(e => new SelectListItem() { Text = e, Value = e });
         }
 
         [Required]
         public IEnumerable<SelectListItem> Clients { get; set; }
-        [Required]
         public IEnumerable<SelectListItem> ProjectComponents { get; set; }
-        [Required]
-        public IEnumerable<SelectListItem> ProjectStatuses { get; set; }
     }
 }

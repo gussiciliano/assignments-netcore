@@ -16,6 +16,7 @@ namespace AssignmentsNetcore.Models.Views
             this.Project = new ProjectViewModel(projectComponent.Project);
             this.Tech = new TechViewModel(projectComponent.Tech);
         }
+
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

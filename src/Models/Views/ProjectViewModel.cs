@@ -16,11 +16,15 @@ namespace AssignmentsNetcore.Models.Views
             this.Client = new ClientViewModel(project.Client);
         }
 
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
+        [Required]
         public DateTime StartDate { get; set; }
+        [Required]
         public DateTime EndDate { get; set; }
+        [Required]
         public ClientViewModel Client { get; set; }
+        [Required]
         public ProjectStatus ProjectStatus { get; set; }
     }
 }

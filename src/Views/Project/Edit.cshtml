@@ -1,8 +1,8 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
+@using AssignmentsNetcore.Models;
 @inject IViewLocalizer Localizer
 @model AssignmentsNetcore.Models.Views.ProjectFormViewModel
-@using AssignmentsNetcore.Models.Views
 
 @{
     ViewData["Title"] = "Edit";
@@ -41,7 +41,7 @@
             <label class="control-label">@Localizer["ProjectStatus"]</label>
             <br>
             <select asp-for="ProjectStatus" 
-                    asp-items="@Model.ProjectStatuses"
+                    asp-items="Html.GetEnumSelectList<TrainingStatus>()"
                     class="box-dimension-200px-300px">
             </select>
         </div>
