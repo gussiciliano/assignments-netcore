@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using AssignmentsNetcore.Models.Database;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

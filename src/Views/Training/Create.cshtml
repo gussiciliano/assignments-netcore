@@ -34,6 +34,14 @@
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="form-group">
+            <label class="control-label">@Localizer["OptionTitleClient"]</label>
+            <br>
+            <select asp-for="ClientId" 
+                    asp-items="@Model.Clients"
+                    class="box-dimension-200px-300px">
+            </select>
+        </div>
+        <div class="form-group">
             <label asp-for="StartDate" class="control-label"></label>
             <input asp-for="StartDate" class="form-control" />
             <span asp-validation-for="StartDate" class="text-danger"></span>
@@ -50,11 +58,6 @@
                     class="box-dimension-200px-300px">
             </select>
             <span asp-validation-for="TrainingStatus" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Client.Id" class="control-label"></label>
-            <select asp-for="Client.Id" class="form-control" asp-items="Model.Clients"></select>
-            <span asp-validation-for="Client.Id" class="text-danger"></span>
         </div>
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-default" />

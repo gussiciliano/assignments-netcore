@@ -13,7 +13,6 @@ namespace AssignmentsNetcore.Models.Views
             this.Name = client.Name;
         }
 
-        [Required]
         public string Name { get; set; }
     }
 }

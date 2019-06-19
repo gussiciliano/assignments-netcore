@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using AssignmentsNetcore.Models.Database;
 
@@ -11,12 +12,11 @@ namespace AssignmentsNetcore.Models.Views
         {
             this.Individual = training.Individual;
             this.Remote = training.Remote;
-            this.TrainingStatus = training.TrainingStatus;
+            this.TrainingStatus = Enum.GetName(typeof(TrainingStatus), training.TrainingStatus);
         }
 
         public bool Individual { get; set; }
         public bool Remote { get; set; }
-        [Required]
-        public TrainingStatus TrainingStatus { get; set; }
+        public string TrainingStatus { get; set; }
     }
 }

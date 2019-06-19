@@ -9,29 +9,31 @@ namespace AssignmentsNetcore.Models.Database
     {
         public Project() : base() { }
 
-        public Project(ProjectViewModel projectViewModel) : base()
+        public Project(ProjectFormViewModel projectFormViewModel) : base()
         {
-            this.Name = projectViewModel.Name;
-            this.StartDate = projectViewModel.StartDate;
-            this.EndDate = projectViewModel.EndDate;
-            this.ClientId = projectViewModel.Client.Id;
+            this.Name = projectFormViewModel.Name;
+            this.StartDate = projectFormViewModel.StartDate;
+            this.EndDate = projectFormViewModel.EndDate;
+            this.ClientId = projectFormViewModel.ClientId;
+            this.ProjectStatus = projectFormViewModel.ProjectStatus;
         }
 
         [Required]
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        [Required]
         public int ClientId { get; set; }
+        public ProjectStatus ProjectStatus { get; set; }
         public virtual Client Client { get; set; }
         public virtual ICollection<ProjectComponent> ProjectComponents { get; set; }
 
-        public Project Update(ProjectViewModel projectViewModel)
+        public Project Update(ProjectFormViewModel projectFormViewModel)
         {
-            this.Name = projectViewModel.Name;
-            this.StartDate = projectViewModel.StartDate;
-            this.EndDate = projectViewModel.EndDate;
-            this.ClientId = projectViewModel.Client.Id;
+            this.Name = projectFormViewModel.Name;
+            this.StartDate = projectFormViewModel.StartDate;
+            this.EndDate = projectFormViewModel.EndDate;
+            this.ClientId = projectFormViewModel.ClientId;
+            this.ProjectStatus = projectFormViewModel.ProjectStatus;
             return this;
         }
     }

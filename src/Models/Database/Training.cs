@@ -6,26 +6,26 @@ namespace AssignmentsNetcore.Models.Database
     {
         public Training() : base() { }
 
-        public Training(TrainingViewModel trainingViewModel) : base(trainingViewModel)
+        public Training(TrainingFormViewModel trainingFormViewModel) : base(trainingFormViewModel)
         {
-            this.Individual = trainingViewModel.Individual;
-            this.Remote = trainingViewModel.Remote;
-            this.TrainingStatus = trainingViewModel.TrainingStatus;
+            this.Individual = trainingFormViewModel.Individual;
+            this.Remote = trainingFormViewModel.Remote;
+            this.TrainingStatus = trainingFormViewModel.TrainingStatus;
         }
 
         public bool Individual { get; set; }
         public bool Remote { get; set; }
         public TrainingStatus TrainingStatus { get; set; }
 
-        public Training Update(TrainingViewModel trainingViewModel)
+        public Training Update(TrainingFormViewModel trainingFormViewModel)
         {
-            this.Name = trainingViewModel.Name;
-            this.StartDate = trainingViewModel.StartDate;
-            this.EndDate = trainingViewModel.EndDate;
-            this.ClientId = trainingViewModel.Client.Id;
-            this.Individual = trainingViewModel.Individual;
-            this.Remote = trainingViewModel.Remote;
-            this.TrainingStatus = trainingViewModel.TrainingStatus;
+            this.Name = trainingFormViewModel.Name;
+            this.StartDate = trainingFormViewModel.StartDate;
+            this.EndDate = trainingFormViewModel.EndDate;
+            this.ClientId = trainingFormViewModel.ClientId;
+            this.Individual = trainingFormViewModel.Individual;
+            this.Remote = trainingFormViewModel.Remote;
+            this.TrainingStatus = trainingFormViewModel.TrainingStatus;
             return this;
         }
     }

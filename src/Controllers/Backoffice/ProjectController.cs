@@ -1,13 +1,17 @@
 using System.Linq;
+using System.Net;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssignmentsNetcore.Controllers
 {
     [Route("backoffice/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ProjectController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -16,6 +20,7 @@ namespace AssignmentsNetcore.Controllers
         {
             this._unitOfWork = unitOfWork;
         }
+
         private IUnitOfWork UnitOfWork { get { return this._unitOfWork; } }
 
         [HttpGet("")]
@@ -34,17 +39,14 @@ namespace AssignmentsNetcore.Controllers
         public IActionResult Create() => View(new ProjectFormViewModel(UnitOfWork.ClientRepository.GetAll()));
 
         [HttpPost("Create")]
-        [ValidateAntiForgeryToken]
         public IActionResult Create(ProjectFormViewModel workingViewModel)
         {
-            if (!ModelState.IsValid) {
-                var errors = ModelState.Select(x => x.Value.Errors)
-                           .Where(y=>y.Count>0)
-                           .ToList();
-                           return View(workingViewModel);
+            if (!ModelState.IsValid)
+            {
+                return View(workingViewModel);
             }
             UnitOfWork.ProjectRepository.Add(new Project(workingViewModel));
-            UnitOfWork.Complete();    
+            UnitOfWork.Complete();
             return RedirectToAction(nameof(Index));
         }
 
@@ -58,7 +60,6 @@ namespace AssignmentsNetcore.Controllers
         }
 
         [HttpPost("Edit/{id}")]
-        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, ProjectFormViewModel workingViewModel)
         {
             if (!ModelState.IsValid)
@@ -80,7 +81,6 @@ namespace AssignmentsNetcore.Controllers
         }
 
         [HttpPost("Delete/{id}")]
-        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             try
