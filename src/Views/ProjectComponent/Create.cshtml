@@ -1,5 +1,6 @@
 @using Microsoft.AspNetCore.Mvc.Localization;
 @inject IViewLocalizer Localizer
+@using AssignmentsNetcore.Models;
 @model AssignmentsNetcore.Models.Views.ProjectComponentFormViewModel;
 
 @{
@@ -21,7 +22,7 @@
         <div class="form-group">
             <label class="control-label">@Localizer["OptionTitleTech"]</label>
             <br>
-            <select asp-for="Tech.Id" 
+            <select asp-for="TechId" 
                     asp-items="@Model.Techs"
                     class="box-dimension-200px-300px">
             </select>
@@ -29,7 +30,7 @@
         <div class="form-group">
             <label class="control-label">@Localizer["OptionTitleProject"]</label>
             <br>
-            <select asp-for="Project.Id" 
+            <select asp-for="ProjectId" 
                     asp-items="@Model.Projects"
                     class="box-dimension-200px-300px">
             </select>
@@ -45,9 +46,12 @@
             <span asp-validation-for="EndDate" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Status" class="control-label"></label>
-            <select asp-for="Status" class="form-control"></select>
-            <span asp-validation-for="Status" class="text-danger"></span>
+            <label class="control-label">@Localizer["ProjectStatus"]</label>
+            <br>
+            <select asp-for="Status" 
+                    asp-items="Html.GetEnumSelectList<ProjectStatus>()"
+                    class="box-dimension-200px-300px">
+            </select>
         </div>
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-default" />

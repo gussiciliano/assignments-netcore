@@ -2,14 +2,11 @@ using System.Linq;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AssignmentsNetcore.Controllers
 {
     [Route("backoffice/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class TrainingController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -34,7 +31,7 @@ namespace AssignmentsNetcore.Controllers
         }
 
         [HttpGet("Create")]
-        public IActionResult Create() => View(new ProjectFormViewModel(UnitOfWork.ClientRepository.GetAll()));
+        public IActionResult Create() => View(new TrainingFormViewModel(UnitOfWork.ClientRepository.GetAll()));
 
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]

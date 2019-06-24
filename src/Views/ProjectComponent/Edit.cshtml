@@ -1,8 +1,6 @@
 @using Microsoft.AspNetCore.Mvc.Localization
-@using System.Globalization;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.ProjectComponentViewModel
-@using AssignmentsNetcore.Models.Views
+@model AssignmentsNetcore.Models.Views.ProjectComponentFormViewModel;
 
 @{
     ViewData["Title"] = "Edit";
@@ -14,6 +12,27 @@
     <hr />
     <form asp-action="Edit" class="component-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@Localizer["OptionTitleTech"]</label>
+            <br>
+            <select asp-for="TechId" 
+                    asp-items="@Model.Techs"
+                    class="box-dimension-200px-300px">
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@Localizer["OptionTitleProject"]</label>
+            <br>
+            <select asp-for="ProjectId" 
+                    asp-items="@Model.Projects"
+                    class="box-dimension-200px-300px">
+            </select>
+        </div>
         <div class="form-group">
             <label asp-for="StartDate" class="control-label"></label>
             <input asp-for="StartDate" class="form-control" />

@@ -6,8 +6,13 @@ namespace AssignmentsNetcore.Models.Database
     {
         public Training() : base() { }
 
-        public Training(TrainingFormViewModel trainingFormViewModel) : base(trainingFormViewModel)
+        public Training(TrainingFormViewModel trainingFormViewModel)
         {
+            this.Name = trainingFormViewModel.Name;
+            this.StartDate = trainingFormViewModel.StartDate;
+            this.EndDate = trainingFormViewModel.EndDate;
+            this.ClientId = trainingFormViewModel.ClientId;
+            this.ProjectStatus = trainingFormViewModel.ProjectStatus;
             this.Individual = trainingFormViewModel.Individual;
             this.Remote = trainingFormViewModel.Remote;
             this.TrainingStatus = trainingFormViewModel.TrainingStatus;

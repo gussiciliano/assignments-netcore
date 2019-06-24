@@ -41,7 +41,7 @@
             <label class="control-label">@Localizer["ProjectStatus"]</label>
             <br>
             <select asp-for="ProjectStatus" 
-                    asp-items="Html.GetEnumSelectList<TrainingStatus>()"
+                    asp-items="Html.GetEnumSelectList<ProjectStatus>()"
                     class="box-dimension-200px-300px">
             </select>
         </div>

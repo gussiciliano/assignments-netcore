@@ -8,9 +8,7 @@ namespace AssignmentsNetcore.Controllers
 {
     public class TechController : CRUDController<Tech, TechViewModel>
     {
-        public TechController(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-        }
+        public TechController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         protected override IRepository<Tech> WorkingRepository { get { return UnitOfWork.TechRepository; } }
 

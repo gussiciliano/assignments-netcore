@@ -15,11 +15,34 @@ namespace AssignmentsNetcore.Migrations
                 table: "ProjectComponents");
 
             migrationBuilder.AlterColumn<int>(
+                name: "TrainingStatus",
+                table: "Projects",
+                nullable: true,
+                defaultValue: 1,
+                oldClrType: typeof(int),
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<int>(
+                name: "ProjectStatus",
+                table: "Projects",
+                nullable: false,
+                defaultValue: 1,
+                oldClrType: typeof(int),
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<int>(
                 name: "TechId",
                 table: "ProjectComponents",
                 nullable: false,
                 oldClrType: typeof(int),
                 oldNullable: true);
+
+            migrationBuilder.AlterColumn<int>(
+                name: "Status",
+                table: "ProjectComponents",
+                nullable: false,
+                defaultValue: 1,
+                oldClrType: typeof(int));
 
             migrationBuilder.AlterColumn<int>(
                 name: "ProjectId",
@@ -65,10 +88,32 @@ namespace AssignmentsNetcore.Migrations
                 table: "ProjectComponents");
 
             migrationBuilder.AlterColumn<int>(
+                name: "TrainingStatus",
+                table: "Projects",
+                nullable: true,
+                oldClrType: typeof(int),
+                oldNullable: true,
+                oldDefaultValue: 1);
+
+            migrationBuilder.AlterColumn<int>(
+                name: "ProjectStatus",
+                table: "Projects",
+                nullable: true,
+                oldClrType: typeof(int),
+                oldDefaultValue: 1);
+
+            migrationBuilder.AlterColumn<int>(
                 name: "TechId",
                 table: "ProjectComponents",
                 nullable: true,
                 oldClrType: typeof(int));
+
+            migrationBuilder.AlterColumn<int>(
+                name: "Status",
+                table: "ProjectComponents",
+                nullable: false,
+                oldClrType: typeof(int),
+                oldDefaultValue: 1);
 
             migrationBuilder.AlterColumn<int>(
                 name: "ProjectId",

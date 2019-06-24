@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,15 @@ namespace AssignmentsNetcore.Repositories.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ProjectComponent>()
+                .Property(pc => pc.Status)
+                .HasDefaultValue(ProjectStatus.ProductThinking);
+            modelBuilder.Entity<Project>()
+                .Property(p => p.ProjectStatus)
+                .HasDefaultValue(ProjectStatus.ProductThinking);
+            modelBuilder.Entity<Training>()
+                .Property(t => t.TrainingStatus)
+                .HasDefaultValue(TrainingStatus.OnGoing);
         }
 
         private void AddTimestamps()

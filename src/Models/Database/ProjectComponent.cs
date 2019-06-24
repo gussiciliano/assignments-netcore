@@ -11,14 +11,14 @@ namespace AssignmentsNetcore.Models.Database
         {
             this.Assignments = new List<Assignment>();
         }
-        public ProjectComponent(ProjectComponentViewModel projectComponentViewModel) : base()
+        public ProjectComponent(ProjectComponentFormViewModel projectComponentViewModel) : base()
         {
             this.Name = projectComponentViewModel.Name;
             this.StartDate = projectComponentViewModel.StartDate;
             this.EndDate = projectComponentViewModel.EndDate;
             this.Status = projectComponentViewModel.Status;
-            this.ProjectId = projectComponentViewModel.Project.Id;
-            this.TechId = projectComponentViewModel.Tech.Id;
+            this.ProjectId = projectComponentViewModel.ProjectId;
+            this.TechId = projectComponentViewModel.TechId;
         }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
@@ -32,14 +32,14 @@ namespace AssignmentsNetcore.Models.Database
         public virtual Tech Tech { get; set; }
         public virtual ICollection<Assignment> Assignments { get; set; }
 
-        public ProjectComponent Update(ProjectComponentViewModel projectComponentViewModel)
+        public ProjectComponent Update(ProjectComponentFormViewModel projectComponentViewModel)
         {
             this.Name = Name;
             this.StartDate = projectComponentViewModel.StartDate;
             this.EndDate = projectComponentViewModel.EndDate;
             this.Status = projectComponentViewModel.Status;
-            this.ProjectId = projectComponentViewModel.Project.Id;
-            this.TechId = projectComponentViewModel.Tech.Id;
+            this.ProjectId = projectComponentViewModel.ProjectId;
+            this.TechId = projectComponentViewModel.TechId;
             return this;
         }
     }

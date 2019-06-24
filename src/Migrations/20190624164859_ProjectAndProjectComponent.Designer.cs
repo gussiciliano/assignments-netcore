@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AssignmentsNetcore.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20190613171056_ProjectAndProjectComponent")]
+    [Migration("20190624164859_ProjectAndProjectComponent")]
     partial class ProjectAndProjectComponent
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace AssignmentsNetcore.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Assignment", b =>
@@ -222,6 +222,10 @@ namespace AssignmentsNetcore.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<int>("ProjectStatus")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(1);
+
                     b.Property<DateTime>("StartDate");
 
                     b.Property<DateTime>("UpdatedAt");
@@ -250,7 +254,9 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<DateTime>("StartDate");
 
-                    b.Property<int>("Status");
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(1);
 
                     b.Property<int>("TechId");
 
@@ -450,10 +456,6 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<bool>("IsTeamAugmentation");
 
-                    b.Property<int>("ProjectStatus");
-
-                    b.ToTable("Commercial");
-
                     b.HasDiscriminator().HasValue("Commercial");
                 });
 
@@ -462,8 +464,6 @@ namespace AssignmentsNetcore.Migrations
                     b.HasBaseType("AssignmentsNetcore.Models.Database.Project");
 
                     b.Property<int>("ToolStatus");
-
-                    b.ToTable("HHII");
 
                     b.HasDiscriminator().HasValue("HHII");
                 });
@@ -476,9 +476,9 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<bool>("Remote");
 
-                    b.Property<int>("TrainingStatus");
-
-                    b.ToTable("Training");
+                    b.Property<int>("TrainingStatus")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(1);
 
                     b.HasDiscriminator().HasValue("Training");
                 });
