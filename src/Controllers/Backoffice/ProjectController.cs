@@ -35,6 +35,7 @@ namespace AssignmentsNetcore.Controllers
         public IActionResult Create() => View(new ProjectFormViewModel(UnitOfWork.ClientRepository.GetAll()));
 
         [HttpPost("Create")]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(ProjectFormViewModel workingViewModel)
         {
             if (!ModelState.IsValid)
@@ -56,6 +57,7 @@ namespace AssignmentsNetcore.Controllers
         }
 
         [HttpPost("Edit/{id}")]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, ProjectFormViewModel workingViewModel)
         {
             if (!ModelState.IsValid)
@@ -77,6 +79,7 @@ namespace AssignmentsNetcore.Controllers
         }
 
         [HttpPost("Delete/{id}")]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             try

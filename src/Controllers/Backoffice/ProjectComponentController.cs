@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace AssignmentsNetcore.Controllers
 {
+
+    [ValidateAntiForgeryToken]
     [Route("backoffice/[controller]")]
     public class ProjectComponentController : Controller
     {
