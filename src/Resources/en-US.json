@@ -67,4 +67,8 @@
     "RoleNotUpdated": "The role could not be updated.",
     "UserName": "Username",
     "Welcome": "Welcome to ",
+    "OptionTitleAssignments": "Assignments",
+    "SelectPerson": "Select a person",
+    "SelectProject": "Select a project",
+    "SelectPosition": "Select a position"
 }

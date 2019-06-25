@@ -7,6 +7,18 @@ namespace AssignmentsNetcore.Models.Database
 {
     public class Assignment : BaseEntity
     {
+        public Assignment() { }
+
+        public Assignment(AssignmentViewModel viewModel)
+        {
+            this.StartDate = viewModel.StartDate;
+            this.EndDate = viewModel.EndDate;
+            this.Workload = viewModel.Workload;
+            this.PersonId = viewModel.PersonId;
+            this.PositionId = viewModel.PositionId;
+            this.ProjectComponentId = viewModel.ProjectComponentId;
+        }
+
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int Workload { get; set; }
@@ -16,7 +28,18 @@ namespace AssignmentsNetcore.Models.Database
         [Required]
         public int PositionId { get; set; }
         public virtual Position Position { get; set; }
+        [Required]
+        public int ProjectComponentId { get; set; }
         public virtual ProjectComponent ProjectComponent { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
+
+        public void Update(AssignmentViewModel viewModel)
+        {
+            this.StartDate = viewModel.StartDate;
+            this.EndDate = viewModel.EndDate;
+            this.Workload = viewModel.Workload;
+            this.PersonId = viewModel.PersonId;
+            this.PositionId = viewModel.PositionId;
+        }
     }
 }
