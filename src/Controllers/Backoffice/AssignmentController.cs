@@ -66,9 +66,11 @@ namespace AssignmentsNetcore.Controllers
         }
 
         [HttpGet("Edit/{id}")]
-        public IActionResult Edit(int id)
-        {	        
-            var viewModel = new AssignmentViewModel(UnitOfWork.AssignmentRepository.Get(id));
+        public IActionResult Edit(int? id)
+        {
+            if (id == null) return NotFound();
+            var viewModel = new AssignmentViewModel(UnitOfWork.AssignmentRepository.Get(id.Value));
+            if (viewModel == null) return NotFound();
             viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
             viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
             viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
@@ -108,6 +110,23 @@ namespace AssignmentsNetcore.Controllers
         {
             var viewModel = new AssignmentViewModel(UnitOfWork.AssignmentRepository.Get(id));
             return View(viewModel);
+        }
+
+        [HttpGet("Delete/{id}")]
+        public IActionResult Delete(int? id)
+        {	     
+            if (id == null) return NotFound();
+            var assignment = UnitOfWork.AssignmentRepository.Get(id.Value);
+            if (assignment == null) return NotFound();
+            return View(new AssignmentViewModel(assignment));
+        }
+
+        [HttpPost("Delete/{id}")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            UnitOfWork.AssignmentRepository.Remove(UnitOfWork.AssignmentRepository.Get(id));
+            UnitOfWork.Complete();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
