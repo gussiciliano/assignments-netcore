@@ -7,12 +7,24 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class PersonViewModel : BaseEntityViewModel
     {
+        public PersonViewModel() { }
+        
+        public PersonViewModel(Person person)
+        {
+            this.Mail = person.Mail;
+            this.EntryDate = person.EntryDate;
+            this.Workload = person.Workload;
+            this.Active = person.Active;
+            this.OfficeId = person.OfficeId;
+            this.Office = person.Office != null ? new OfficeViewModel(person.Office) : null;
+        }
+        
         public string Mail { get; set; }
         public DateTime EntryDate { get; set; }
         public int Workload { get; set; }
         public bool Active { get; set; }
         public int OfficeId { get; set; }
-        public Office Office { get; set; }
+        public OfficeViewModel Office { get; set; }
         public ICollection<SelectListItem> Offices { get; set; }
         public ICollection<AssignmentViewModel> Assigments { get; set; }
     }

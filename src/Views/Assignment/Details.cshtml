@@ -1,0 +1,52 @@
+@model AssignmentsNetcore.Models.Views.AssignmentViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="component">
+    <h2>@Localizer["Details"]</h2>
+    <h4>@Localizer["OptionTitleAssignments"]</h4>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Person.Mail)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Person.Mail)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.ProjectComponent.ProjectName)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.ProjectComponent.ProjectName)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.StartDate)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.EndDate)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Workload)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Workload)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Position.Name)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Position.Name)
+    </div>
+    <div class="margin-20-5">
+        <a class="option-link margin-10-10" asp-action="Edit" asp-route-id="@Model.Id">@Localizer["Edit"]</a>
+        <a class="option-link margin-10-10" asp-action="Index">@Localizer["BackToList"]</a>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+@model AssignmentsNetcore.Models.Views.AssignmentViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+ <div class="component">
+    <h2>@Localizer["Create"]</h2>
+    <h4>@Localizer["OptionTitleAssignment"]</h4>
+    @using (Html.BeginForm("Create", "Assignment", FormMethod.Post, new { @class = "component-form" }))
+    {
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @await Html.PartialAsync("_AssignmentData")
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    }
+    <a class="option-link" asp-action="Index">@Localizer["BackToList"]</a>
+</div>

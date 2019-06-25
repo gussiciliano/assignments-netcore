@@ -1,32 +1,113 @@
 using System;
+using System.Linq;
 using AssignmentsNetcore.Controllers.Backoffice;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssignmentsNetcore.Controllers
 {
-    public class AssignmentController : CRUDController<Assignment, AssignmentViewModel>
+    [Route("backoffice/[controller]")]
+    public class AssignmentController : Controller
     {
-        public AssignmentController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IHtmlLocalizer<AssignmentController> _localizer;
+        public AssignmentController(IUnitOfWork unitOfWork, IHtmlLocalizer<AssignmentController> localizer)
         {
+            this._unitOfWork = unitOfWork;
+            this._localizer = localizer;
         }
 
-        protected override IRepository<Assignment> WorkingRepository { get { return UnitOfWork.AssignmentRepository; } }
+        public IUnitOfWork UnitOfWork { get => this._unitOfWork; }
+        public IHtmlLocalizer<AssignmentController> Localizer { get => this._localizer; }
 
-        protected override Assignment CreateNewEntity(AssignmentViewModel vm)
+        [HttpGet("")]
+        public IActionResult Index() =>
+            View(UnitOfWork.AssignmentRepository.GetAll().Select(assignment => new AssignmentViewModel(assignment)));
+
+        [HttpGet("Create")]
+        public IActionResult Create()
         {
-            throw new NotImplementedException();
+            var viewModel = new AssignmentViewModel();
+            viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
+            viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
+            viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
+            return View(viewModel);
         }
 
-        protected override AssignmentViewModel CreateNewViewModel(Assignment entity)
+        [HttpPost("Create")]
+        public IActionResult Create(AssignmentViewModel viewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var assignment = new Assignment(viewModel);
+                    UnitOfWork.AssignmentRepository.Add(assignment);
+                    UnitOfWork.Complete();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
+                    viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
+                    viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
+                    return View(viewModel);
+                }
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+                return View(viewModel);
+            }
         }
 
-        protected override Assignment EditEntityByViewModel(Assignment entity, AssignmentViewModel workingViewModel)
+        [HttpGet("Edit/{id}")]
+        public IActionResult Edit(int id)
+        {	        
+            var viewModel = new AssignmentViewModel(UnitOfWork.AssignmentRepository.Get(id));
+            viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
+            viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
+            viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
+            return View(viewModel);
+        }
+
+        [HttpPost("Edit/{id}")]
+        public IActionResult Edit(int id, AssignmentViewModel viewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var assignment = UnitOfWork.AssignmentRepository.Get(viewModel.Id);
+                    assignment.Update(viewModel);
+                    UnitOfWork.AssignmentRepository.Update(assignment);
+                    UnitOfWork.Complete();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
+                    viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
+                    viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
+                    return View(viewModel);
+                }
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+                return View(viewModel);
+            }
+        }
+
+        [HttpGet("Details/{id}")]
+        public IActionResult Details(int id)
+        {
+            var viewModel = new AssignmentViewModel(UnitOfWork.AssignmentRepository.Get(id));
+            return View(viewModel);
         }
     }
 }
