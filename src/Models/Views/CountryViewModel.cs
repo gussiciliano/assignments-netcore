@@ -7,7 +7,7 @@ namespace AssignmentsNetcore.Models.Views
     {
         public CountryViewModel() : base() { }
 
-        public CountryViewModel(Country country) : base()
+        public CountryViewModel(Country country) : base(country)
         {
             this.Name = country.Name;
         }

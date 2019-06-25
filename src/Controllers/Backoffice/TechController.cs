@@ -8,9 +8,7 @@ namespace AssignmentsNetcore.Controllers
 {
     public class TechController : CRUDController<Tech, TechViewModel>
     {
-        public TechController(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-        }
+        public TechController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         protected override IRepository<Tech> WorkingRepository { get { return UnitOfWork.TechRepository; } }
 
@@ -21,15 +19,7 @@ namespace AssignmentsNetcore.Controllers
             return tech;
         }
 
-        protected override TechViewModel CreateNewViewModel(Tech entity)
-        {
-            TechViewModel techViewModel = new TechViewModel();
-            techViewModel.Id = entity.Id;
-            techViewModel.Name = entity.Name;
-            techViewModel.CreatedAt = entity.CreatedAt;
-            techViewModel.UpdatedAt = entity.UpdatedAt;
-            return techViewModel;
-        }
+        protected override TechViewModel CreateNewViewModel(Tech entity) => new TechViewModel(entity);
 
         protected override Tech EditEntityByViewModel(Tech entity, TechViewModel workingViewModel)
         {

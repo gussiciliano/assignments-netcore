@@ -33,7 +33,7 @@
                     @Html.DisplayNameFor(model => model.TrainingStatus)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ClientName)
+                    @Html.DisplayNameFor(model => model.Client.Name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CreatedAt)
@@ -66,7 +66,7 @@
                     @Html.DisplayFor(modelItem => item.TrainingStatus)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.ClientName)
+                    @Html.DisplayFor(model => item.Client.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)

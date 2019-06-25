@@ -1,20 +1,31 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssignmentsNetcore.Models.Views
 {
     public class ProjectViewModel : BaseEntityViewModel
     {
-        [Required]
+        public ProjectViewModel() : base() { }
+
+        public ProjectViewModel(Project project) : base(project)
+        {
+            this.Name = project.Name;
+            this.StartDate = project.StartDate;
+            this.EndDate = project.EndDate;
+            this.Client = new ClientViewModel(project.Client);
+            this.ProjectStatus = Enum.GetName(typeof(ProjectStatus), project.ProjectStatus);
+        }
+
+        [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
+        [Required]
         public DateTime StartDate { get; set; }
+        [Required]
         public DateTime EndDate { get; set; }
-        public int ClientId { get; set; }
-        public string ClientName { get; set; }
-        public ICollection<SelectListItem> Clients { get; set; }
+        [Required]
+        public ClientViewModel Client { get; set; }
+        [Required]
+        public string ProjectStatus { get; set; }
     }
 }

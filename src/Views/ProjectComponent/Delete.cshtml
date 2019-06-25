@@ -13,6 +13,18 @@
     <h3>@Localizer["ConfirmDelete"]</h3>
     <h4>@Localizer["OptionTitleProjectComponent"]</h4>
     <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.ProjectName)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+    <div class="sub-label">
         @Html.DisplayNameFor(model => model.StartDate)
     </div>
     <div>

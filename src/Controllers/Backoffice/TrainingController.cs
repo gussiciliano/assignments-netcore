@@ -1,80 +1,86 @@
-using System;
 using System.Linq;
-using AssignmentsNetcore.Controllers.Backoffice;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssignmentsNetcore.Controllers
 {
-    public class TrainingController : CRUDController<Training, TrainingViewModel>
+    [Route("backoffice/[controller]")]
+    public class TrainingController : Controller
     {
-        public TrainingController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public TrainingController(IUnitOfWork unitOfWork)
         {
+            this._unitOfWork = unitOfWork;
         }
 
-        protected override IRepository<Training> WorkingRepository { get { return UnitOfWork.TrainingRepository; } }
+        private IUnitOfWork UnitOfWork { get { return this._unitOfWork; } }
 
-        public override IActionResult Create()
-        {
-            var trainingViewModel = new TrainingViewModel();
-            trainingViewModel.Clients = UnitOfWork.ClientRepository.GetAll().Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
-            return View(trainingViewModel);
-        }
-        public override IActionResult Edit(int? id)
+        [HttpGet("")]
+        public IActionResult Index() => View(UnitOfWork.TrainingRepository.GetAll().Select(t => new TrainingViewModel(t)).ToList());
+
+        [HttpGet("Details")]
+        public IActionResult Details(int? id)
         {
             if (id == null) return NotFound();
-            var workingEntity = WorkingRepository.Get(id.Value);
+            Training training = UnitOfWork.TrainingRepository.Get(id.Value);
+            if (training == null) return NotFound();
+            return View(new TrainingViewModel(training));
+        }
+
+        [HttpGet("Create")]
+        public IActionResult Create() => View(new TrainingFormViewModel(UnitOfWork.ClientRepository.GetAll()));
+
+        [HttpPost("Create")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(TrainingFormViewModel trainingFormViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(trainingFormViewModel);
+            }
+            UnitOfWork.TrainingRepository.Add(new Training(trainingFormViewModel));
+            UnitOfWork.Complete();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet("Edit/{id}")]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null) return NotFound();
+            var workingEntity = UnitOfWork.TrainingRepository.Get(id.Value);
             if (workingEntity == null) return NotFound();
-            var trainingViewModel = CreateNewViewModel(workingEntity);
-            trainingViewModel.Clients = UnitOfWork.ClientRepository.GetAll().Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
-            return View(trainingViewModel);
+            return View(new TrainingFormViewModel(workingEntity, UnitOfWork.ClientRepository.GetAll(), UnitOfWork.ProjectComponentRepository.GetAll()));
         }
 
-        protected override Training CreateNewEntity(TrainingViewModel workingViewModel)
+        [HttpPost("Edit/{id}")]
+        public IActionResult Edit(int id, TrainingFormViewModel workingViewModel)
         {
-            Training training = new Training();
-            training.Name = workingViewModel.Name;
-            training.StartDate = workingViewModel.StartDate;
-            training.EndDate = workingViewModel.EndDate;
-            training.TrainingStatus = workingViewModel.TrainingStatus;
-            training.ClientId = workingViewModel.ClientId;
-            training.Individual = workingViewModel.Individual;
-            training.Remote = workingViewModel.Remote;
-            training.CreatedAt = workingViewModel.CreatedAt;
-            training.UpdatedAt = workingViewModel.UpdatedAt;
-            return training;
+            if (!ModelState.IsValid)
+                return View(workingViewModel);
+            var training = UnitOfWork.TrainingRepository.Get(id);
+            training.Update(workingViewModel);
+            UnitOfWork.Complete();
+            return RedirectToAction(nameof(Index));
         }
 
-        protected override TrainingViewModel CreateNewViewModel(Training entity)
+        [HttpGet("Delete/{id}")]
+        public IActionResult Delete(int? id)
         {
-            TrainingViewModel trainingVM = new TrainingViewModel();
-            trainingVM.Name = entity.Name;
-            trainingVM.StartDate = entity.StartDate;
-            trainingVM.EndDate = entity.EndDate;
-            trainingVM.TrainingStatus = entity.TrainingStatus;
-            trainingVM.ClientId = entity.ClientId;
-            trainingVM.ClientName = entity.Client.Name;
-            trainingVM.Individual = entity.Individual;
-            trainingVM.Remote = entity.Remote;
-            trainingVM.Id = entity.Id;
-            trainingVM.CreatedAt = entity.CreatedAt;
-            trainingVM.UpdatedAt = entity.UpdatedAt;
-            return trainingVM;
+            if (id == null) return NotFound();
+            var workingEntity = UnitOfWork.TrainingRepository.Get(id.Value);
+            if (workingEntity == null) return NotFound();
+            return View(new TrainingViewModel(workingEntity));
         }
 
-        protected override Training EditEntityByViewModel(Training entity, TrainingViewModel workingViewModel)
+        [HttpPost("Delete/{id}")]
+        public IActionResult DeleteConfirmed(int id)
         {
-            entity.Name = workingViewModel.Name;
-            entity.StartDate = workingViewModel.StartDate;
-            entity.EndDate = workingViewModel.EndDate;
-            entity.TrainingStatus = workingViewModel.TrainingStatus;
-            entity.ClientId = workingViewModel.ClientId;
-            entity.Individual = workingViewModel.Individual;
-            entity.Remote = workingViewModel.Remote;
-            return entity;
+            UnitOfWork.TrainingRepository.Remove(UnitOfWork.TrainingRepository.Get(id));
+            UnitOfWork.Complete();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

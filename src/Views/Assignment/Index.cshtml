@@ -1,0 +1,44 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model IEnumerable<AssignmentsNetcore.Models.Views.AssignmentViewModel>
+
+ @{
+    ViewData["Title"] = "Index";
+}
+
+ <div class="component-index">
+    <p>
+        <a class="option-link" asp-action="Create">@Localizer["Create"]</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Person mail</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Workload</th>
+                <th>Position</th>
+                <th>Project</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(itemModel => item.Person.Mail)</td>
+                    <td>@Html.DisplayFor(itemModel => item.StartDate)</td>
+                    <td>@Html.DisplayFor(itemModel => item.EndDate)</td>
+                    <td>@Html.DisplayFor(itemModel => item.Workload)</td>
+                    <td>@Html.DisplayFor(itemModel => item.Position.Name)</td>
+                    <td>@Html.DisplayFor(itemModel => item.ProjectComponent.ProjectName)</td>
+                    <td>
+                        <a class="option-link margin-10-10" asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a>
+                        <a class="option-link margin-10-10" asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a>
+                        <a class="option-link margin-10-10" asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

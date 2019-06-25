@@ -5,7 +5,11 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class CommercialViewModel : ProjectViewModel
     {
+        public CommercialViewModel(Commercial commercial) : base(commercial)
+        {
+            this.IsTeamAugmentation = commercial.IsTeamAugmentation;
+        }
+
         public bool IsTeamAugmentation { get; set; }
-        public ProjectStatus ProjectStatus { get; set; }
     }
 }

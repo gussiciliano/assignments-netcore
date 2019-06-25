@@ -1,4 +1,3 @@
-using System;
 using AssignmentsNetcore.Controllers.Backoffice;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
@@ -9,9 +8,7 @@ namespace AssignmentsNetcore.Controllers
 {
     public class OfficeController : CRUDController<Office, OfficeViewModel>
     {
-        public OfficeController(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-        }
+        public OfficeController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         protected override IRepository<Office> WorkingRepository { get { return UnitOfWork.OfficeRepository; } }
 
@@ -24,7 +21,7 @@ namespace AssignmentsNetcore.Controllers
             if (workingEntity == null) return NotFound();
             return View(new OfficeFormViewModel(workingEntity, UnitOfWork.CountryRepository.GetAll()));
         }
-        
+
         protected override Office CreateNewEntity(OfficeViewModel workingViewModel)
         {
             Office office = new Office();

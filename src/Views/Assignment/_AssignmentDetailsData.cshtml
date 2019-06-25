@@ -1,0 +1,40 @@
+@model AssignmentsNetcore.Models.Views.AssignmentViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<div class="sub-label">
+    @Html.DisplayNameFor(model => model.Person.Mail)
+</div>
+<div>
+    @Html.DisplayFor(model => model.Person.Mail)
+</div>
+<div class="sub-label">
+    @Html.DisplayNameFor(model => model.ProjectComponent.ProjectName)
+</div>
+<div>
+    @Html.DisplayFor(model => model.ProjectComponent.ProjectName)
+</div>
+<div class="sub-label">
+    @Html.DisplayNameFor(model => model.StartDate)
+</div>
+<div>
+    @Html.DisplayFor(model => model.StartDate)
+</div>
+<div class="sub-label">
+    @Html.DisplayNameFor(model => model.EndDate)
+</div>
+<div>
+    @Html.DisplayFor(model => model.EndDate)
+</div>
+<div class="sub-label">
+    @Html.DisplayNameFor(model => model.Workload)
+</div>
+<div>
+    @Html.DisplayFor(model => model.Workload)
+</div>
+<div class="sub-label">
+    @Html.DisplayNameFor(model => model.Position.Name)
+</div>
+<div>
+    @Html.DisplayFor(model => model.Position.Name)
+</div>

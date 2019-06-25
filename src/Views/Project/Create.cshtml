@@ -1,0 +1,57 @@
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer
+@using AssignmentsNetcore.Models;
+@model AssignmentsNetcore.Models.Views.ProjectFormViewModel;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="component">
+    <h2>@Localizer["Create"]</h2>
+    <h4>@Localizer["OptionTitleProject"]</h4>
+    <hr />
+    <form asp-action="Create" class="component-form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@Localizer["OptionTitleClient"]</label>
+            <br>
+            <select asp-for="ClientId" 
+                    asp-items="@Model.Clients"
+                    class="box-dimension-200px-300px">
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="StartDate" class="control-label"></label>
+            <input asp-for="StartDate" class="form-control" />
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EndDate" class="control-label"></label>
+            <input asp-for="EndDate" class="form-control" />
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@Localizer["ProjectStatus"]</label>
+            <br>
+            <select asp-for="ProjectStatus" 
+                    asp-items="Html.GetEnumSelectList<ProjectStatus>()"
+                    class="box-dimension-200px-300px">
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </form>
+     <a class="option-link" asp-action="Index">@Localizer["BackToList"]</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
