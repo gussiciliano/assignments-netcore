@@ -34,4 +34,11 @@ namespace AssignmentsNetcore.Models
         Backend = 4,
         Frontend = 5,
     }
+
+    public enum DevRole
+    {
+        LeadDeveloper = 1,
+        Developer = 2,
+        TechnicalLeader = 3,
+    }
 }
