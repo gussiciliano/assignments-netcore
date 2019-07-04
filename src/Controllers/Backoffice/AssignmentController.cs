@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using AssignmentsNetcore.Controllers.Backoffice;
+using AssignmentsNetcore.Helpers;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
@@ -28,13 +29,19 @@ namespace AssignmentsNetcore.Controllers
         public IActionResult Index() =>
             View(UnitOfWork.AssignmentRepository.GetAll().Select(assignment => new AssignmentViewModel(assignment)));
 
-        [HttpGet("Create")]
-        public IActionResult Create()
+        [HttpGet("Create/{projectId}")]
+        public IActionResult Create(int projectId)
         {
-            var viewModel = new AssignmentViewModel();
-            viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
-            viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
-            viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
+            var projectComponent = UnitOfWork.ProjectComponentRepository.Get(projectId);
+            var viewModel = new AssignmentViewModel
+            {
+                ProjectComponent = new ProjectComponentViewModel(projectComponent),
+                AvailableDevelopers = AssignmentsHelper.GetAvailableDevelopers(
+                                        UnitOfWork.PersonRepository.Find(p => p.Techs.Select(t => t.TechId).Contains(projectComponent.TechId)),
+                                        projectComponent.StartDate,
+                                        projectComponent.EndDate).ToList(),
+
+            };
             return View(viewModel);
         }
 

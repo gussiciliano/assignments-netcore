@@ -36,6 +36,6 @@ namespace AssignmentsNetcore.Models.Views
         public ICollection<SelectListItem> Persons { get; set; }
         public ICollection<SelectListItem> Projects { get; set; }
         public ICollection<SelectListItem> Positions { get; set; }
-        
+        public ICollection<AvailablePersonViewModel> AvailableDevelopers { get; set; }
     }
 }
