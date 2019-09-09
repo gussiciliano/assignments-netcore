@@ -3,15 +3,17 @@ using System;
 using AssignmentsNetcore.Repositories.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AssignmentsNetcore.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190704182340_PersonTechEntity")]
+    partial class PersonTechEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,11 +175,7 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<string>("Mail");
 
-                    b.Property<string>("Name");
-
                     b.Property<int>("OfficeId");
-
-                    b.Property<string>("Surname");
 
                     b.Property<DateTime>("UpdatedAt");
 

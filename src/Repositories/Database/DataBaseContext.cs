@@ -43,6 +43,15 @@ namespace AssignmentsNetcore.Repositories.Database
             modelBuilder.Entity<Training>()
                 .Property(t => t.TrainingStatus)
                 .HasDefaultValue(TrainingStatus.OnGoing);
+            modelBuilder.Entity<PersonTech>().HasKey(pt => new { pt.PersonId, pt.TechId });
+            modelBuilder.Entity<PersonTech>()
+                        .HasOne(pt => pt.Person)
+                        .WithMany(pt => pt.Techs)
+                        .HasForeignKey(pt => pt.PersonId);
+            modelBuilder.Entity<PersonTech>()
+                        .HasOne(pt => pt.Tech)
+                        .WithMany(pt => pt.Persons)
+                        .HasForeignKey(pt => pt.TechId);
         }
 
         private void AddTimestamps()
