@@ -1,6 +1,8 @@
 @using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@using AssignmentsNetcore.Models;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.ProjectComponentFormViewModel;
+@model AssignmentsNetcore.Models.Views.TabFormViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -8,7 +10,7 @@
 
 <div class="component">
     <h2>@Localizer["Edit"]</h2>
-    <h4>@Localizer["OptionTitleProjectComponent"]</h4>
+    <h4>@Localizer["OptionTitleTab"]</h4>
     <hr />
     <form asp-action="Edit" class="component-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -18,18 +20,10 @@
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label class="control-label">@Localizer["OptionTitleTech"]</label>
+            <label class="control-label">@Localizer["OptionTitleClient"]</label>
             <br>
-            <select asp-for="TechId" 
-                    asp-items="@Model.Techs"
-                    class="box-dimension-200px-300px">
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="control-label">@Localizer["OptionTitleProject"]</label>
-            <br>
-            <select asp-for="ProjectId" 
-                    asp-items="@Model.Projects"
+            <select asp-for="ClientId" 
+                    asp-items="@Model.Clients"
                     class="box-dimension-200px-300px">
             </select>
         </div>
@@ -44,9 +38,12 @@
             <span asp-validation-for="EndDate" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Status" class="control-label"></label>
-            <select asp-for="Status" class="form-control"></select>
-            <span asp-validation-for="Status" class="text-danger"></span>
+            <label class="control-label">@Localizer["ProjectStatus"]</label>
+            <br>
+            <select asp-for="ProjectStatus" 
+                    asp-items="Html.GetEnumSelectList<ProjectStatus>()"
+                    class="box-dimension-200px-300px">
+            </select>
         </div>
         <input type="hidden" asp-for="Id" />
         <div class="form-group">

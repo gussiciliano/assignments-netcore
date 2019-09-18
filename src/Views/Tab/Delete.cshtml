@@ -1,16 +1,23 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.ProjectComponentViewModel
+@model AssignmentsNetcore.Models.Views.TabViewModel
 @using AssignmentsNetcore.Models.Views
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
 }
 
 <div class="component">
-    <h2>@Localizer["Details"]</h2>
-    <h4>@Localizer["OptionTitleProjectComponent"]</h4>
+    <h2>@Localizer["Delete"]</h2>
+    <h3>@Localizer["ConfirmDelete"]</h3>
+    <h4>@Localizer["OptionTitleTab"]</h4>
+    <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Name)
+    </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.StartDate)
     </div>
@@ -24,10 +31,10 @@
         @Html.DisplayFor(model => model.EndDate)
     </div>
     <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Status)
+        @Html.DisplayNameFor(model => model.ProjectStatus)
     </div>
     <div>
-        @Html.DisplayFor(model => model.Status)
+        @Html.DisplayFor(model => model.ProjectStatus)
     </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.CreatedAt)
@@ -41,8 +48,10 @@
     <div>
         @Html.DisplayFor(model => model.UpdatedAt)
     </div>
-    <div class="margin-20-5">
-        <a class="option-link margin-10-10" asp-action="Edit" asp-route-id="@Model.Id">@Localizer["Edit"]</a>
-        <a class="option-link margin-10-10" asp-action="Index">@Localizer["BackToList"]</a>
-    </div>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a class="option-link" asp-action="Index">@Localizer["BackToList"]</a>
+    </form>
 </div>

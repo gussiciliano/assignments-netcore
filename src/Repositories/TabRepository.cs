@@ -4,8 +4,8 @@ using AssignmentsNetcore.Repositories.Interfaces;
 
 namespace AssignmentsNetcore.Repositories
 {
-    public class ProjectComponentRepository : Repository<ProjectComponent>, IProjectComponentRepository
+    public class TabRepository : Repository<Tab>, ITabRepository
     {
-        public ProjectComponentRepository(DataBaseContext context) : base(context) { }
+        public TabRepository(DataBaseContext context) : base(context) { }
     }
 }

@@ -18,7 +18,7 @@
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Client.Name)
+                    @Html.DisplayNameFor(model => model.TabName)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.StartDate)
@@ -27,7 +27,7 @@
                     @Html.DisplayNameFor(model => model.EndDate)
                 </th>
                 <th>
-                    @Localizer["ProjectStatus"]
+                    @Html.DisplayNameFor(model => model.Status)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CreatedAt)
@@ -45,7 +45,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Client.Name)
+                    @Html.DisplayFor(model => item.TabName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
@@ -54,7 +54,7 @@
                     @Html.DisplayFor(modelItem => item.EndDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProjectStatus)
+                    @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)

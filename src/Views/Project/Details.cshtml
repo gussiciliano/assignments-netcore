@@ -10,13 +10,7 @@
 
 <div class="component">
     <h2>@Localizer["Details"]</h2>
-    <h4>@Localizer["OptionTitleProjectComponent"]</h4>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Name)
-    </div>
+    <h4>@Localizer["OptionTitleProject"]</h4>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.StartDate)
     </div>
@@ -30,10 +24,10 @@
         @Html.DisplayFor(model => model.EndDate)
     </div>
     <div class="sub-label">
-        @Html.DisplayNameFor(model => model.ProjectStatus)
+        @Html.DisplayNameFor(model => model.Status)
     </div>
     <div>
-        @Html.DisplayFor(model => model.ProjectStatus)
+        @Html.DisplayFor(model => model.Status)
     </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.CreatedAt)

@@ -2,7 +2,7 @@ using AssignmentsNetcore.Models.Views;
 
 namespace AssignmentsNetcore.Models.Database
 {
-    public class Training : Project
+    public class Training : Tab
     {
         public Training() : base() { }
 

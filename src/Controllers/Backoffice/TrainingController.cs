@@ -52,7 +52,7 @@ namespace AssignmentsNetcore.Controllers
             if (id == null) return NotFound();
             var workingEntity = UnitOfWork.TrainingRepository.Get(id.Value);
             if (workingEntity == null) return NotFound();
-            return View(new TrainingFormViewModel(workingEntity, UnitOfWork.ClientRepository.GetAll(), UnitOfWork.ProjectComponentRepository.GetAll()));
+            return View(new TrainingFormViewModel(workingEntity, UnitOfWork.ClientRepository.GetAll(), UnitOfWork.ProjectRepository.GetAll()));
         }
 
         [HttpPost("Edit/{id}")]

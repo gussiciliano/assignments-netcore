@@ -11,6 +11,8 @@ namespace AssignmentsNetcore.Models.Views
         
         public PersonViewModel(Person person)
         {
+            this.Name = person.Name;
+            this.Surname = person.Surname;
             this.Mail = person.Mail;
             this.EntryDate = person.EntryDate;
             this.Workload = person.Workload;
@@ -18,7 +20,8 @@ namespace AssignmentsNetcore.Models.Views
             this.OfficeId = person.OfficeId;
             this.Office = person.Office != null ? new OfficeViewModel(person.Office) : null;
         }
-        
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public string Mail { get; set; }
         public DateTime EntryDate { get; set; }
         public int Workload { get; set; }

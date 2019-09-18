@@ -19,6 +19,12 @@
         @Html.DisplayFor(model => model.Name)
     </div>
     <div class="sub-label">
+        @Html.DisplayNameFor(model => model.TabName)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.TabName)
+    </div>
+    <div class="sub-label">
         @Html.DisplayNameFor(model => model.StartDate)
     </div>
     <div>
@@ -31,10 +37,10 @@
         @Html.DisplayFor(model => model.EndDate)
     </div>
     <div class="sub-label">
-        @Html.DisplayNameFor(model => model.ProjectStatus)
+        @Html.DisplayNameFor(model => model.Status)
     </div>
     <div>
-        @Html.DisplayFor(model => model.ProjectStatus)
+        @Html.DisplayFor(model => model.Status)
     </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.CreatedAt)

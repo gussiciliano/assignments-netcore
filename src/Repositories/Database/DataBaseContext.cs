@@ -21,10 +21,11 @@ namespace AssignmentsNetcore.Repositories.Database
         public DbSet<Person> Persons { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Tab> Tabs { get; set; }
         public DbSet<Project> Projects { get; set; }
-        public DbSet<ProjectComponent> ProjectComponents { get; set; }
         public DbSet<Tech> Techs { get; set; }
         public DbSet<Training> Trainings { get; set; }
+        public DbSet<PersonTech> PersonTechs { get; set; }
         public override int SaveChanges()
         {
             AddTimestamps();
@@ -34,10 +35,10 @@ namespace AssignmentsNetcore.Repositories.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ProjectComponent>()
+            modelBuilder.Entity<Project>()
                 .Property(pc => pc.Status)
                 .HasDefaultValue(ProjectStatus.ProductThinking);
-            modelBuilder.Entity<Project>()
+            modelBuilder.Entity<Tab>()
                 .Property(p => p.ProjectStatus)
                 .HasDefaultValue(ProjectStatus.ProductThinking);
             modelBuilder.Entity<Training>()
@@ -50,7 +51,7 @@ namespace AssignmentsNetcore.Repositories.Database
                         .HasForeignKey(pt => pt.PersonId);
             modelBuilder.Entity<PersonTech>()
                         .HasOne(pt => pt.Tech)
-                        .WithMany(pt => pt.Persons)
+                        .WithMany(p => p.Persons)
                         .HasForeignKey(pt => pt.TechId);
         }
 

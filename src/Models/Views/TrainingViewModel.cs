@@ -4,7 +4,7 @@ using AssignmentsNetcore.Models.Database;
 
 namespace AssignmentsNetcore.Models.Views
 {
-    public class TrainingViewModel : ProjectViewModel
+    public class TrainingViewModel : TabViewModel
     {
         public TrainingViewModel() : base() { }
 

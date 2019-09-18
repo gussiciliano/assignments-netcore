@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 using AssignmentsNetcore.Models.Database;
 
 namespace AssignmentsNetcore.Models.Views
@@ -8,24 +7,21 @@ namespace AssignmentsNetcore.Models.Views
     {
         public ProjectViewModel() : base() { }
 
-        public ProjectViewModel(Project project) : base(project)
+        public ProjectViewModel(Project project)
         {
             this.Name = project.Name;
             this.StartDate = project.StartDate;
             this.EndDate = project.EndDate;
-            this.Client = new ClientViewModel(project.Client);
-            this.ProjectStatus = Enum.GetName(typeof(ProjectStatus), project.ProjectStatus);
+            this.Status = project.Status;
+            this.TabName = project.Tab.Name;
+            this.Tech = new TechViewModel(project.Tech);
         }
 
-        [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
-        [Required]
         public DateTime StartDate { get; set; }
-        [Required]
         public DateTime EndDate { get; set; }
-        [Required]
-        public ClientViewModel Client { get; set; }
-        [Required]
-        public string ProjectStatus { get; set; }
+        public ProjectStatus Status { get; set; }
+        public string TabName { get; set; }
+        public TechViewModel Tech { get; set; }
     }
 }

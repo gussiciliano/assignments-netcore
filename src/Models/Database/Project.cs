@@ -7,33 +7,39 @@ namespace AssignmentsNetcore.Models.Database
 {
     public class Project : BaseEntity
     {
-        public Project() : base() { }
-
-        public Project(ProjectFormViewModel projectFormViewModel) : base()
+        public Project() : base()
         {
-            this.Name = projectFormViewModel.Name;
-            this.StartDate = projectFormViewModel.StartDate;
-            this.EndDate = projectFormViewModel.EndDate;
-            this.ClientId = projectFormViewModel.ClientId;
-            this.ProjectStatus = projectFormViewModel.ProjectStatus;
+            this.Assignments = new List<Assignment>();
         }
-
-        [Required]
+        public Project(ProjectFormViewModel projectViewModel) : base()
+        {
+            this.Name = projectViewModel.Name;
+            this.StartDate = projectViewModel.StartDate;
+            this.EndDate = projectViewModel.EndDate;
+            this.Status = projectViewModel.Status;
+            this.TabId = projectViewModel.TabId;
+            this.TechId = projectViewModel.TechId;
+        }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int ClientId { get; set; }
-        public ProjectStatus ProjectStatus { get; set; }
-        public virtual Client Client { get; set; }
-        public virtual ICollection<ProjectComponent> ProjectComponents { get; set; }
+        public ProjectStatus Status { get; set; }
+        [Required]
+        public int TabId { get; set; }
+        public virtual Tab Tab { get; set; }
+        [Required]
+        public int TechId { get; set; }
+        public virtual Tech Tech { get; set; }
+        public virtual ICollection<Assignment> Assignments { get; set; }
 
-        public Project Update(ProjectFormViewModel projectFormViewModel)
+        public Project Update(ProjectFormViewModel projectViewModel)
         {
-            this.Name = projectFormViewModel.Name;
-            this.StartDate = projectFormViewModel.StartDate;
-            this.EndDate = projectFormViewModel.EndDate;
-            this.ClientId = projectFormViewModel.ClientId;
-            this.ProjectStatus = projectFormViewModel.ProjectStatus;
+            this.Name = Name;
+            this.StartDate = projectViewModel.StartDate;
+            this.EndDate = projectViewModel.EndDate;
+            this.Status = projectViewModel.Status;
+            this.TabId = projectViewModel.TabId;
+            this.TechId = projectViewModel.TechId;
             return this;
         }
     }

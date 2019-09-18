@@ -11,8 +11,8 @@ namespace AssignmentsNetcore.Repositories.Interfaces
         IPersonRepository PersonRepository { get; }
         IPositionRepository PositionRepository { get; }
         ICountryRepository CountryRepository { get; }
+        ITabRepository TabRepository { get; }
         IProjectRepository ProjectRepository { get; }
-        IProjectComponentRepository ProjectComponentRepository { get; }
         ITechRepository TechRepository { get; }
         ITrainingRepository TrainingRepository { get; }
 
