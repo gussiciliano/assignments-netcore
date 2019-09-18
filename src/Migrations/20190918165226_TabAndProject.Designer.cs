@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AssignmentsNetcore.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20190917172615_PersonTechsAndTab")]
-    partial class PersonTechsAndTab
+    [Migration("20190918165226_TabAndProject")]
+    partial class TabAndProject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,13 +30,7 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<DateTime>("EndDate");
 
-                    b.Property<int?>("PersonId");
-
-                    b.Property<int>("PersonTechId");
-
-                    b.Property<int?>("PersonTechPersonId");
-
-                    b.Property<int?>("PersonTechTechId");
+                    b.Property<int>("PersonId");
 
                     b.Property<int>("PositionId");
 
@@ -55,8 +49,6 @@ namespace AssignmentsNetcore.Migrations
                     b.HasIndex("PositionId");
 
                     b.HasIndex("ProjectId");
-
-                    b.HasIndex("PersonTechPersonId", "PersonTechTechId");
 
                     b.ToTable("Assignments");
                 });
@@ -278,6 +270,10 @@ namespace AssignmentsNetcore.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
+
                     b.Property<int>("ClientId");
 
                     b.Property<DateTime>("CreatedAt");
@@ -289,10 +285,6 @@ namespace AssignmentsNetcore.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
-
-                    b.Property<int>("ProjectStatus")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(1);
 
                     b.Property<DateTime>("StartDate");
 
@@ -521,9 +513,10 @@ namespace AssignmentsNetcore.Migrations
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Assignment", b =>
                 {
-                    b.HasOne("AssignmentsNetcore.Models.Database.Person")
+                    b.HasOne("AssignmentsNetcore.Models.Database.Person", "Person")
                         .WithMany("Assignments")
-                        .HasForeignKey("PersonId");
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AssignmentsNetcore.Models.Database.Position", "Position")
                         .WithMany("Assigments")
@@ -534,10 +527,6 @@ namespace AssignmentsNetcore.Migrations
                         .WithMany("Assignments")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("AssignmentsNetcore.Models.Database.PersonTech", "PersonTech")
-                        .WithMany()
-                        .HasForeignKey("PersonTechPersonId", "PersonTechTechId");
                 });
 
             modelBuilder.Entity("AssignmentsNetcore.Models.Database.Change", b =>
@@ -599,7 +588,7 @@ namespace AssignmentsNetcore.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AssignmentsNetcore.Models.Database.Tech", "Tech")
-                        .WithMany()
+                        .WithMany("Projects")
                         .HasForeignKey("TechId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

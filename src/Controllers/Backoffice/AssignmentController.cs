@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using AssignmentsNetcore.Controllers.Backoffice;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
@@ -32,7 +31,7 @@ namespace AssignmentsNetcore.Controllers
         public IActionResult Create()
         {
             var viewModel = new AssignmentViewModel();
-            //viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
+            viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
             viewModel.Tabs = UnitOfWork.ProjectRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Tab.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
             viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
             return View(viewModel);
@@ -52,7 +51,7 @@ namespace AssignmentsNetcore.Controllers
                 }
                 else
                 {
-                   // viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
+                    viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
                     viewModel.Tabs = UnitOfWork.ProjectRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Tab.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
                     viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
                     return View(viewModel);
@@ -60,7 +59,7 @@ namespace AssignmentsNetcore.Controllers
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("", e.Message);
+                ModelState.AddModelError(string.Empty, e.Message);
                 return View(viewModel);
             }
         }
@@ -71,7 +70,7 @@ namespace AssignmentsNetcore.Controllers
             if (id == null) return NotFound();
             var viewModel = new AssignmentViewModel(UnitOfWork.AssignmentRepository.Get(id.Value));
             if (viewModel == null) return NotFound();
-            //viewModel.PersonTechs = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
+            viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
             viewModel.Tabs = UnitOfWork.ProjectRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Tab.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
             viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
             return View(viewModel);
@@ -92,7 +91,7 @@ namespace AssignmentsNetcore.Controllers
                 }
                 else
                 {
-                    //viewModel.PersonTechs = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
+                    viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
                     viewModel.Tabs = UnitOfWork.ProjectRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Tab.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
                     viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
                     return View(viewModel);
@@ -100,7 +99,7 @@ namespace AssignmentsNetcore.Controllers
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("", e.Message);
+                ModelState.AddModelError(string.Empty, e.Message);
                 return View(viewModel);
             }
         }

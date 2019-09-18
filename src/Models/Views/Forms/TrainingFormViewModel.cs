@@ -42,8 +42,7 @@ namespace AssignmentsNetcore.Models.Views
         public bool Remote { get; set; }
         [Required]
         public TrainingStatus TrainingStatus { get; set; }
-        [Required]
-        public ProjectStatus ProjectStatus { get; set; }
+        public bool Active { get; set; }
         public IEnumerable<SelectListItem> Clients { get; set; }
         public IEnumerable<SelectListItem> ProjectComponents { get; set; }
     }

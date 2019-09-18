@@ -5,7 +5,7 @@ namespace AssignmentsNetcore.Models.Views
     public class PersonTechViewModel : BaseEntityViewModel
     {
         public PersonTechViewModel() { }
-        
+
         public PersonTechViewModel(PersonTech personTech)
         {
             this.Name = personTech.Person.Name;

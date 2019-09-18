@@ -4,14 +4,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AssignmentsNetcore.Migrations
 {
-    public partial class PersonTechsAndTab : Migration
+    public partial class TabAndProject : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Assignments_Persons_PersonId",
-                table: "Assignments");
-
             migrationBuilder.DropForeignKey(
                 name: "FK_Assignments_ProjectComponents_ProjectComponentId",
                 table: "Assignments");
@@ -100,28 +96,6 @@ namespace AssignmentsNetcore.Migrations
                 nullable: false,
                 defaultValue: 0);
 
-            migrationBuilder.AlterColumn<int>(
-                name: "PersonId",
-                table: "Assignments",
-                nullable: true,
-                oldClrType: typeof(int));
-
-            migrationBuilder.AddColumn<int>(
-                name: "PersonTechId",
-                table: "Assignments",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AddColumn<int>(
-                name: "PersonTechPersonId",
-                table: "Assignments",
-                nullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "PersonTechTechId",
-                table: "Assignments",
-                nullable: true);
-
             migrationBuilder.AddPrimaryKey(
                 name: "PK_PersonTechs",
                 table: "PersonTechs",
@@ -139,11 +113,11 @@ namespace AssignmentsNetcore.Migrations
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
                     ClientId = table.Column<int>(nullable: false),
-                    ProjectStatus = table.Column<int>(nullable: false, defaultValue: 1),
+                    Active = table.Column<bool>(nullable: false, defaultValue: false),
                     Discriminator = table.Column<string>(nullable: false),
                     Individual = table.Column<bool>(nullable: true),
                     Remote = table.Column<bool>(nullable: true),
-                    TrainingStatus = table.Column<int>(nullable: true, defaultValue: 1)
+                    TrainingStatus = table.Column<int>(nullable: true, defaultValue: 1),
                 },
                 constraints: table =>
                 {
@@ -167,22 +141,9 @@ namespace AssignmentsNetcore.Migrations
                 column: "TechId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Assignments_PersonTechPersonId_PersonTechTechId",
-                table: "Assignments",
-                columns: new[] { "PersonTechPersonId", "PersonTechTechId" });
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tabs_ClientId",
                 table: "Tabs",
                 column: "ClientId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Assignments_Persons_PersonId",
-                table: "Assignments",
-                column: "PersonId",
-                principalTable: "Persons",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Assignments_Projects_ProjectId",
@@ -191,14 +152,6 @@ namespace AssignmentsNetcore.Migrations
                 principalTable: "Projects",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Assignments_PersonTechs_PersonTechPersonId_PersonTechTechId",
-                table: "Assignments",
-                columns: new[] { "PersonTechPersonId", "PersonTechTechId" },
-                principalTable: "PersonTechs",
-                principalColumns: new[] { "PersonId", "TechId" },
-                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_PersonTechs_Persons_PersonId",
@@ -244,15 +197,7 @@ namespace AssignmentsNetcore.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Assignments_Persons_PersonId",
-                table: "Assignments");
-
-            migrationBuilder.DropForeignKey(
                 name: "FK_Assignments_Projects_ProjectId",
-                table: "Assignments");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Assignments_PersonTechs_PersonTechPersonId_PersonTechTechId",
                 table: "Assignments");
 
             migrationBuilder.DropForeignKey(
@@ -286,10 +231,6 @@ namespace AssignmentsNetcore.Migrations
                 name: "IX_Projects_TechId",
                 table: "Projects");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Assignments_PersonTechPersonId_PersonTechTechId",
-                table: "Assignments");
-
             migrationBuilder.DropPrimaryKey(
                 name: "PK_PersonTechs",
                 table: "PersonTechs");
@@ -305,18 +246,6 @@ namespace AssignmentsNetcore.Migrations
             migrationBuilder.DropColumn(
                 name: "TechId",
                 table: "Projects");
-
-            migrationBuilder.DropColumn(
-                name: "PersonTechId",
-                table: "Assignments");
-
-            migrationBuilder.DropColumn(
-                name: "PersonTechPersonId",
-                table: "Assignments");
-
-            migrationBuilder.DropColumn(
-                name: "PersonTechTechId",
-                table: "Assignments");
 
             migrationBuilder.RenameTable(
                 name: "PersonTechs",
@@ -373,13 +302,6 @@ namespace AssignmentsNetcore.Migrations
                 nullable: true,
                 defaultValue: 1);
 
-            migrationBuilder.AlterColumn<int>(
-                name: "PersonId",
-                table: "Assignments",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldNullable: true);
-
             migrationBuilder.AddPrimaryKey(
                 name: "PK_PersonTech",
                 table: "PersonTech",
@@ -398,7 +320,7 @@ namespace AssignmentsNetcore.Migrations
                     StartDate = table.Column<DateTime>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValue: 1),
                     TechId = table.Column<int>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -426,14 +348,6 @@ namespace AssignmentsNetcore.Migrations
                 name: "IX_ProjectComponents_TechId",
                 table: "ProjectComponents",
                 column: "TechId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Assignments_Persons_PersonId",
-                table: "Assignments",
-                column: "PersonId",
-                principalTable: "Persons",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Assignments_ProjectComponents_ProjectComponentId",

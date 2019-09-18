@@ -39,11 +39,11 @@ namespace AssignmentsNetcore.Repositories.Database
                 .Property(pc => pc.Status)
                 .HasDefaultValue(ProjectStatus.ProductThinking);
             modelBuilder.Entity<Tab>()
-                .Property(p => p.ProjectStatus)
-                .HasDefaultValue(ProjectStatus.ProductThinking);
+                .Property(p => p.Active)
+                .HasDefaultValue(false);
             modelBuilder.Entity<Training>()
                 .Property(t => t.TrainingStatus)
-                .HasDefaultValue(TrainingStatus.OnGoing);
+                .HasDefaultValue(TrainingStatus.NotStarted);
             modelBuilder.Entity<PersonTech>().HasKey(pt => new { pt.PersonId, pt.TechId });
             modelBuilder.Entity<PersonTech>()
                         .HasOne(pt => pt.Person)

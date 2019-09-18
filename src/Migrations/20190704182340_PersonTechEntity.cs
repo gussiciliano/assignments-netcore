@@ -23,7 +23,7 @@ namespace AssignmentsNetcore.Migrations
                 {
                     PersonId = table.Column<int>(nullable: false),
                     TechId = table.Column<int>(nullable: false),
-                    DeveloperRole = table.Column<int>(nullable: false)
+                    DeveloperRole = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {

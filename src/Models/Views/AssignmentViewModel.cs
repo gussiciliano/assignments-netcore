@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using AssignmentsNetcore.Models;
 using AssignmentsNetcore.Models.Database;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -16,10 +15,10 @@ namespace AssignmentsNetcore.Models.Views
             this.StartDate = assignment.StartDate;
             this.EndDate = assignment.EndDate;
             this.Workload = assignment.Workload;
-            this.PersonTechId = assignment.PersonTechId;
+            this.PersonId = assignment.PersonId;
             this.PositionId = assignment.PositionId;
             this.ProjectId = assignment.ProjectId;
-            this.PersonTech = assignment.PersonTech != null ? new PersonTechViewModel(assignment.PersonTech) : null;
+            this.Person = assignment.Person != null ? new PersonViewModel(assignment.Person) : null;
             this.Position = assignment.Position != null ? new PositionViewModel(assignment.Position) : null;
             this.Project = assignment.Project != null ? new ProjectViewModel(assignment.Project) : null;
         }
@@ -27,15 +26,14 @@ namespace AssignmentsNetcore.Models.Views
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int Workload { get; set; }
-        public PersonTechViewModel PersonTech { get; set; }
-        public PositionViewModel Position { get; set; }
-        public int PersonTechId { get; set; }
+        public PersonViewModel Person { get; set; }
+        public PositionViewModel Position { get; set; }
+        public int PersonId { get; set; }
         public int PositionId { get; set; }
         public int ProjectId { get; set; }
         public ProjectViewModel Project { get; set; }
-        public ICollection<SelectListItem> PersonTechs { get; set; }
+        public ICollection<SelectListItem> Persons { get; set; }
         public ICollection<SelectListItem> Tabs { get; set; }
         public ICollection<SelectListItem> Positions { get; set; }
-        
     }
 }

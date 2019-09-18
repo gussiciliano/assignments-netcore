@@ -14,7 +14,6 @@ namespace AssignmentsNetcore.Models.Views
             this.StartDate = tab.StartDate;
             this.EndDate = tab.EndDate;
             this.Client = new ClientViewModel(tab.Client);
-            this.ProjectStatus = Enum.GetName(typeof(ProjectStatus), tab.ProjectStatus);
         }
 
         [Required(AllowEmptyStrings = false)]
@@ -25,7 +24,6 @@ namespace AssignmentsNetcore.Models.Views
         public DateTime EndDate { get; set; }
         [Required]
         public ClientViewModel Client { get; set; }
-        [Required]
-        public string ProjectStatus { get; set; }
+        public bool Active { get; set; }
     }
 }

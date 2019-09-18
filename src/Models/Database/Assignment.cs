@@ -14,7 +14,7 @@ namespace AssignmentsNetcore.Models.Database
             this.StartDate = viewModel.StartDate;
             this.EndDate = viewModel.EndDate;
             this.Workload = viewModel.Workload;
-            this.PersonTechId = viewModel.PersonTechId;
+            this.PersonId = viewModel.PersonId;
             this.PositionId = viewModel.PositionId;
             this.ProjectId = viewModel.ProjectId;
         }
@@ -23,8 +23,8 @@ namespace AssignmentsNetcore.Models.Database
         public DateTime EndDate { get; set; }
         public int Workload { get; set; }
         [Required]
-        public int PersonTechId { get; set; }
-        public virtual PersonTech PersonTech { get; set; }
+        public int PersonId { get; set; }
+        public virtual Person Person { get; set; }
         [Required]
         public int PositionId { get; set; }
         public virtual Position Position { get; set; }
@@ -38,7 +38,7 @@ namespace AssignmentsNetcore.Models.Database
             this.StartDate = viewModel.StartDate;
             this.EndDate = viewModel.EndDate;
             this.Workload = viewModel.Workload;
-            this.PersonTechId = viewModel.PersonTechId;
+            this.PersonId = viewModel.PersonId;
             this.PositionId = viewModel.PositionId;
         }
     }

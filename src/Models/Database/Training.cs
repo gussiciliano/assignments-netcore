@@ -12,7 +12,7 @@ namespace AssignmentsNetcore.Models.Database
             this.StartDate = trainingFormViewModel.StartDate;
             this.EndDate = trainingFormViewModel.EndDate;
             this.ClientId = trainingFormViewModel.ClientId;
-            this.ProjectStatus = trainingFormViewModel.ProjectStatus;
+            this.Active = trainingFormViewModel.Active;
             this.Individual = trainingFormViewModel.Individual;
             this.Remote = trainingFormViewModel.Remote;
             this.TrainingStatus = trainingFormViewModel.TrainingStatus;

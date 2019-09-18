@@ -8,11 +8,12 @@ namespace AssignmentsNetcore.Models.Views
     public class PersonViewModel : BaseEntityViewModel
     {
         public PersonViewModel() { }
-        
+
         public PersonViewModel(Person person)
         {
             this.Name = person.Name;
             this.Surname = person.Surname;
+            this.CompleteName = person.Name + " " + person.Surname;
             this.Mail = person.Mail;
             this.EntryDate = person.EntryDate;
             this.Workload = person.Workload;
@@ -22,6 +23,7 @@ namespace AssignmentsNetcore.Models.Views
         }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string CompleteName { get; set; }
         public string Mail { get; set; }
         public DateTime EntryDate { get; set; }
         public int Workload { get; set; }
