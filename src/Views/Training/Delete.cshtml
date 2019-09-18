@@ -13,6 +13,12 @@
     <h3>@Localizer["ConfirmDelete"]</h3>
     <h4>@Localizer["OptionTitleTraining"]</h4>
     <div class="sub-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="sub-label">
         @Html.DisplayNameFor(model => model.Individual)
     </div>
     <div>
@@ -23,12 +29,6 @@
     </div>
     <div>
         @Html.DisplayFor(model => model.Remote)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Name)
     </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.StartDate)

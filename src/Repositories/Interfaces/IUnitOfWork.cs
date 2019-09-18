@@ -6,7 +6,6 @@ namespace AssignmentsNetcore.Repositories.Interfaces
     {
         IAssignmentRepository AssignmentRepository { get; }
         IClientRepository ClientRepository { get; }
-        ICommercialRepository CommercialRepository { get; }
         IOfficeRepository OfficeRepository { get; }
         IPersonRepository PersonRepository { get; }
         IPositionRepository PositionRepository { get; }

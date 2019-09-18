@@ -31,7 +31,7 @@ namespace AssignmentsNetcore.Controllers
         }
 
         [HttpGet("Create")]
-        public IActionResult Create() => View(new TrainingFormViewModel(UnitOfWork.ClientRepository.GetAll()));
+        public IActionResult Create() => View(new TrainingFormViewModel(UnitOfWork.TechRepository.GetAll(), UnitOfWork.TabRepository.GetAll()));
 
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]
@@ -52,7 +52,7 @@ namespace AssignmentsNetcore.Controllers
             if (id == null) return NotFound();
             var workingEntity = UnitOfWork.TrainingRepository.Get(id.Value);
             if (workingEntity == null) return NotFound();
-            return View(new TrainingFormViewModel(workingEntity, UnitOfWork.ClientRepository.GetAll(), UnitOfWork.ProjectRepository.GetAll()));
+            return View(new TrainingFormViewModel(workingEntity, UnitOfWork.TechRepository.GetAll(), UnitOfWork.TabRepository.GetAll()));
         }
 
         [HttpPost("Edit/{id}")]

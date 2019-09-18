@@ -15,13 +15,16 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tech.Name)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Individual)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Remote)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.StartDate)
@@ -31,9 +34,6 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.TrainingStatus)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Client.Name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CreatedAt)
@@ -48,13 +48,16 @@
     @foreach (var item in Model) {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tech.Name)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Individual)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Remote)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
@@ -64,9 +67,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TrainingStatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Client.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)

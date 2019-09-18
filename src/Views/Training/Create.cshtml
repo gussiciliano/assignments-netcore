@@ -15,6 +15,27 @@
     <form asp-action="Create" class="component-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@Localizer["OptionTitleTech"]</label>
+            <br>
+            <select asp-for="TechId" 
+                    asp-items="@Model.Techs"
+                    class="box-dimension-200px-300px">
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@Localizer["OptionTitleTab"]</label>
+            <br>
+            <select asp-for="TabId" 
+                    asp-items="@Model.Tabs"
+                    class="box-dimension-200px-300px">
+            </select>
+        </div>
+        <div class="form-group">
             <div class="checkbox">
                 <label>
                     <input asp-for="Individual" /> @Html.DisplayNameFor(model => model.Individual)
@@ -27,19 +48,6 @@
                     <input asp-for="Remote" /> @Html.DisplayNameFor(model => model.Remote)
                 </label>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label class="control-label">@Localizer["OptionTitleClient"]</label>
-            <br>
-            <select asp-for="ClientId" 
-                    asp-items="@Model.Clients"
-                    class="box-dimension-200px-300px">
-            </select>
         </div>
         <div class="form-group">
             <label asp-for="StartDate" class="control-label"></label>

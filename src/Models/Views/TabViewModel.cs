@@ -14,6 +14,7 @@ namespace AssignmentsNetcore.Models.Views
             this.StartDate = tab.StartDate;
             this.EndDate = tab.EndDate;
             this.Client = new ClientViewModel(tab.Client);
+            this.Active = tab.Active;
         }
 
         [Required(AllowEmptyStrings = false)]

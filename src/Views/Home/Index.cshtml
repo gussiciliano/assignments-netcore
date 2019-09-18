@@ -12,6 +12,42 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="display-flex-center flex-wrap">
+        <div class="home-option">    
+            <h2>@Localizer["OptionTitleAssignments"]</h2>
+            <i class="fas fa-cogs home-option-icon"></i>
+            <p class="home-option-description">@Localizer["OptionDescriptionAssignments"]</p>
+            <div class="width-100-percent display-flex-around flex-direction-row">
+                <a class="option-link" asp-area="" asp-controller="Assignment" asp-action="Index">@Localizer["List"]</a>
+                <a class="option-link" asp-area="" asp-controller="Assignment" asp-action="Create">@Localizer["Create"]</a>
+            </div>
+        </div>
+        <div class="home-option">
+            <h2>@Localizer["OptionTitleProject"]</h2>
+            <i class="fas fa-project-diagram home-option-icon"></i>
+            <p class="home-option-description">@Localizer["OptionDescriptionProject"]</p>
+            <div class="width-100-percent display-flex-around flex-direction-row">
+                <a class="option-link" asp-area="" asp-controller="Project" asp-action="Index">@Localizer["List"]</a>
+                <a class="option-link" asp-area="" asp-controller="Project" asp-action="Create">@Localizer["Create"]</a>
+            </div>
+        </div>
+        <div class="home-option">
+            <h2>@Localizer["OptionTitleTraining"]</h2>
+            <i class="fas fa-chalkboard-teacher home-option-icon"></i>
+            <p class="home-option-description">@Localizer["OptionDescriptionTraining"]</p>
+            <div class="width-100-percent display-flex-around flex-direction-row">
+                <a class="option-link" asp-area="" asp-controller="Training" asp-action="Index">@Localizer["List"]</a>
+                <a class="option-link" asp-area="" asp-controller="Training" asp-action="Create">@Localizer["Create"]</a>
+            </div>
+        </div>
+        <div class="home-option">
+            <h2>@Localizer["OptionTitleTab"]</h2>
+            <i class="fas fa-folder home-option-icon"></i>
+            <p class="home-option-description">@Localizer["OptionDescriptionTab"]</p>
+            <div class="width-100-percent display-flex-around flex-direction-row">
+                <a class="option-link" asp-area="" asp-controller="Tab" asp-action="Index">@Localizer["List"]</a>
+                <a class="option-link" asp-area="" asp-controller="Tab" asp-action="Create">@Localizer["Create"]</a>
+            </div>
+        </div>
         <div class="home-option">
             <h2>@Localizer["OptionTitleTech"]</h2>
             <i class="fas fa-microchip home-option-icon"></i>
@@ -19,6 +55,15 @@
             <div class="width-100-percent display-flex-around flex-direction-row">
                 <a class="option-link" asp-area="" asp-controller="Tech" asp-action="Index">@Localizer["List"]</a>
                 <a class="option-link" asp-area="" asp-controller="Tech" asp-action="Create">@Localizer["Create"]</a>
+            </div>
+        </div>
+        <div class="home-option">
+            <h2>@Localizer["OptionTitlePerson"]</h2>
+            <i class="fas fa-user-circle home-option-icon"></i>
+            <p class="home-option-description">@Localizer["OptionDescriptionPerson"]</p>
+            <div class="width-100-percent display-flex-around flex-direction-row">
+                <a class="option-link" asp-area="" asp-controller="Person" asp-action="Index">@Localizer["List"]</a>
+                <a class="option-link" asp-area="" asp-controller="Person" asp-action="Create">@Localizer["Create"]</a>
             </div>
         </div>
         <div class="home-option">
@@ -40,57 +85,12 @@
             </div>
         </div>
         <div class="home-option">
-            <h2>@Localizer["OptionTitlePerson"]</h2>
-            <i class="fas fa-user-circle home-option-icon"></i>
-            <p class="home-option-description">@Localizer["OptionDescriptionPerson"]</p>
-            <div class="width-100-percent display-flex-around flex-direction-row">
-                <a class="option-link" asp-area="" asp-controller="Person" asp-action="Index">@Localizer["List"]</a>
-                <a class="option-link" asp-area="" asp-controller="Person" asp-action="Create">@Localizer["Create"]</a>
-            </div>
-        </div>
-        <div class="home-option">
             <h2>@Localizer["OptionTitleClient"]</h2>
             <i class="fas fa-comments-dollar home-option-icon"></i>
             <p class="home-option-description">@Localizer["OptionDescriptionClient"]</p>
             <div class="width-100-percent display-flex-around flex-direction-row">
                 <a class="option-link" asp-area="" asp-controller="Client" asp-action="Index">@Localizer["List"]</a>
                 <a class="option-link" asp-area="" asp-controller="Client" asp-action="Create">@Localizer["Create"]</a>
-            </div>
-        </div>
-        <div class="home-option">
-            <h2>@Localizer["OptionTitleTraining"]</h2>
-            <i class="fas fa-chalkboard-teacher home-option-icon"></i>
-            <p class="home-option-description">@Localizer["OptionDescriptionTraining"]</p>
-            <div class="width-100-percent display-flex-around flex-direction-row">
-                <a class="option-link" asp-area="" asp-controller="Training" asp-action="Index">@Localizer["List"]</a>
-                <a class="option-link" asp-area="" asp-controller="Training" asp-action="Create">@Localizer["Create"]</a>
-            </div>
-        </div>
-        <div class="home-option">
-            <h2>@Localizer["OptionTitleProject"]</h2>
-            <i class="fas fa-cogs home-option-icon"></i>
-            <p class="home-option-description">@Localizer["OptionDescriptionProject"]</p>
-            <div class="width-100-percent display-flex-around flex-direction-row">
-                <a class="option-link" asp-area="" asp-controller="Project" asp-action="Index">@Localizer["List"]</a>
-                <a class="option-link" asp-area="" asp-controller="Project" asp-action="Create">@Localizer["Create"]</a>
-            </div>
-        </div>
-        <div class="home-option">
-            <h2>@Localizer["OptionTitleTab"]</h2>
-            <i class="fas fa-folder home-option-icon"></i>
-            <p class="home-option-description">@Localizer["OptionDescriptionTab"]</p>
-            <div class="width-100-percent display-flex-around flex-direction-row">
-                <a class="option-link" asp-area="" asp-controller="Tab" asp-action="Index">@Localizer["List"]</a>
-                <a class="option-link" asp-area="" asp-controller="Tab" asp-action="Create">@Localizer["Create"]</a>
-            </div>
-        </div>
-        <div class="home-option">    
-            <h2>@Localizer["OptionTitleAssignments"]</h2>
-            <i class="fas fa-cogs home-option-icon"></i>
-            <p class="home-option-description">@Localizer["OptionDescriptionAssignments"]</p>
-            <div class="width-100-percent display-flex-around flex-direction-row">
-                <a class="option-link" asp-area="" asp-controller="Assignment" asp-action="Index">@Localizer["List"]</a>
-                <a class="option-link" asp-area="" asp-controller="Assignment" asp-action="Create">@Localizer["Create"]</a>
             </div>
         </div>
     </div>

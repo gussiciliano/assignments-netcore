@@ -14,9 +14,7 @@ namespace AssignmentsNetcore.Repositories.Database
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Change> Changes { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Commercial> Commercials { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<HHII> HHIIs { get; set; }
         public DbSet<Office> Offices { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Position> Positions { get; set; }
