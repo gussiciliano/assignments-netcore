@@ -18,9 +18,9 @@ namespace AssignmentsNetcore.Models.Views
             this.PersonId = assignment.PersonId;
             this.PositionId = assignment.PositionId;
             this.ProjectId = assignment.ProjectId;
-            this.Person = assignment.Person != null ? new PersonViewModel(assignment.Person) : null;
-            this.Position = assignment.Position != null ? new PositionViewModel(assignment.Position) : null;
-            this.Project = assignment.Project != null ? new ProjectViewModel(assignment.Project) : null;
+            this.Person = new PersonViewModel(assignment.Person);
+            this.Position = new PositionViewModel(assignment.Position);
+            this.Project = new ProjectViewModel(assignment.Project);
         }
 
         public DateTime StartDate { get; set; }
@@ -32,8 +32,5 @@ namespace AssignmentsNetcore.Models.Views
         public int PositionId { get; set; }
         public int ProjectId { get; set; }
         public ProjectViewModel Project { get; set; }
-        public ICollection<SelectListItem> Persons { get; set; }
-        public ICollection<SelectListItem> Tabs { get; set; }
-        public ICollection<SelectListItem> Positions { get; set; }
     }
 }

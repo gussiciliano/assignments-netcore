@@ -1,45 +1,23 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.PersonViewModel
+@model AssignmentsNetcore.Models.Views.PositionViewModel
 @using AssignmentsNetcore.Models.Views
 
 @{
     ViewData["Title"] = "Details";
 }
 
+
+
 <div class="component">
     <h2>@Localizer["Details"]</h2>
-    <h4>@Localizer["OptionTitlePerson"]</h4>
+    <h4>@Localizer["OptionTitlePosition"]</h4>
     <div class="sub-label">
-        @Html.DisplayNameFor(model => model.CompleteName)
+        @Html.DisplayNameFor(model => model.Name)
     </div>
     <div>
-        @Html.DisplayFor(model => model.CompleteName)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Mail)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Mail)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.EntryDate)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.EntryDate)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Workload)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Workload)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.Active)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.Active)
+        @Html.DisplayFor(model => model.Name)
     </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.CreatedAt)

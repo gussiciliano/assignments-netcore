@@ -7,7 +7,7 @@ namespace AssignmentsNetcore.Models.Views
     {
         public ProjectViewModel() : base() { }
 
-        public ProjectViewModel(Project project)
+        public ProjectViewModel(Project project) : base(project)
         {
             this.Name = project.Name;
             this.StartDate = project.StartDate;

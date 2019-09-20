@@ -7,12 +7,11 @@ namespace AssignmentsNetcore.Models.Views
     {
         public PositionViewModel() { }
 
-        public PositionViewModel(Position position)
+        public PositionViewModel(Position position) : base(position)
         {
             this.Name = position.Name;
         }
 
         public string Name { get; set; }
-        public ICollection<AssignmentViewModel> Assignments { get; set; }
     }
 }

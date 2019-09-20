@@ -9,7 +9,7 @@ namespace AssignmentsNetcore.Models.Database
     {
         public Assignment() { }
 
-        public Assignment(AssignmentViewModel viewModel)
+        public Assignment(AssignmentFormViewModel viewModel)
         {
             this.StartDate = viewModel.StartDate;
             this.EndDate = viewModel.EndDate;
@@ -33,7 +33,7 @@ namespace AssignmentsNetcore.Models.Database
         public virtual Project Project { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
 
-        public void Update(AssignmentViewModel viewModel)
+        public void Update(AssignmentFormViewModel viewModel)
         {
             this.StartDate = viewModel.StartDate;
             this.EndDate = viewModel.EndDate;

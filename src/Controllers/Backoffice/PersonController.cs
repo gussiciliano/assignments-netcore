@@ -31,42 +31,12 @@ namespace AssignmentsNetcore.Controllers
             personViewModel.Offices = UnitOfWork.OfficeRepository.GetAll().Select(c => new SelectListItem() { Text = c.Name, Value = c.Id.ToString() }).ToList();
             return View(personViewModel);
         }
-        protected override Person CreateNewEntity(PersonViewModel workingViewModel)
-        {
-            Person person = new Person();
-            person.Mail = workingViewModel.Mail;
-            person.EntryDate = workingViewModel.EntryDate;
-            person.Workload = workingViewModel.Workload;
-            person.Active = workingViewModel.Active;
-            person.OfficeId = workingViewModel.OfficeId;
-            // TODO: send this from the view
-            // person.JobRoles = workingViewModel.JobRoles;
-            return person;
-        }
-        protected override PersonViewModel CreateNewViewModel(Person entity)
-        {
-            PersonViewModel personViewModel = new PersonViewModel();
-            personViewModel.Id = entity.Id;
-            personViewModel.Mail = entity.Mail;
-            personViewModel.EntryDate = entity.EntryDate;
-            personViewModel.Workload = entity.Workload;
-            personViewModel.Active = entity.Active;
-            personViewModel.OfficeId = entity.OfficeId;
-            // TODO: send this from the view
-            // personViewModel.JobRoles = entity.JobRoles;
-            personViewModel.CreatedAt = entity.CreatedAt;
-            personViewModel.UpdatedAt = entity.UpdatedAt;
-            return personViewModel;
-        }
+        protected override Person CreateNewEntity(PersonViewModel workingViewModel) => new Person(workingViewModel);
+        protected override PersonViewModel CreateNewViewModel(Person entity) => new PersonViewModel(entity);
+
         protected override Person EditEntityByViewModel(Person entity, PersonViewModel workingViewModel)
         {
-            entity.Mail = workingViewModel.Mail;
-            entity.EntryDate = workingViewModel.EntryDate;
-            entity.Workload = workingViewModel.Workload;
-            entity.Active = workingViewModel.Active;
-            entity.OfficeId = workingViewModel.OfficeId;
-            // TODO: send this from the view
-            // entity.JobRoles = workingViewModel.JobRoles;
+            entity.Update(workingViewModel);
             return entity;
         }
     }
