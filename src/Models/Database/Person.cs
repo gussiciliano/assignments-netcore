@@ -2,19 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using AssignmentsNetcore.Models.Views;
 
 namespace AssignmentsNetcore.Models.Database
 {
     public class Person : BaseEntity
     {
-        public Person()
+        public Person() : base()
         {
             this.Assignments = new List<Assignment>();
             this.Techs = new List<PersonTech>();
         }
 
-        public Person(PersonViewModel personViewModel) : this()
+        public Person(PersonFormViewModel personViewModel) : base()
         {
             this.Name = personViewModel.Name;
             this.Surname = personViewModel.Surname;
@@ -23,7 +24,11 @@ namespace AssignmentsNetcore.Models.Database
             this.Workload = personViewModel.Workload;
             this.Active = personViewModel.Active;
             this.OfficeId = personViewModel.OfficeId;
+            this.Assignments = new List<Assignment>();
+            this.Techs = new List<PersonTech>();
+            personViewModel.TechIds.ToList().ForEach(tId => this.Tech.Add(new PersonTech() { TechId = tId, }));
         }
+
         [Required]
         public string Name { get; set; }
         [Required]
@@ -41,7 +46,7 @@ namespace AssignmentsNetcore.Models.Database
         public virtual ICollection<Assignment> Assignments { get; set; }
         public virtual ICollection<PersonTech> Techs { get; set; }
 
-        public void Update(PersonViewModel person)
+        public void Update(PersonFormViewModel person)
         {
             this.Name = person.Name;
             this.Surname = person.Surname;
@@ -51,6 +56,8 @@ namespace AssignmentsNetcore.Models.Database
             this.Active = person.Active;
             this.OfficeId = person.OfficeId;
             this.Active = person.Active;
+            this.Techs.Clear();
+            person.TechIds.ToList().ForEach(id => this.Techs.Add(new PersonTech() { TechId = id, }));
         }
     }
 }

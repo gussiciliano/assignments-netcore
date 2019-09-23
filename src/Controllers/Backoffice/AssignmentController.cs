@@ -44,8 +44,7 @@ namespace AssignmentsNetcore.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var assignment = new Assignment(viewModel);
-                    UnitOfWork.AssignmentRepository.Add(assignment);
+                    UnitOfWork.AssignmentRepository.Add(new Assignment(viewModel));
                     UnitOfWork.Complete();
                     return RedirectToAction(nameof(Index));
                 }

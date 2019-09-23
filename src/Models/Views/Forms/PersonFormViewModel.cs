@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AssignmentsNetcore.Models.Views
 {
-    public class PersonViewModel : BaseEntityViewModel
+    public class PersonFormViewModel : BaseEntityViewModel
     {
-        public PersonViewModel() { }
+        public PersonFormViewModel(IEnumerable<Tech> techs, IEnumerable<Office> offices) : base()
+        {
+            this.Techs = techs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
+            this.Offices = offices.Select(o => new SelectListItem(o.Name, o.Id.ToString()));
+        }
 
-        public PersonViewModel(Person person) : base(person)
+        public PersonFormViewModel(Person person, IEnumerable<Tech> techs, IEnumerable<Office> offices) : base(person)
         {
             this.Name = person.Name;
             this.Surname = person.Surname;
@@ -23,6 +27,8 @@ namespace AssignmentsNetcore.Models.Views
             this.OfficeId = person.OfficeId;
             this.Office = person.Office != null ? new OfficeViewModel(person.Office) : null;
             this.Id = person.Id;
+            this.Techs = techs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
+            this.Offices = offices.Select(o => new SelectListItem(o.Name, o.Id.ToString()));
         }
         [Required]
         public string Name { get; set; }
@@ -36,5 +42,9 @@ namespace AssignmentsNetcore.Models.Views
         public bool Active { get; set; }
         public int OfficeId { get; set; }
         public OfficeViewModel Office { get; set; }
+        public IEnumerable<int> TechIds { get; set; }
+        public IEnumerable<SelectListItem> Techs { get; set; }
+        public IEnumerable<SelectListItem> Offices { get; set; }
+        public ICollection<AssignmentViewModel> Assigments { get; set; }
     }
 }
