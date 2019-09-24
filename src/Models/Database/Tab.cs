@@ -7,9 +7,12 @@ namespace AssignmentsNetcore.Models.Database
 {
     public class Tab : BaseEntity
     {
-        public Tab() : base() { }
+        public Tab() : base()
+        {
+            this.Projects = new List<Project>();
+        }
 
-        public Tab(TabFormViewModel tabFormViewModel) : base()
+        public Tab(TabFormViewModel tabFormViewModel) : this()
         {
             this.Name = tabFormViewModel.Name;
             this.StartDate = tabFormViewModel.StartDate;

@@ -42,10 +42,8 @@ namespace AssignmentsNetcore.Controllers
         {
             if (!ModelState.IsValid)
             {
-                IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 return View(projectViewModel);
             }
-
             UnitOfWork.ProjectRepository.Add(new Project(projectViewModel));
             UnitOfWork.Complete();
             return RedirectToAction(nameof(Index));
