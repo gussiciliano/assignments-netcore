@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using AssignmentsNetcore.Controllers.Backoffice;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
@@ -23,11 +22,11 @@ namespace AssignmentsNetcore.Controllers
 
         public IUnitOfWork UnitOfWork { get => this._unitOfWork; }
         public IHtmlLocalizer<PersonController> Localizer { get => this._localizer; }
-        
+
         [HttpGet("")]
         public IActionResult Index() =>
             View(UnitOfWork.PersonRepository.GetAll().Select(p => new PersonViewModel(p)));
-        
+
         [HttpGet("Create")]
         public IActionResult Create()
         {
@@ -37,25 +36,29 @@ namespace AssignmentsNetcore.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(PersonFormViewModel viewModel)
+        public IActionResult Create(PersonFormViewModel personFormViewModel)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    UnitOfWork.PersonRepository.Add(new Person(viewModel));
+                    if (!personFormViewModel.CheckTechs())
+                        throw new ArgumentException(Localizer["SameTechDifferentRole"].Value);
+                    UnitOfWork.PersonRepository.Add(new Person(personFormViewModel));
                     UnitOfWork.Complete();
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    return View(viewModel);
+                    return View(personFormViewModel);
                 }
             }
             catch (Exception e)
             {
+                personFormViewModel.Techs = UnitOfWork.TechRepository.GetAll().Select(c => new SelectListItem(c.Name, c.Id.ToString()));
+                personFormViewModel.Offices = UnitOfWork.OfficeRepository.GetAll().Select(o => new SelectListItem(o.Name, o.Id.ToString()));
                 ModelState.AddModelError(string.Empty, e.Message);
-                return View(viewModel);
+                return View(personFormViewModel);
             }
         }
 
@@ -76,6 +79,8 @@ namespace AssignmentsNetcore.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (!personFormViewModel.CheckTechs())
+                        throw new ArgumentException(Localizer["SameTechDifferentRole"].Value);
                     var person = UnitOfWork.PersonRepository.Get(personFormViewModel.Id);
                     person.Update(personFormViewModel);
                     UnitOfWork.PersonRepository.Update(person);
@@ -89,6 +94,8 @@ namespace AssignmentsNetcore.Controllers
             }
             catch (Exception e)
             {
+                personFormViewModel.Techs = UnitOfWork.TechRepository.GetAll().Select(c => new SelectListItem(c.Name, c.Id.ToString()));
+                personFormViewModel.Offices = UnitOfWork.OfficeRepository.GetAll().Select(o => new SelectListItem(o.Name, o.Id.ToString()));
                 ModelState.AddModelError(string.Empty, e.Message);
                 return View(personFormViewModel);
             }

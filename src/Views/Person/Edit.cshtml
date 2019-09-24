@@ -1,7 +1,7 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.PersonViewModel
+@model AssignmentsNetcore.Models.Views.PersonFormViewModel
 @using AssignmentsNetcore.Models
 
 @{
@@ -35,6 +35,20 @@
                 <label>
                     <input asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
                 </label>
+            </div>
+        </div>
+        <div class="form-group display-flex-center">
+            <div class="margin-right-15">
+                <label>@Localizer["DeveloperIn"]</label>
+                <select multiple="multiple" class="multi-select" id="persontechDev_multi_select" asp-for="@Model.DevTechIds" asp-items="Model.Techs"></select>
+            </div>
+            <div class="margin-right-15">
+                <label>@Localizer["LeadDeveloperIn"]</label>
+            <select multiple="multiple" class="multi-select" id="persontechLD_multi_select" asp-for="@Model.LDTechIds" asp-items="Model.Techs"></select>
+            </div>
+            <div class="margin-right-15">
+                <label>@Localizer["TechnicalLeaderIn"]</label>
+            <select multiple="multiple" class="multi-select" id="persontechTL_multi_select" asp-for="@Model.TLTechIds" asp-items="Model.Techs"></select>
             </div>
         </div>
         <div class="form-group">

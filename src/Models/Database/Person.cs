@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text;
 using AssignmentsNetcore.Models.Views;
 
 namespace AssignmentsNetcore.Models.Database
@@ -15,18 +16,20 @@ namespace AssignmentsNetcore.Models.Database
             this.Techs = new List<PersonTech>();
         }
 
-        public Person(PersonFormViewModel personViewModel) : base()
+        public Person(PersonFormViewModel personFormViewModel) : base()
         {
-            this.Name = personViewModel.Name;
-            this.Surname = personViewModel.Surname;
-            this.Mail = personViewModel.Mail;
-            this.EntryDate = personViewModel.EntryDate;
-            this.Workload = personViewModel.Workload;
-            this.Active = personViewModel.Active;
-            this.OfficeId = personViewModel.OfficeId;
+            this.Name = personFormViewModel.Name;
+            this.Surname = personFormViewModel.Surname;
+            this.Mail = personFormViewModel.Mail;
+            this.EntryDate = personFormViewModel.EntryDate;
+            this.Workload = personFormViewModel.Workload;
+            this.Active = personFormViewModel.Active;
+            this.OfficeId = personFormViewModel.OfficeId;
             this.Assignments = new List<Assignment>();
             this.Techs = new List<PersonTech>();
-            personViewModel.TechIds.ToList().ForEach(tId => this.Tech.Add(new PersonTech() { TechId = tId, }));
+            personFormViewModel.DevTechIds.ToList().ForEach(id => this.Techs.Add(new PersonTech() { TechId = id, DeveloperRole = DevRole.Developer }));
+            personFormViewModel.LDTechIds.ToList().ForEach(id => this.Techs.Add(new PersonTech() { TechId = id, DeveloperRole = DevRole.LeadDeveloper }));
+            personFormViewModel.TLTechIds.ToList().ForEach(id => this.Techs.Add(new PersonTech() { TechId = id, DeveloperRole = DevRole.TechnicalLeader }));
         }
 
         [Required]
@@ -57,7 +60,25 @@ namespace AssignmentsNetcore.Models.Database
             this.OfficeId = person.OfficeId;
             this.Active = person.Active;
             this.Techs.Clear();
-            person.TechIds.ToList().ForEach(id => this.Techs.Add(new PersonTech() { TechId = id, }));
+            person.DevTechIds.ToList().ForEach(id => this.Techs.Add(new PersonTech() { TechId = id, DeveloperRole = DevRole.Developer }));
+            person.LDTechIds.ToList().ForEach(id => this.Techs.Add(new PersonTech() { TechId = id, DeveloperRole = DevRole.LeadDeveloper }));
+            person.TLTechIds.ToList().ForEach(id => this.Techs.Add(new PersonTech() { TechId = id, DeveloperRole = DevRole.TechnicalLeader }));
+        }
+
+        public string TechsString()
+        {
+            string ret = "(";
+            foreach (var tech in Techs)
+            {
+                ret += tech.Tech.Name + ", ";
+            }
+            if (ret.Length < 2)
+                ret = string.Empty;
+            else
+            {
+                ret = ret.Remove(ret.Length - 2, 2) + ")";
+            }
+            return ret;
         }
     }
 }

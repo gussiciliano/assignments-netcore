@@ -13,7 +13,7 @@ namespace AssignmentsNetcore.Models.Views
         public AssignmentFormViewModel(IEnumerable<Tech> techs, IEnumerable<Person> persons, IEnumerable<Project> projects, IEnumerable<Position> positions)
         {
             this.Projects = projects.Select(c => new SelectListItem(c.Name + " (" + c.Tech.Name + ")", c.Id.ToString()));
-            this.Persons = persons.Select(c => new SelectListItem(c.CompleteName, c.Id.ToString()));
+            this.Persons = persons.Select(c => new SelectListItem(c.CompleteName + " " + c.TechsString(), c.Id.ToString()));
             this.Positions = positions.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
             this.Techs = techs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
         }
@@ -35,7 +35,7 @@ namespace AssignmentsNetcore.Models.Views
             this.Position = assignment.Position != null ? new PositionViewModel(assignment.Position) : null;
             this.Project = assignment.Project != null ? new ProjectViewModel(assignment.Project) : null;
             this.Projects = projects.Select(c => new SelectListItem(c.Name + " (" + c.Tech.Name + ")", c.Id.ToString()));
-            this.Persons = persons.Select(c => new SelectListItem(c.CompleteName, c.Id.ToString()));
+            this.Persons = persons.Select(c => new SelectListItem(c.CompleteName + " " + c.TechsString(), c.Id.ToString()));
             this.Positions = positions.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
             this.Techs = techs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
         }

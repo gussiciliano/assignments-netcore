@@ -16,6 +16,9 @@
     "ConfirmDelete": "¿Está seguro que lo desea eliminar?",
     "Country": "País",
     "Create": "Crear",
+    "DeveloperIn": "Developer en:",
+    "LeadDeveloperIn": "Lead Dev en:",
+    "TechnicalLeaderIn": "TL en:",
     "InvalidUserOrPassword": "Nombre de usuario o contraseña inválidos.",
     "SaveChanges": "Guardar cambios",
     "NewRole": "Nuevo rol",
@@ -69,6 +72,7 @@
     "RoleNotDeleted": "El rol no pudo ser eliminado.",
     "RoleUpdated": "El rol se actualizó correctamente.",
     "RoleNotUpdated": "El rol no pudo ser actualizado.",
+    "SameTechDifferentRole": "No puede asignar a la misma tecnologia con roles diferentes.",
     "UserName": "Nombre de usuario",
     "Welcome": "¡Bienvenido a ",
 }

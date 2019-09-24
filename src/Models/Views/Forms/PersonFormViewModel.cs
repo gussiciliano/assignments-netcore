@@ -9,7 +9,13 @@ namespace AssignmentsNetcore.Models.Views
 {
     public class PersonFormViewModel : BaseEntityViewModel
     {
-        public PersonFormViewModel(IEnumerable<Tech> techs, IEnumerable<Office> offices) : base()
+        public PersonFormViewModel() : base()
+        {
+            this.DevTechIds = new List<int>();
+            this.LDTechIds = new List<int>();
+            this.TLTechIds = new List<int>();
+        }
+        public PersonFormViewModel(IEnumerable<Tech> techs, IEnumerable<Office> offices) : this()
         {
             this.Techs = techs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
             this.Offices = offices.Select(o => new SelectListItem(o.Name, o.Id.ToString()));
@@ -42,9 +48,26 @@ namespace AssignmentsNetcore.Models.Views
         public bool Active { get; set; }
         public int OfficeId { get; set; }
         public OfficeViewModel Office { get; set; }
-        public IEnumerable<int> TechIds { get; set; }
+        public IEnumerable<int> DevTechIds { get; set; }
+        public IEnumerable<int> LDTechIds { get; set; }
+        public IEnumerable<int> TLTechIds { get; set; }
         public IEnumerable<SelectListItem> Techs { get; set; }
         public IEnumerable<SelectListItem> Offices { get; set; }
         public ICollection<AssignmentViewModel> Assigments { get; set; }
+
+        public bool CheckTechs()
+        {
+            foreach (var devTech in DevTechIds)
+            {
+                if (LDTechIds.Contains(devTech) || TLTechIds.Contains(devTech))
+                    return false;
+            }
+            foreach (var ldTech in LDTechIds)
+            {
+                if (TLTechIds.Contains(ldTech))
+                    return false;
+            }
+            return true;
+        }
     }
 }
