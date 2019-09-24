@@ -38,13 +38,7 @@ namespace AssignmentsNetcore.Controllers
             country.Name = workingViewModel.Name;
             return country;
         }
-        protected override CountryViewModel CreateNewViewModel(Country entity)
-        {
-            CountryViewModel countryViewModel = new CountryViewModel();
-            countryViewModel.Id = entity.Id;
-            countryViewModel.Name = entity.Name;
-            return countryViewModel;
-        }
+        protected override CountryViewModel CreateNewViewModel(Country entity) => new CountryViewModel(entity);
 
         protected override Country EditEntityByViewModel(Country entity, CountryViewModel workingViewModel)
         {

@@ -13,9 +13,10 @@ namespace AssignmentsNetcore.Models
 
     public enum TrainingStatus
     {
-        OnGoing = 1,
-        Finished = 2,
-        Closed = 3,
+        NotStarted = 1,
+        OnGoing = 2,
+        Finished = 3,
+        Closed = 4,
     }
 
     public enum ToolStatus

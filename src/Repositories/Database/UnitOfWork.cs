@@ -10,11 +10,10 @@ namespace AssignmentsNetcore.Repositories.Database
             this._context = context;
             this.AssignmentRepository = new AssignmentRepository(_context);
             this.ClientRepository = new ClientRepository(_context);
-            this.CommercialRepository = new CommercialRepository(_context);
             this.OfficeRepository = new OfficeRepository(_context);
             this.PersonRepository = new PersonRepository(_context);
+            this.TabRepository = new TabRepository(_context);
             this.ProjectRepository = new ProjectRepository(_context);
-            this.ProjectComponentRepository = new ProjectComponentRepository(_context);
             this.TechRepository = new TechRepository(_context);
             this.TrainingRepository = new TrainingRepository(_context);
             this.PositionRepository = new PositionRepository(_context);
@@ -23,12 +22,11 @@ namespace AssignmentsNetcore.Repositories.Database
 
         public IAssignmentRepository AssignmentRepository { get; private set; }
         public IClientRepository ClientRepository { get; private set; }
-        public ICommercialRepository CommercialRepository { get; private set; }
         public IOfficeRepository OfficeRepository { get; private set; }
         public IPersonRepository PersonRepository { get; private set; }
         public IPositionRepository PositionRepository { get; private set; }
+        public ITabRepository TabRepository { get; private set; }
         public IProjectRepository ProjectRepository { get; private set; }
-        public IProjectComponentRepository ProjectComponentRepository { get; private set; }
         public ITechRepository TechRepository { get; private set; }
         public ITrainingRepository TrainingRepository { get; private set; }
         public ICountryRepository CountryRepository { get; private set; }

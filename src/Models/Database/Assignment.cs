@@ -9,14 +9,14 @@ namespace AssignmentsNetcore.Models.Database
     {
         public Assignment() { }
 
-        public Assignment(AssignmentViewModel viewModel)
+        public Assignment(AssignmentFormViewModel viewModel)
         {
             this.StartDate = viewModel.StartDate;
             this.EndDate = viewModel.EndDate;
             this.Workload = viewModel.Workload;
             this.PersonId = viewModel.PersonId;
             this.PositionId = viewModel.PositionId;
-            this.ProjectComponentId = viewModel.ProjectComponentId;
+            this.ProjectId = viewModel.ProjectId;
         }
 
         public DateTime StartDate { get; set; }
@@ -29,11 +29,11 @@ namespace AssignmentsNetcore.Models.Database
         public int PositionId { get; set; }
         public virtual Position Position { get; set; }
         [Required]
-        public int ProjectComponentId { get; set; }
-        public virtual ProjectComponent ProjectComponent { get; set; }
+        public int ProjectId { get; set; }
+        public virtual Project Project { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
 
-        public void Update(AssignmentViewModel viewModel)
+        public void Update(AssignmentFormViewModel viewModel)
         {
             this.StartDate = viewModel.StartDate;
             this.EndDate = viewModel.EndDate;

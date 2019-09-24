@@ -6,5 +6,6 @@ namespace AssignmentsNetcore.Models.Database
     {
         public string Name { get; set; }
         public virtual ICollection<PersonTech> Persons { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

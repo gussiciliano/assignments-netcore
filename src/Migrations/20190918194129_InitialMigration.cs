@@ -50,21 +50,33 @@ namespace AssignmentsNetcore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Offices",
+                name: "Countries",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
-                    Country = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Active = table.Column<bool>(nullable: false),
-                    Address = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Offices", x => x.Id);
+                    table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Positions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Positions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,79 +202,50 @@ namespace AssignmentsNetcore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Projects",
+                name: "Tabs",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    ClientId = table.Column<int>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false),
-                    IsTeamAugmentation = table.Column<bool>(nullable: true),
-                    Individual = table.Column<bool>(nullable: true),
-                    Remote = table.Column<bool>(nullable: true),
+                    ClientId = table.Column<int>(nullable: false),
+                    Active = table.Column<bool>(nullable: false, defaultValue: false),
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.Id);
+                    table.PrimaryKey("PK_Tabs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Projects_Clients_ClientId",
+                        name: "FK_Tabs_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Persons",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false),
-                    Mail = table.Column<string>(nullable: true),
-                    EntryDate = table.Column<DateTime>(nullable: false),
-                    Workload = table.Column<int>(nullable: false),
-                    Active = table.Column<bool>(nullable: false),
-                    OfficeId = table.Column<int>(nullable: false),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Persons", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Persons_Offices_OfficeId",
-                        column: x => x.OfficeId,
-                        principalTable: "Offices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "JobRoles",
+                name: "Offices",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
+                    CountryId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Active = table.Column<bool>(nullable: false),
-                    JobRoleType = table.Column<int>(nullable: false),
-                    TechId = table.Column<int>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_JobRoles", x => x.Id);
+                    table.PrimaryKey("PK_Offices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_JobRoles_Techs_TechId",
-                        column: x => x.TechId,
-                        principalTable: "Techs",
+                        name: "FK_Offices_Countries_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -313,63 +296,73 @@ namespace AssignmentsNetcore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectComponents",
+                name: "Projects",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    ProjectId = table.Column<int>(nullable: true),
-                    TechId = table.Column<int>(nullable: true),
+                    Status = table.Column<int>(nullable: false, defaultValue: 1),
+                    TabId = table.Column<int>(nullable: false),
+                    TechId = table.Column<int>(nullable: false),
+                    ClientId = table.Column<int>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false),
+                    Individual = table.Column<bool>(nullable: true),
+                    Remote = table.Column<bool>(nullable: true),
+                    TrainingStatus = table.Column<int>(nullable: true, defaultValue: 1),
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectComponents", x => x.Id);
+                    table.PrimaryKey("PK_Projects", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProjectComponents_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
+                        name: "FK_Projects_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ProjectComponents_Techs_TechId",
+                        name: "FK_Projects_Tabs_TabId",
+                        column: x => x.TabId,
+                        principalTable: "Tabs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Projects_Techs_TechId",
                         column: x => x.TechId,
                         principalTable: "Techs",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonJobRoles",
+                name: "Persons",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Surname = table.Column<string>(nullable: true),
+                    Mail = table.Column<string>(nullable: true),
+                    EntryDate = table.Column<DateTime>(nullable: false),
+                    Workload = table.Column<int>(nullable: false),
                     Active = table.Column<bool>(nullable: false),
-                    PersonId = table.Column<int>(nullable: true),
-                    JobRoleId = table.Column<int>(nullable: true),
+                    OfficeId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonJobRoles", x => x.Id);
+                    table.PrimaryKey("PK_Persons", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PersonJobRoles_JobRoles_JobRoleId",
-                        column: x => x.JobRoleId,
-                        principalTable: "JobRoles",
+                        name: "FK_Persons_Offices_OfficeId",
+                        column: x => x.OfficeId,
+                        principalTable: "Offices",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PersonJobRoles_Persons_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "Persons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -383,8 +376,9 @@ namespace AssignmentsNetcore.Migrations
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
                     Workload = table.Column<int>(nullable: false),
-                    PersonId = table.Column<int>(nullable: true),
-                    ProjectComponentId = table.Column<int>(nullable: true),
+                    PersonId = table.Column<int>(nullable: false),
+                    PositionId = table.Column<int>(nullable: false),
+                    ProjectId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -394,41 +388,44 @@ namespace AssignmentsNetcore.Migrations
                         column: x => x.PersonId,
                         principalTable: "Persons",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Assignments_ProjectComponents_ProjectComponentId",
-                        column: x => x.ProjectComponentId,
-                        principalTable: "ProjectComponents",
+                        name: "FK_Assignments_Positions_PositionId",
+                        column: x => x.PositionId,
+                        principalTable: "Positions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Assignments_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AssignmentRoles",
+                name: "PersonTechs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false),
-                    AssignmentId = table.Column<int>(nullable: true),
-                    JobRoleId = table.Column<int>(nullable: true),
+                    PersonId = table.Column<int>(nullable: false),
+                    TechId = table.Column<int>(nullable: false),
+                    DeveloperRole = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AssignmentRoles", x => x.Id);
+                    table.PrimaryKey("PK_PersonTechs", x => new { x.PersonId, x.TechId });
                     table.ForeignKey(
-                        name: "FK_AssignmentRoles_Assignments_AssignmentId",
-                        column: x => x.AssignmentId,
-                        principalTable: "Assignments",
+                        name: "FK_PersonTechs_Persons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Persons",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AssignmentRoles_JobRoles_JobRoleId",
-                        column: x => x.JobRoleId,
-                        principalTable: "JobRoles",
+                        name: "FK_PersonTechs_Techs_TechId",
+                        column: x => x.TechId,
+                        principalTable: "Techs",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -504,24 +501,19 @@ namespace AssignmentsNetcore.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AssignmentRoles_AssignmentId",
-                table: "AssignmentRoles",
-                column: "AssignmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AssignmentRoles_JobRoleId",
-                table: "AssignmentRoles",
-                column: "JobRoleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Assignments_PersonId",
                 table: "Assignments",
                 column: "PersonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Assignments_ProjectComponentId",
+                name: "IX_Assignments_PositionId",
                 table: "Assignments",
-                column: "ProjectComponentId");
+                column: "PositionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Assignments_ProjectId",
+                table: "Assignments",
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Changes_UserId",
@@ -539,19 +531,9 @@ namespace AssignmentsNetcore.Migrations
                 column: "ReviewerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobRoles_TechId",
-                table: "JobRoles",
-                column: "TechId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PersonJobRoles_JobRoleId",
-                table: "PersonJobRoles",
-                column: "JobRoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PersonJobRoles_PersonId",
-                table: "PersonJobRoles",
-                column: "PersonId");
+                name: "IX_Offices_CountryId",
+                table: "Offices",
+                column: "CountryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Persons_OfficeId",
@@ -559,18 +541,28 @@ namespace AssignmentsNetcore.Migrations
                 column: "OfficeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectComponents_ProjectId",
-                table: "ProjectComponents",
-                column: "ProjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectComponents_TechId",
-                table: "ProjectComponents",
+                name: "IX_PersonTechs_TechId",
+                table: "PersonTechs",
                 column: "TechId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_ClientId",
                 table: "Projects",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Projects_TabId",
+                table: "Projects",
+                column: "TabId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Projects_TechId",
+                table: "Projects",
+                column: "TechId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tabs_ClientId",
+                table: "Tabs",
                 column: "ClientId");
         }
 
@@ -592,16 +584,13 @@ namespace AssignmentsNetcore.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "AssignmentRoles");
-
-            migrationBuilder.DropTable(
                 name: "Changes");
 
             migrationBuilder.DropTable(
                 name: "Feedbacks");
 
             migrationBuilder.DropTable(
-                name: "PersonJobRoles");
+                name: "PersonTechs");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -610,25 +599,28 @@ namespace AssignmentsNetcore.Migrations
                 name: "Assignments");
 
             migrationBuilder.DropTable(
-                name: "JobRoles");
-
-            migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Persons");
 
             migrationBuilder.DropTable(
-                name: "ProjectComponents");
-
-            migrationBuilder.DropTable(
-                name: "Offices");
+                name: "Positions");
 
             migrationBuilder.DropTable(
                 name: "Projects");
 
             migrationBuilder.DropTable(
+                name: "Offices");
+
+            migrationBuilder.DropTable(
+                name: "Tabs");
+
+            migrationBuilder.DropTable(
                 name: "Techs");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
 
             migrationBuilder.DropTable(
                 name: "Clients");

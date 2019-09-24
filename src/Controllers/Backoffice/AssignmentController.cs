@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using AssignmentsNetcore.Controllers.Backoffice;
 using AssignmentsNetcore.Models.Database;
 using AssignmentsNetcore.Models.Views;
 using AssignmentsNetcore.Repositories.Interfaces;
@@ -22,7 +21,7 @@ namespace AssignmentsNetcore.Controllers
         }
 
         public IUnitOfWork UnitOfWork { get => this._unitOfWork; }
-        public IHtmlLocalizer<AssignmentController> Localizer { get => this._localizer; }
+        public IHtmlLocalizer<AssignmentController> Localizer { get => this._localizer; }
 
         [HttpGet("")]
         public IActionResult Index() =>
@@ -31,15 +30,15 @@ namespace AssignmentsNetcore.Controllers
         [HttpGet("Create")]
         public IActionResult Create()
         {
-            var viewModel = new AssignmentViewModel();
-            viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
-            viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
-            viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
+            var viewModel = new AssignmentFormViewModel(UnitOfWork.TechRepository.GetAll(),
+                                            UnitOfWork.PersonRepository.GetAll(),
+                                            UnitOfWork.ProjectRepository.GetAll(),
+                                            UnitOfWork.PositionRepository.GetAll());
             return View(viewModel);
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(AssignmentViewModel viewModel)
+        public IActionResult Create(AssignmentFormViewModel viewModel)
         {
             try
             {
@@ -52,15 +51,12 @@ namespace AssignmentsNetcore.Controllers
                 }
                 else
                 {
-                    viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
-                    viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
-                    viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
                     return View(viewModel);
                 }
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("", e.Message);
+                ModelState.AddModelError(string.Empty, e.Message);
                 return View(viewModel);
             }
         }
@@ -69,16 +65,17 @@ namespace AssignmentsNetcore.Controllers
         public IActionResult Edit(int? id)
         {
             if (id == null) return NotFound();
-            var viewModel = new AssignmentViewModel(UnitOfWork.AssignmentRepository.Get(id.Value));
+            var viewModel = new AssignmentFormViewModel(UnitOfWork.AssignmentRepository.Get(id.Value),
+                                            UnitOfWork.TechRepository.GetAll(),
+                                            UnitOfWork.PersonRepository.GetAll(),
+                                            UnitOfWork.ProjectRepository.GetAll(),
+                                            UnitOfWork.PositionRepository.GetAll());
             if (viewModel == null) return NotFound();
-            viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
-            viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
-            viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
             return View(viewModel);
         }
 
         [HttpPost("Edit/{id}")]
-        public IActionResult Edit(int id, AssignmentViewModel viewModel)
+        public IActionResult Edit(int id, AssignmentFormViewModel viewModel)
         {
             try
             {
@@ -92,15 +89,12 @@ namespace AssignmentsNetcore.Controllers
                 }
                 else
                 {
-                    viewModel.Persons = UnitOfWork.PersonRepository.GetAll().Select(p => new SelectListItem { Text = p.Mail, Value = p.Id.ToString() }).ToList();
-                    viewModel.Projects = UnitOfWork.ProjectComponentRepository.GetAll().Select(p => new SelectListItem { Text = $"{p.Project.Name} - {p.Tech.Name}", Value = p.Id.ToString() }).ToList();
-                    viewModel.Positions = UnitOfWork.PositionRepository.GetAll().Select(p => new SelectListItem { Text = p.Name, Value = p.Id.ToString() }).ToList();
                     return View(viewModel);
                 }
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("", e.Message);
+                ModelState.AddModelError(string.Empty, e.Message);
                 return View(viewModel);
             }
         }
@@ -114,7 +108,7 @@ namespace AssignmentsNetcore.Controllers
 
         [HttpGet("Delete/{id}")]
         public IActionResult Delete(int? id)
-        {	     
+        {
             if (id == null) return NotFound();
             var assignment = UnitOfWork.AssignmentRepository.Get(id.Value);
             if (assignment == null) return NotFound();

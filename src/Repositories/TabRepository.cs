@@ -4,8 +4,8 @@ using AssignmentsNetcore.Repositories.Interfaces;
 
 namespace AssignmentsNetcore.Repositories
 {
-    public class CommercialRepository : Repository<Commercial>, ICommercialRepository
+    public class TabRepository : Repository<Tab>, ITabRepository
     {
-        public CommercialRepository(DataBaseContext context) : base(context) { }
+        public TabRepository(DataBaseContext context) : base(context) { }
     }
 }

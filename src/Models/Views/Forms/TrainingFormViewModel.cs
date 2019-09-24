@@ -11,19 +11,20 @@ namespace AssignmentsNetcore.Models.Views
     {
         public TrainingFormViewModel() : base() { }
 
-        public TrainingFormViewModel(IEnumerable<Client> clients) : base()
+        public TrainingFormViewModel(IEnumerable<Tech> techs, IEnumerable<Tab> tabs) : base()
         {
-            this.Clients = clients.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
+            this.Techs = techs.Select(pc => new SelectListItem(pc.Name, pc.Id.ToString()));
+            this.Tabs = tabs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
         }
 
-        public TrainingFormViewModel(Training training, IEnumerable<Client> clients, IEnumerable<ProjectComponent> projectComponents) : base(training)
+        public TrainingFormViewModel(Training training, IEnumerable<Tech> techs, IEnumerable<Tab> tabs) : base(training)
         {
             this.Name = training.Name;
             this.StartDate = training.StartDate;
             this.EndDate = training.EndDate;
-            this.ClientId = training.ClientId;
-            this.Clients = clients.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
-            this.ProjectComponents = projectComponents.Select(pc => new SelectListItem(pc.Name, pc.Id.ToString()));
+            this.TabId = training.TabId;
+            this.Tabs = tabs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
+            this.Techs = techs.Select(pc => new SelectListItem(pc.Name, pc.Id.ToString()));
             this.Individual = training.Individual;
             this.Remote = training.Remote;
             this.TrainingStatus = training.TrainingStatus;
@@ -35,16 +36,14 @@ namespace AssignmentsNetcore.Models.Views
         public DateTime StartDate { get; set; }
         [Required]
         public DateTime EndDate { get; set; }
-        [Required]
-        public int ClientId { get; set; }
-
+        public int TabId { get; set; }
+        public int TechId { get; set; }
         public bool Individual { get; set; }
         public bool Remote { get; set; }
         [Required]
         public TrainingStatus TrainingStatus { get; set; }
-        [Required]
-        public ProjectStatus ProjectStatus { get; set; }
-        public IEnumerable<SelectListItem> Clients { get; set; }
-        public IEnumerable<SelectListItem> ProjectComponents { get; set; }
+        public bool Active { get; set; }
+        public IEnumerable<SelectListItem> Tabs { get; set; }
+        public IEnumerable<SelectListItem> Techs { get; set; }
     }
 }

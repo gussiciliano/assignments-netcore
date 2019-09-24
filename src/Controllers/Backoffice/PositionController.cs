@@ -42,9 +42,7 @@ namespace AssignmentsNetcore.Controllers
         }
         protected override PositionViewModel CreateNewViewModel(Position entity)
         {
-            PositionViewModel positionViewModel = new PositionViewModel();
-            positionViewModel.Id = entity.Id;
-            positionViewModel.Name = entity.Name;
+            PositionViewModel positionViewModel = new PositionViewModel(entity);
             return positionViewModel;
         }
 

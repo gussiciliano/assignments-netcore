@@ -12,6 +12,12 @@
     <h2>@Localizer["Details"]</h2>
     <h4>@Localizer["OptionTitlePerson"]</h4>
     <div class="sub-label">
+        @Html.DisplayNameFor(model => model.CompleteName)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.CompleteName)
+    </div>
+    <div class="sub-label">
         @Html.DisplayNameFor(model => model.Mail)
     </div>
     <div>

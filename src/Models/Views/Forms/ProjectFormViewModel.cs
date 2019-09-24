@@ -10,37 +10,32 @@ namespace AssignmentsNetcore.Models.Views
     public class ProjectFormViewModel : BaseEntityViewModel
     {
         public ProjectFormViewModel() : base() { }
-
-        public ProjectFormViewModel(IEnumerable<Client> clients, IEnumerable<ProjectComponent> projectComponents)
+        public ProjectFormViewModel(IEnumerable<Tech> techs, IEnumerable<Tab> tabs) : base()
         {
-            this.Clients = clients.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
-            this.ProjectComponents = projectComponents.Select(pc => new SelectListItem(pc.Name, pc.Id.ToString()));
+            this.Techs = techs.Select(t => new SelectListItem(t.Name, t.Id.ToString()));
+            this.Tabs = tabs.Select(t => new SelectListItem(t.Name, t.Id.ToString()));
         }
 
-        public ProjectFormViewModel(IEnumerable<Client> clients) =>
-            this.Clients = clients.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
-
-        public ProjectFormViewModel(Project project, IEnumerable<Client> clients, IEnumerable<ProjectComponent> projectComponents) : base(project)
+        public ProjectFormViewModel(Project project, IEnumerable<Tech> techs, IEnumerable<Tab> tabs) : base(project)
         {
             this.Name = project.Name;
             this.StartDate = project.StartDate;
             this.EndDate = project.EndDate;
-            this.ClientId = project.ClientId;
-            this.Clients = clients.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
-            this.ProjectComponents = projectComponents.Select(pc => new SelectListItem(pc.Name, pc.Id.ToString()));
+            this.Status = project.Status;
+            this.TabId = project.TabId;
+            this.TechId = project.TechId;
+            this.Techs = techs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
+            this.Tabs = tabs.Select(c => new SelectListItem(c.Name, c.Id.ToString()));
         }
 
-        [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
-        [Required]
         public DateTime StartDate { get; set; }
-        [Required]
         public DateTime EndDate { get; set; }
-        [Required]
-        public int ClientId { get; set; }
-        [Required]
-        public ProjectStatus ProjectStatus { get; set; }
-        public IEnumerable<SelectListItem> Clients { get; set; }
-        public IEnumerable<SelectListItem> ProjectComponents { get; set; }
+        public ProjectStatus Status { get; set; }
+        public int TabId { get; set; }
+        public int TechId { get; set; }
+        public IEnumerable<SelectListItem> Techs { get; set; }
+        public IEnumerable<SelectListItem> Tabs { get; set; }
+        public IEnumerable<SelectListItem> Statuses { get; set; }
     }
 }

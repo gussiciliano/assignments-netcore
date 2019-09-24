@@ -1,45 +1,23 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@model AssignmentsNetcore.Models.Views.CommercialViewModel
+@model AssignmentsNetcore.Models.Views.PositionViewModel
 @using AssignmentsNetcore.Models.Views
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<div>
+
+
+<div class="component">
     <h2>@Localizer["Details"]</h2>
-    <h4>@Localizer["OptionTitleCommercial"]</h4>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.IsTeamAugmentation)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.IsTeamAugmentation)
-    </div>
+    <h4>@Localizer["OptionTitlePosition"]</h4>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.Name)
     </div>
     <div>
         @Html.DisplayFor(model => model.Name)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.StartDate)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.StartDate)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.EndDate)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.EndDate)
-    </div>
-    <div class="sub-label">
-        @Html.DisplayNameFor(model => model.ProjectStatus)
-    </div>
-    <div>
-        @Html.DisplayFor(model => model.ProjectStatus)
     </div>
     <div class="sub-label">
         @Html.DisplayNameFor(model => model.CreatedAt)

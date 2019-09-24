@@ -14,17 +14,16 @@ namespace AssignmentsNetcore.Repositories.Database
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Change> Changes { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Commercial> Commercials { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<HHII> HHIIs { get; set; }
         public DbSet<Office> Offices { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Tab> Tabs { get; set; }
         public DbSet<Project> Projects { get; set; }
-        public DbSet<ProjectComponent> ProjectComponents { get; set; }
         public DbSet<Tech> Techs { get; set; }
         public DbSet<Training> Trainings { get; set; }
+        public DbSet<PersonTech> PersonTechs { get; set; }
         public override int SaveChanges()
         {
             AddTimestamps();
@@ -34,15 +33,15 @@ namespace AssignmentsNetcore.Repositories.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ProjectComponent>()
+            modelBuilder.Entity<Project>()
                 .Property(pc => pc.Status)
                 .HasDefaultValue(ProjectStatus.ProductThinking);
-            modelBuilder.Entity<Project>()
-                .Property(p => p.ProjectStatus)
-                .HasDefaultValue(ProjectStatus.ProductThinking);
+            modelBuilder.Entity<Tab>()
+                .Property(p => p.Active)
+                .HasDefaultValue(false);
             modelBuilder.Entity<Training>()
                 .Property(t => t.TrainingStatus)
-                .HasDefaultValue(TrainingStatus.OnGoing);
+                .HasDefaultValue(TrainingStatus.NotStarted);
             modelBuilder.Entity<PersonTech>().HasKey(pt => new { pt.PersonId, pt.TechId });
             modelBuilder.Entity<PersonTech>()
                         .HasOne(pt => pt.Person)
@@ -50,7 +49,7 @@ namespace AssignmentsNetcore.Repositories.Database
                         .HasForeignKey(pt => pt.PersonId);
             modelBuilder.Entity<PersonTech>()
                         .HasOne(pt => pt.Tech)
-                        .WithMany(pt => pt.Persons)
+                        .WithMany(p => p.Persons)
                         .HasForeignKey(pt => pt.TechId);
         }
 

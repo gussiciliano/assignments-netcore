@@ -2,5 +2,5 @@ using AssignmentsNetcore.Models.Database;
 
 namespace AssignmentsNetcore.Repositories.Interfaces
 {
-  public interface IProjectComponentRepository : IRepository<ProjectComponent> { }
+  public interface ITabRepository : IRepository<Tab> { }
 }
